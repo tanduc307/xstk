@@ -4,9 +4,9 @@
 %
 \documentclass[
 ]{book}
-\title{Xác suất thống kê}
+\title{Học xác suất thống kê qua phần mềm R}
 \author{Duc Nguyen}
-\date{2022-02-03}
+\date{2022-02-12}
 
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -40,7 +40,7 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
-  pdftitle={Xác suất thống kê},
+  pdftitle={Học xác suất thống kê qua phần mềm R},
   pdfauthor={Duc Nguyen},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
@@ -143,8 +143,8 @@
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
-\hypertarget{learning-stat}{%
-\chapter{Learning stat}\label{learning-stat}}
+\hypertarget{stat-learning}{%
+\chapter{Stat learning}\label{stat-learning}}
 
 \includegraphics[width=1\textwidth,height=\textheight]{images/Quotefancy-237580-3840x2160.jpg}
 
@@ -161,6 +161,8 @@ Cách thực hiện xem ở đây \url{https://alexd106.github.io/intro2R/howto.
 Lợi thế là trong folder project này, ta có thể tạo các folder con như images, data, tables, \ldots{} để thuận tiện lưu riêng từng loại dữ liệu. {[}hiện tại làm sao để cấu hình cho hình ảnh nó tự động lưu theo từng folder thì chưa biết cách, thấy có package `here' mà không biết cách dùng).
 
 Lưu ý là khi dùng bookdown để render books thì tên của heading là ghi tiếng Anh cho lành, vì nếu ghi tiếng Việt thì nó render bị lỗi unicode.
+
+\href{https://vimeo.com/460932720}{\includegraphics{https://res.cloudinary.com/marcomontalbano/image/upload/v1644647290/video_to_markdown/images/vimeo--460932720-c05b58ac6eb4c4700831b2b3070cd403.jpg}}
 
 \hypertarget{chuxe8n-huxecnh-ux1ea3nh}{%
 \section{Chèn hình ảnh}\label{chuxe8n-huxecnh-ux1ea3nh}}
@@ -179,7 +181,16 @@ Có các cách chèn hình khi sử dụng Rstudio như sau:
 
 \includegraphics{images/cover.jpg}
 
-• Nếu copy và paste từ trên Internet thì dùng add-on imageclipr \url{https://github.com/Toniiiio/imageclipr}. Hình ảnh sẽ lưu mặc định trong working directory.
+• Nếu copy và paste từ trên Internet thì dùng add-on \texttt{imageclipr} \href{https://github.com/Toniiiio/imageclipr}{\textless https://github.com/Toniiiio/imageclipr\textgreater{}}. Hình ảnh sẽ lưu mặc định trong working directory.
+
+• Nếu copy và paste hình ảnh theo kiểu thủ công thì hình ảnh mặc định sẽ lưu ở \texttt{C:/Users/tandu/AppData/Local/RStudio/tmp/paste-B717C571.png} như vậy thì khi xuất bản online sẽ không thấy. Do đó phải đưa hình ảnh vào trong thư mục project (theo kiểu thủ công) hoặc dùng add-on \texttt{imageclipr} theo kiểu trực tiếp trong Rstudio (nhưng ở dạng Rmarkdown, còn Rmarkdown visual thì bị lỗi).
+
+\hypertarget{chuxe8n-video}{%
+\section{Chèn video}\label{chuxe8n-video}}
+
+Sử dụng link này \url{https://video-to-markdown.marcomontalbano.com/}
+
+Hoặc syntax \texttt{{[}!{[}Alternate\ Text{]}(\{image-url\}){]}(\{video-url\}\ "Link\ Title")}
 
 \hypertarget{vux103n-phux1ea1m-tiux1ebfng-anh}{%
 \section{Văn phạm tiếng Anh}\label{vux103n-phux1ea1m-tiux1ebfng-anh}}
@@ -207,6 +218,20 @@ Xem hướng dẫn ở đây là làm được \url{https://inbo.github.io/tutor
 
 Xem ở đây \url{https://www.markdownguide.org/basic-syntax/}
 
+\hypertarget{setup-github-cho-rstudio}{%
+\section{Setup Github cho RStudio}\label{setup-github-cho-rstudio}}
+
+Mục đích là để thuận tiện lưu trữ toàn bộ dữ liệu của dự án R mà khỏi cần copy, save as thủ công. \url{https://intro2r.com/github_r.html}
+
+Khi có file nào đó thay đổi thì ở Tab Git này sẽ update ngay. Ta chỉ cần chọn \texttt{Ctrl+A} rồi \texttt{Space} để select all sau đó \texttt{commit} rồi mới \texttt{push} lên server Git để lưu trữ.
+
+\includegraphics{01-how_to_use_tools_insertimage_1.png}
+
+\hypertarget{tham-khux1ea3o}{%
+\section{Tham khảo}\label{tham-khux1ea3o}}
+
+\url{https://rstats.wtf/}
+
 \hypertarget{hello-bookdown}{%
 \chapter{Hello bookdown}\label{hello-bookdown}}
 
@@ -215,7 +240,7 @@ All chapters start with a first-level heading followed by your chapter title, li
 \hypertarget{a-section}{%
 \section{A section}\label{a-section}}
 
-All chapter sections start with a second-level (\texttt{\#\#}) or higher heading followed by your section title, like the sections above and below here. You can have as many as you want within \citep{somasegaran1985} a chapter \citep{lehmannBiocharEnvironmentalManagement2015}.
+All chapter sections start with a second-level (\texttt{\#\#}) or higher heading followed by your section title, like the sections above and below here. You can have as many as you want within \citep{somasegaran1985} a chapter.
 
 \hypertarget{an-unnumbered-section}{%
 \subsection*{An unnumbered section}\label{an-unnumbered-section}}

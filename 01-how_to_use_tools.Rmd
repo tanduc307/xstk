@@ -24,6 +24,14 @@ knitr::include_graphics("images/cover.jpg")
 
 • Nếu copy và paste từ trên Internet thì dùng add-on `imageclipr` [\<https://github.com/Toniiiio/imageclipr>](https://github.com/Toniiiio/imageclipr){.uri}. Hình ảnh sẽ lưu mặc định trong working directory.
 
+• Nếu copy và paste hình ảnh theo kiểu thủ công thì hình ảnh mặc định sẽ lưu ở `C:/Users/tandu/AppData/Local/RStudio/tmp/paste-B717C571.png` như vậy thì khi xuất bản online sẽ không thấy. Do đó phải đưa hình ảnh vào trong thư mục project (theo kiểu thủ công) hoặc dùng add-on `imageclipr` theo kiểu trực tiếp trong Rstudio (nhưng ở dạng Rmarkdown, còn Rmarkdown visual thì bị lỗi).
+
+## Chèn video
+
+Sử dụng link này <https://video-to-markdown.marcomontalbano.com/> (theo kiểu click vào hình rồi direct qua source để play video)
+
+Hoặc syntax `[![Alternate Text]({image-url})]({video-url} "Link Title")`
+
 ## Văn phạm tiếng Anh
 
 Cách sử dụng dấu ba chấm ellipses. <https://t.me/c/1605387342/140>
@@ -49,9 +57,9 @@ Xem ở đây <https://www.markdownguide.org/basic-syntax/>
 
 Mục đích là để thuận tiện lưu trữ toàn bộ dữ liệu của dự án R mà khỏi cần copy, save as thủ công. <https://intro2r.com/github_r.html>
 
-Khi có file nào đó thay đổi thì ở Tab Git này sẽ update ngay. Ta chỉ cần chọn `Ctrl+A` rồi `Space` để select all sau đó pust lên server Git để lưu trữ.
+Khi có file nào đó thay đổi thì ở Tab Git này sẽ update ngay. Ta chỉ cần chọn `Ctrl+A` rồi `Space` để select all sau đó `commit` rồi mới `push` lên server Git để lưu trữ.
 
-![](C:/Users/tandu/AppData/Local/RStudio/tmp/paste-B717C571.png)
+![](01-how_to_use_tools_insertimage_1.png)
 
 ## Tham khảo
 
