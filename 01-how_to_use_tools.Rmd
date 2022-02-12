@@ -22,7 +22,7 @@ Có các cách chèn hình khi sử dụng Rstudio như sau:
 knitr::include_graphics("images/cover.jpg")
 ```
 
-• Nếu copy và paste từ trên Internet thì dùng add-on `imageclipr` [<https://github.com/Toniiiio/imageclipr>](https://github.com/Toniiiio/imageclipr){.uri}. Hình ảnh sẽ lưu mặc định trong working directory.
+• Nếu copy và paste từ trên Internet thì dùng add-on `imageclipr` [\<https://github.com/Toniiiio/imageclipr>](https://github.com/Toniiiio/imageclipr){.uri}. Hình ảnh sẽ lưu mặc định trong working directory.
 
 ## Văn phạm tiếng Anh
 
@@ -48,3 +48,11 @@ Xem ở đây <https://www.markdownguide.org/basic-syntax/>
 ## Setup Github cho RStudio
 
 Mục đích là để thuận tiện lưu trữ toàn bộ dữ liệu của dự án R mà khỏi cần copy, save as thủ công. <https://intro2r.com/github_r.html>
+
+Khi có file nào đó thay đổi thì ở Tab Git này sẽ update ngay. Ta chỉ cần chọn `Ctrl+A` rồi `Space` để select all sau đó pust lên server Git để lưu trữ.
+
+![](C:/Users/tandu/AppData/Local/RStudio/tmp/paste-B717C571.png)
+
+## Tham khảo
+
+<https://rstats.wtf/>
