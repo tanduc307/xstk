@@ -11,3 +11,5 @@ link-citations: yes
 ---
 # Stat learning
 ![](images/Quotefancy-237580-3840x2160.jpg){width="100%"}
+Test bookdown for creating better books.
+tanduc307@gmail.com

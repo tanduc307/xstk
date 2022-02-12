@@ -10,15 +10,24 @@ Lợi thế là trong folder project này, ta có thể tạo các folder con nh
 
 Lưu ý là khi dùng bookdown để render books thì tên của heading là ghi tiếng Anh cho lành, vì nếu ghi tiếng Việt thì nó render bị lỗi unicode.
 
+<iframe src="https://player.vimeo.com/video/460932720?h=ee64dffa97" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+<p><a href="https://vimeo.com/460932720">RStudio Projects</a> from <a href="https://vimeo.com/user114793395">intro 2R</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+
 ## Chèn hình ảnh
 
 Có các cách chèn hình khi sử dụng Rstudio như sau:
 
 • Chuyển qua chế độ Visual rồi insert hình ảnh. Sau đó hình ảnh sẽ được lưu trong folder \_book/images khi render bằng knitr.
 
-• Nếu gõ theo kiểu source code thì
+• Nếu gõ theo kiểu source code thì dùng đoạn mã sau
+`
+```
+{r echo=TRUE, paged.print=FALSE, out.width="30%"}
+knitr::include_graphics("images/cover.jpg")
+```
+`
 
-```{r}
+```{r echo=TRUE, paged.print=FALSE, out.width="30%"}
 knitr::include_graphics("images/cover.jpg")
 ```
 
@@ -30,7 +39,51 @@ knitr::include_graphics("images/cover.jpg")
 
 Sử dụng link này <https://video-to-markdown.marcomontalbano.com/> (theo kiểu click vào hình rồi direct qua source để play video)
 
-Hoặc syntax `[![Alternate Text]({image-url})]({video-url} "Link Title")`
+Chèn từ Youtube, sử dụng code embed rồi paste vào.
+
+`<iframe width="560" height="315" src="https://www.youtube.com/embed/RLxV3T2b524" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
+
+Tuy nhiên video sẽ không tự động resize theo khung cửa sổ
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/RLxV3T2b524" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Nên dùng code này để video tự động resize. Chiều rộng và cao 100% có nghĩa là theo khung cửa sổ chứ không phải theo kích thước gốc của video.
+
+`<div style="position:relative;padding-bottom:56.25%;">
+ <iframe style="width:100%;height:100%;position:absolute;left:0px;top:0px;"
+ frameborder="0" width="100%" height="100%" 
+ allowfullscreen
+ src="https://www.youtube.com/embed/RLxV3T2b524">
+</iframe>
+</div>`
+
+<div style="position:relative;padding-bottom:56.25%;">
+ <iframe style="width:100%;height:100%;position:absolute;left:0px;top:0px;"
+ frameborder="0" width="100%" height="100%" 
+ allowfullscreen
+ src="https://www.youtube.com/embed/RLxV3T2b524">
+</iframe>
+</div>
+
+Chèn từ Github, lưu ý vị trí đường dẫn của file (kể cả trong sub folder phải chính xác) và repo phải tạo Gitpage. Video sẽ play khi mở bằng trình duyệt.
+
+`<div style="position:relative;padding-bottom:56.25%;">
+ <iframe style="width:100%;height:100%;position:absolute;left:0px;top:0px;"
+ frameborder="0" width="100%" height="100%" 
+ allowfullscreen
+ src="https://tanduc307.github.io/xstk/images/thanks.mp4">
+</iframe>
+</div>`
+
+<div style="position:relative;padding-bottom:56.25%;">
+ <iframe style="width:100%;height:100%;position:absolute;left:0px;top:0px;"
+ frameborder="0" width="100%" height="100%" 
+ allowfullscreen
+ src="https://tanduc307.github.io/xstk/images/thanks.mp4">
+</iframe>
+</div>
+
+Có thể dùng package `vembedr` https://ijlyttle.github.io/vembedr/ để insert video cho nhanh.
 
 ## Văn phạm tiếng Anh
 

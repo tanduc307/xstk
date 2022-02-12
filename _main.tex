@@ -119,23 +119,6 @@
 \usepackage[]{natbib}
 \bibliographystyle{plainnat}
 
-\usepackage{amsthm}
-\newtheorem{theorem}{Theorem}[chapter]
-\newtheorem{lemma}{Lemma}[chapter]
-\newtheorem{corollary}{Corollary}[chapter]
-\newtheorem{proposition}{Proposition}[chapter]
-\newtheorem{conjecture}{Conjecture}[chapter]
-\theoremstyle{definition}
-\newtheorem{definition}{Definition}[chapter]
-\theoremstyle{definition}
-\newtheorem{example}{Example}[chapter]
-\theoremstyle{definition}
-\newtheorem{exercise}{Exercise}[chapter]
-\theoremstyle{definition}
-\newtheorem{hypothesis}{Hypothesis}[chapter]
-\theoremstyle{remark}
-\newtheorem*{remark}{Remark}
-\newtheorem*{solution}{Solution}
 \begin{document}
 \maketitle
 
@@ -147,6 +130,8 @@
 \chapter{Stat learning}\label{stat-learning}}
 
 \includegraphics[width=1\textwidth,height=\textheight]{images/Quotefancy-237580-3840x2160.jpg}
+Test bookdown for creating better books.
+\href{mailto:tanduc307@gmail.com}{\nolinkurl{tanduc307@gmail.com}}
 
 \hypertarget{how-to-use-tools}{%
 \chapter{How to use tools}\label{how-to-use-tools}}
@@ -162,7 +147,7 @@ Lợi thế là trong folder project này, ta có thể tạo các folder con nh
 
 Lưu ý là khi dùng bookdown để render books thì tên của heading là ghi tiếng Anh cho lành, vì nếu ghi tiếng Việt thì nó render bị lỗi unicode.
 
-\href{https://vimeo.com/460932720}{\includegraphics{https://res.cloudinary.com/marcomontalbano/image/upload/v1644647290/video_to_markdown/images/vimeo--460932720-c05b58ac6eb4c4700831b2b3070cd403.jpg}}
+RStudio Projects from intro 2R on Vimeo.
 
 \hypertarget{chuxe8n-huxecnh-ux1ea3nh}{%
 \section{Chèn hình ảnh}\label{chuxe8n-huxecnh-ux1ea3nh}}
@@ -171,7 +156,8 @@ Có các cách chèn hình khi sử dụng Rstudio như sau:
 
 • Chuyển qua chế độ Visual rồi insert hình ảnh. Sau đó hình ảnh sẽ được lưu trong folder \_book/images khi render bằng knitr.
 
-• Nếu gõ theo kiểu source code thì
+• Nếu gõ theo kiểu source code thì dùng đoạn mã sau
+\texttt{\textasciigrave{}\textasciigrave{}\textasciigrave{}\ \{r\ echo=TRUE,\ paged.print=FALSE,\ out.width="30\%"\}\ knitr::include\_graphics("images/cover.jpg")\ \textasciigrave{}\textasciigrave{}\textasciigrave{}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -179,7 +165,7 @@ Có các cách chèn hình khi sử dụng Rstudio như sau:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{images/cover.jpg}
+\includegraphics[width=0.3\linewidth]{images/cover}
 
 • Nếu copy và paste từ trên Internet thì dùng add-on \texttt{imageclipr} \href{https://github.com/Toniiiio/imageclipr}{\textless https://github.com/Toniiiio/imageclipr\textgreater{}}. Hình ảnh sẽ lưu mặc định trong working directory.
 
@@ -188,9 +174,25 @@ Có các cách chèn hình khi sử dụng Rstudio như sau:
 \hypertarget{chuxe8n-video}{%
 \section{Chèn video}\label{chuxe8n-video}}
 
-Sử dụng link này \url{https://video-to-markdown.marcomontalbano.com/}
+Sử dụng link này \url{https://video-to-markdown.marcomontalbano.com/} (theo kiểu click vào hình rồi direct qua source để play video)
 
 Hoặc syntax \texttt{{[}!{[}Alternate\ Text{]}(\{image-url\}){]}(\{video-url\}\ "Link\ Title")}
+
+Chèn từ Youtube, sử dụng code embed rồi paste vào.
+
+\texttt{\textless{}iframe\ width="560"\ height="315"\ src="https://www.youtube.com/embed/RLxV3T2b524"\ title="YouTube\ video\ player"\ frameborder="0"\ allow="accelerometer;\ autoplay;\ clipboard-write;\ encrypted-media;\ gyroscope;\ picture-in-picture"\ allowfullscreen\textgreater{}\textless{}/iframe\textgreater{}}
+
+Tuy nhiên video sẽ không tự động resize theo khung cửa sổ
+
+Nên dùng code này để video tự động resize. Chiều rộng và cao 100\% có nghĩa là theo khung cửa sổ chứ không phải theo kích thước gốc của video.
+
+\texttt{\textless{}div\ style="position:relative;padding-bottom:56.25\%;"\textgreater{}\ \ \textless{}iframe\ style="width:100\%;height:100\%;position:absolute;left:0px;top:0px;"\ \ frameborder="0"\ width="100\%"\ height="100\%"\ \ \ allowfullscreen\ \ src="https://www.youtube.com/embed/RLxV3T2b524"\textgreater{}\ \textless{}/iframe\textgreater{}\ \textless{}/div\textgreater{}}
+
+Chèn từ Github, lưu ý vị trí đường dẫn của file (kể cả trong sub folder phải chính xác) và repo phải tạo Gitpage. Video sẽ play khi mở bằng trình duyệt.
+
+\texttt{\textless{}div\ style="position:relative;padding-bottom:56.25\%;"\textgreater{}\ \ \textless{}iframe\ style="width:100\%;height:100\%;position:absolute;left:0px;top:0px;"\ \ frameborder="0"\ width="100\%"\ height="100\%"\ \ \ allowfullscreen\ \ src="https://tanduc307.github.io/xstk/images/thanks.mp4"\textgreater{}\ \textless{}/iframe\textgreater{}\ \textless{}/div\textgreater{}}
+
+Có thể dùng package \texttt{vembedr} \url{https://ijlyttle.github.io/vembedr/} để insert video cho nhanh.
 
 \hypertarget{vux103n-phux1ea1m-tiux1ebfng-anh}{%
 \section{Văn phạm tiếng Anh}\label{vux103n-phux1ea1m-tiux1ebfng-anh}}
@@ -231,208 +233,6 @@ Khi có file nào đó thay đổi thì ở Tab Git này sẽ update ngay. Ta ch
 \section{Tham khảo}\label{tham-khux1ea3o}}
 
 \url{https://rstats.wtf/}
-
-\hypertarget{hello-bookdown}{%
-\chapter{Hello bookdown}\label{hello-bookdown}}
-
-All chapters start with a first-level heading followed by your chapter title, like the line above. There should be only one first-level heading (\texttt{\#}) per .Rmd file.
-
-\hypertarget{a-section}{%
-\section{A section}\label{a-section}}
-
-All chapter sections start with a second-level (\texttt{\#\#}) or higher heading followed by your section title, like the sections above and below here. You can have as many as you want within \citep{somasegaran1985} a chapter.
-
-\hypertarget{an-unnumbered-section}{%
-\subsection*{An unnumbered section}\label{an-unnumbered-section}}
-\addcontentsline{toc}{subsection}{An unnumbered section}
-
-Chapters and sections are numbered by default. To un-number a heading, add a \texttt{\{.unnumbered\}} or the shorter \texttt{\{-\}} at the end of the heading, like in this section.
-
-\hypertarget{cross}{%
-\chapter{Cross-references}\label{cross}}
-
-Cross-references make it easier for your readers to find and link to elements in your book.
-
-\hypertarget{chapters-and-sub-chapters}{%
-\section{Chapters and sub-chapters}\label{chapters-and-sub-chapters}}
-
-There are two steps to cross-reference any heading:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  Label the heading: \texttt{\#\ Hello\ world\ \{\#nice-label\}}.
-
-  \begin{itemize}
-  \tightlist
-  \item
-    Leave the label off if you like the automated heading generated based on your heading title: for example, \texttt{\#\ Hello\ world} = \texttt{\#\ Hello\ world\ \{\#hello-world\}}.
-  \item
-    To label an un-numbered heading, use: \texttt{\#\ Hello\ world\ \{-\#nice-label\}} or \texttt{\{\#\ Hello\ world\ .unnumbered\}}.
-  \end{itemize}
-\item
-  Next, reference the labeled heading anywhere in the text using \texttt{\textbackslash{}@ref(nice-label)}; for example, please see Chapter \ref{cross}.
-
-  \begin{itemize}
-  \tightlist
-  \item
-    If you prefer text as the link instead of a numbered reference use: \protect\hyperlink{cross}{any text you want can go here}.
-  \end{itemize}
-\end{enumerate}
-
-\hypertarget{captioned-figures-and-tables}{%
-\section{Captioned figures and tables}\label{captioned-figures-and-tables}}
-
-Figures and tables \emph{with captions} can also be cross-referenced from elsewhere in your book using \texttt{\textbackslash{}@ref(fig:chunk-label)} and \texttt{\textbackslash{}@ref(tab:chunk-label)}, respectively.
-
-See Figure \ref{fig:nice-fig}.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{par}\NormalTok{(}\AttributeTok{mar =} \FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, .}\DecValTok{1}\NormalTok{, .}\DecValTok{1}\NormalTok{))}
-\FunctionTok{plot}\NormalTok{(pressure, }\AttributeTok{type =} \StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{, }\AttributeTok{pch =} \DecValTok{19}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-
-{\centering \includegraphics[width=0.8\linewidth]{_main_files/figure-latex/nice-fig-1} 
-
-}
-
-\caption{Here is a nice figure!}\label{fig:nice-fig}
-\end{figure}
-
-Don't miss Table \ref{tab:nice-tab}.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(}
-  \FunctionTok{head}\NormalTok{(pressure, }\DecValTok{10}\NormalTok{), }\AttributeTok{caption =} \StringTok{\textquotesingle{}Here is a nice table!\textquotesingle{}}\NormalTok{,}
-  \AttributeTok{booktabs =} \ConstantTok{TRUE}
-\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{table}
-
-\caption{\label{tab:nice-tab}Here is a nice table!}
-\centering
-\begin{tabular}[t]{rr}
-\toprule
-temperature & pressure\\
-\midrule
-0 & 0.0002\\
-20 & 0.0012\\
-40 & 0.0060\\
-60 & 0.0300\\
-80 & 0.0900\\
-\addlinespace
-100 & 0.2700\\
-120 & 0.7500\\
-140 & 1.8500\\
-160 & 4.2000\\
-180 & 8.8000\\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\hypertarget{parts}{%
-\chapter{Parts}\label{parts}}
-
-You can add parts to organize one or more book chapters together. Parts can be inserted at the top of an .Rmd file, before the first-level chapter heading in that same file.
-
-Add a numbered part: \texttt{\#\ (PART)\ Act\ one\ \{-\}} (followed by \texttt{\#\ A\ chapter})
-
-Add an unnumbered part: \texttt{\#\ (PART\textbackslash{}*)\ Act\ one\ \{-\}} (followed by \texttt{\#\ A\ chapter})
-
-Add an appendix as a special kind of un-numbered part: \texttt{\#\ (APPENDIX)\ Other\ stuff\ \{-\}} (followed by \texttt{\#\ A\ chapter}). Chapters in an appendix are prepended with letters instead of numbers.
-
-\hypertarget{footnotes-and-citations}{%
-\chapter{Footnotes and citations}\label{footnotes-and-citations}}
-
-\hypertarget{footnotes}{%
-\section{Footnotes}\label{footnotes}}
-
-Footnotes are put inside the square brackets after a caret \texttt{\^{}{[}{]}}. Like this one \footnote{This is a footnote.}.
-
-\hypertarget{citations}{%
-\section{Citations}\label{citations}}
-
-Reference items in your bibliography file(s) using \texttt{@key}.
-
-For example, we are using the \textbf{bookdown} package \citep{R-bookdown} (check out the last code chunk in index.Rmd to see how this citation key was added) in this sample book, which was built on top of R Markdown and \textbf{knitr} \citep{xie2015} (this citation was added manually in an external file book.bib).
-Note that the \texttt{.bib} files need to be listed in the index.Rmd with the YAML \texttt{bibliography} key.
-
-The RStudio Visual Markdown Editor can also make it easier to insert citations: \url{https://rstudio.github.io/visual-markdown-editing/\#/citations}
-
-\hypertarget{blocks}{%
-\chapter{Blocks}\label{blocks}}
-
-\hypertarget{equations}{%
-\section{Equations}\label{equations}}
-
-Here is an equation.
-
-\begin{equation} 
-  f\left(k\right) = \binom{n}{k} p^k\left(1-p\right)^{n-k}
-  \label{eq:binom}
-\end{equation}
-
-You may refer to using \texttt{\textbackslash{}@ref(eq:binom)}, like see Equation \eqref{eq:binom}.
-
-\hypertarget{theorems-and-proofs}{%
-\section{Theorems and proofs}\label{theorems-and-proofs}}
-
-Labeled theorems can be referenced in text using \texttt{\textbackslash{}@ref(thm:tri)}, for example, check out this smart theorem \ref{thm:tri}.
-
-\begin{theorem}
-\protect\hypertarget{thm:tri}{}\label{thm:tri}For a right triangle, if \(c\) denotes the \emph{length} of the hypotenuse
-and \(a\) and \(b\) denote the lengths of the \textbf{other} two sides, we have
-\[a^2 + b^2 = c^2\]
-\end{theorem}
-
-Read more here \url{https://bookdown.org/yihui/bookdown/markdown-extensions-by-bookdown.html}.
-
-\hypertarget{callout-blocks}{%
-\section{Callout blocks}\label{callout-blocks}}
-
-The R Markdown Cookbook provides more help on how to use custom blocks to design your own callouts: \url{https://bookdown.org/yihui/rmarkdown-cookbook/custom-blocks.html}
-
-\hypertarget{sharing-your-book}{%
-\chapter{Sharing your book}\label{sharing-your-book}}
-
-\hypertarget{publishing}{%
-\section{Publishing}\label{publishing}}
-
-HTML books can be published online, see: \url{https://bookdown.org/yihui/bookdown/publishing.html}
-
-\hypertarget{pages}{%
-\section{404 pages}\label{pages}}
-
-By default, users will be directed to a 404 page if they try to access a webpage that cannot be found. If you'd like to customize your 404 page instead of using the default, you may add either a \texttt{\_404.Rmd} or \texttt{\_404.md} file to your project root and use code and/or Markdown syntax.
-
-\hypertarget{metadata-for-sharing}{%
-\section{Metadata for sharing}\label{metadata-for-sharing}}
-
-Bookdown HTML books will provide HTML metadata for social sharing on platforms like Twitter, Facebook, and LinkedIn, using information you provide in the \texttt{index.Rmd} YAML. To setup, set the \texttt{url} for your book and the path to your \texttt{cover-image} file. Your book's \texttt{title} and \texttt{description} are also used.
-
-This \texttt{gitbook} uses the same social sharing data across all chapters in your book- all links shared will look the same.
-
-Specify your book's source repository on GitHub using the \texttt{edit} key under the configuration options in the \texttt{\_output.yml} file, which allows users to suggest an edit by linking to a chapter's source file.
-
-Read more about the features of this output format here:
-
-\url{https://pkgs.rstudio.com/bookdown/reference/gitbook.html}
-
-Or use:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{?bookdown}\SpecialCharTok{::}\NormalTok{gitbook}
-\end{Highlighting}
-\end{Shaded}
-
 
   \bibliography{book.bib,packages.bib}
 
