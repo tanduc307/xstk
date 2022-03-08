@@ -1,6 +1,6 @@
 ---
 title: "Học xác suất thống kê qua phần mềm R"
-author: "Duc Nguyen"
+author: "Tan Duc Nguyen (aka Duc)"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
