@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Guide | Học xác suất thống kê qua phần mềm R</title>
+  <meta name="description" content="Chapter 4 Guide | Học xác suất thống kê qua phần mềm R từ thời điểm 2022-02-02)" />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Guide | Học xác suất thống kê qua phần mềm R" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="/images/cover.jpg" />
+  <meta property="og:description" content="Chapter 4 Guide | Học xác suất thống kê qua phần mềm R từ thời điểm 2022-02-02)" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Guide | Học xác suất thống kê qua phần mềm R" />
+  
+  <meta name="twitter:description" content="Chapter 4 Guide | Học xác suất thống kê qua phần mềm R từ thời điểm 2022-02-02)" />
+  <meta name="twitter:image" content="/images/cover.jpg" />
+
+<meta name="author" content="Tan-Duc Nguyen" />
+
+
+<meta name="date" content="2022-04-11" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="anova-rcbd.html"/>
+<link rel="next" href="basic-blocks.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Xác suất thống kê</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Stat learning<span></span></a></li>
+<li class="chapter" data-level="2" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html"><i class="fa fa-check"></i><b>2</b> How to use tools<span></span></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html#tạo-thư-mục-làm-việc"><i class="fa fa-check"></i><b>2.1</b> Tạo thư mục làm việc<span></span></a></li>
+<li class="chapter" data-level="2.2" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html#chèn-hình-ảnh"><i class="fa fa-check"></i><b>2.2</b> Chèn hình ảnh<span></span></a></li>
+<li class="chapter" data-level="2.3" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html#chèn-video"><i class="fa fa-check"></i><b>2.3</b> Chèn video<span></span></a></li>
+<li class="chapter" data-level="2.4" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html#văn-phạm-tiếng-anh"><i class="fa fa-check"></i><b>2.4</b> Văn phạm tiếng Anh<span></span></a></li>
+<li class="chapter" data-level="2.5" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html#trích-dẫn"><i class="fa fa-check"></i><b>2.5</b> Trích dẫn<span></span></a></li>
+<li class="chapter" data-level="2.6" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html#cú-pháp-markdown"><i class="fa fa-check"></i><b>2.6</b> Cú pháp Markdown<span></span></a></li>
+<li class="chapter" data-level="2.7" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html#setup-github-cho-rstudio"><i class="fa fa-check"></i><b>2.7</b> Setup Github cho RStudio<span></span></a></li>
+<li class="chapter" data-level="2.8" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html#tham-khảo"><i class="fa fa-check"></i><b>2.8</b> Tham khảo<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="anova-rcbd.html"><a href="anova-rcbd.html"><i class="fa fa-check"></i><b>3</b> ANOVA RCBD<span></span></a></li>
+<li class="chapter" data-level="4" data-path="guide.html"><a href="guide.html"><i class="fa fa-check"></i><b>4</b> Guide<span></span></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="guide.html"><a href="guide.html#inline-formatting"><i class="fa fa-check"></i><b>4.1</b> Inline formatting<span></span></a></li>
+<li class="chapter" data-level="4.2" data-path="guide.html"><a href="guide.html#listings"><i class="fa fa-check"></i><b>4.2</b> Listings<span></span></a></li>
+<li class="chapter" data-level="4.3" data-path="guide.html"><a href="guide.html#media"><i class="fa fa-check"></i><b>4.3</b> Media<span></span></a></li>
+<li class="chapter" data-level="4.4" data-path="guide.html"><a href="guide.html#images"><i class="fa fa-check"></i><b>4.4</b> Images<span></span></a></li>
+<li class="chapter" data-level="4.5" data-path="guide.html"><a href="guide.html#math-expressions"><i class="fa fa-check"></i><b>4.5</b> Math expressions<span></span></a></li>
+<li class="chapter" data-level="4.6" data-path="guide.html"><a href="guide.html#number-and-reference-equations"><i class="fa fa-check"></i><b>4.6</b> Number and reference equations<span></span></a></li>
+<li class="chapter" data-level="4.7" data-path="guide.html"><a href="guide.html#theorems-and-proofs"><i class="fa fa-check"></i><b>4.7</b> Theorems and proofs<span></span></a></li>
+<li class="chapter" data-level="4.8" data-path="guide.html"><a href="guide.html#text-references"><i class="fa fa-check"></i><b>4.8</b> Text references<span></span></a></li>
+<li class="chapter" data-level="4.9" data-path="guide.html"><a href="guide.html#r-code"><i class="fa fa-check"></i><b>4.9</b> R code<span></span></a></li>
+<li class="chapter" data-level="4.10" data-path="guide.html"><a href="guide.html#figures"><i class="fa fa-check"></i><b>4.10</b> Figures<span></span></a></li>
+<li class="chapter" data-level="4.11" data-path="guide.html"><a href="guide.html#tables"><i class="fa fa-check"></i><b>4.11</b> Tables<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="basic-blocks.html"><a href="basic-blocks.html"><i class="fa fa-check"></i><b>5</b> Basic blocks<span></span></a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="basic-blocks.html"><a href="basic-blocks.html#subsets"><i class="fa fa-check"></i><b>5.1</b> Subsets<span></span></a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Học xác suất thống kê qua phần mềm R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="guide" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Guide<a href="guide.html#guide" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="inline-formatting" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Inline formatting<a href="guide.html#inline-formatting" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><em>work</em> or <em>work</em></p>
+<p><strong>yes</strong> or <strong>yes</strong></p>
+<p>H<sub>2</sub>O</p>
+<p>Ca<sup>2+</sup></p>
+<p><code>code</code></p>
+<p><span class="smallcaps">Small Caps</span></p>
+<p><a href="https://www.rstudio.com">RStudio</a></p>
+<p>Footnote<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<p>If you do not want a certain heading to be numbered, you can add <code>{-}</code> after the heading, e.g <code># Preface {-}</code></p>
+<p>Blockquotes are written after <code>&gt;</code>, e.g.,</p>
+<blockquote>
+<p>“Love the life you live,</p>
+<p>Live the life you love.”
+— Bob Marley</p>
+</blockquote>
+<pre><code>Code blocks</code></pre>
+</div>
+<div id="listings" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Listings<a href="guide.html#listings" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Unordered list items start with <code>*</code>, <code>-</code>, or <code>+</code>, and you can nest one list within another list by indenting the sub-list by four spaces, e.g.,</p>
+<ul>
+<li>one item</li>
+<li>one item</li>
+<li>one item
+<ul>
+<li>one item</li>
+<li>one item</li>
+</ul></li>
+</ul>
+<p>Ordered list items start with numbers (the rule for nested lists is the same as above), e.g.,</p>
+<ol style="list-style-type: decimal">
+<li>the first item</li>
+<li>the second item</li>
+<li>the third item</li>
+</ol>
+</div>
+<div id="media" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Media<a href="guide.html#media" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><a href="https://t.me/inspiring_melody/321">Mình cưới thôi em</a></p>
+</div>
+<div id="images" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Images<a href="guide.html#images" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>Chèn theo syntax trong markdown
+<img src="images/heart.png" title="heart" alt="Love icon" /></p></li>
+<li><p>Chèn từ link sử dụng thẻ <code>HTML</code>
+<code>&lt;img src="link.png" alt="caption" style="height: 100px; width:100px;"/&gt;</code></p></li>
+</ul>
+<p>Xem thêm <a href="https://www.markdownguide.org/hacks/#image-size" class="uri">https://www.markdownguide.org/hacks/#image-size</a></p>
+</div>
+<div id="math-expressions" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Math expressions<a href="guide.html#math-expressions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Ma trận dãy số</p>
+<p><span class="math display">\[\begin{array}{ccc}
+x_{11} &amp; x_{12} &amp; x_{13}\\
+x_{21} &amp; x_{22} &amp; x_{23}
+\end{array}\]</span></p>
+<p>Ma trận</p>
+<p><span class="math display">\[X = \begin{bmatrix}1 &amp; x_{1}\\
+1 &amp; x_{2}\\
+1 &amp; x_{3}
+\end{bmatrix}\]</span></p>
+<p><span class="math display">\[\Theta = \begin{pmatrix}\alpha &amp; \beta\\
+\gamma &amp; \delta
+\end{pmatrix}\]</span></p>
+<p><span class="math display">\[\begin{vmatrix}a &amp; b\\
+c &amp; d
+\end{vmatrix}=ad-bc\]</span></p>
+</div>
+<div id="number-and-reference-equations" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> Number and reference equations<a href="guide.html#number-and-reference-equations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><span class="math display" id="eq:binom">\[\begin{equation} 
+  f\left(k\right) = \binom{n}{k} p^k\left(1-p\right)^{n-k}
+  \tag{4.1}
+\end{equation}\]</span></p>
+<p>You may refer to it using <code>\@ref(eq:binom)</code>, e.g., see Equation <a href="guide.html#eq:binom">(4.1)</a>.</p>
+<p>Công thức mô tả a normal frequency curve</p>
+<p><span class="math display" id="eq:normal">\[\begin{equation} 
+  f = \frac{N}{{(\sigma \sqrt {2\pi } )}}{e^{ - {{(y - \mu )}^2}/2{\sigma ^2}}}
+  \tag{4.2}
+\end{equation}\]</span></p>
+<p>You may refer to it using <code>\@ref(eq:normal)</code>, e.g., see Equation <a href="guide.html#eq:normal">(4.2)</a>.</p>
+<p>Nếu không đánh số công thức thì dùng <code>equation*</code></p>
+<p><span class="math display">\[\begin{equation*} 
+\frac{d}{dx}\left( \int_{a}^{x} f(u)\,du\right)=f(x)
+\end{equation*}\]</span></p>
+<p>Nếu ghi theo kiểu <code>align</code> thì áp dụng</p>
+<p><span class="math display" id="eq:align">\[\begin{align} 
+g(X_{n}) &amp;= g(\theta)+g&#39;({\tilde{\theta}})(X_{n}-\theta) \notag \\
+
+\sqrt{n}[g(X_{n})-g(\theta)] &amp;= g&#39;\left({\tilde{\theta}}\right)
+  \sqrt{n}[X_{n}-\theta ] 
+
+\tag{4.3}
+\end{align}\]</span></p>
+<p>Sử dụng <code>\notag</code> để giúp không đánh số công thức ở hàng đầu tiên của <a href="guide.html#eq:align">(4.3)</a></p>
+<p>Nếu sử dụng <code>split</code> thì áp dụng</p>
+<p><span class="math display" id="eq:var-beta">\[\begin{equation} 
+\begin{split}
+\mathrm{Var}(\hat{\beta}) &amp; =\mathrm{Var}((X&#39;X)^{-1}X&#39;y)\\
+ &amp; =(X&#39;X)^{-1}X&#39;\mathrm{Var}(y)((X&#39;X)^{-1}X&#39;)&#39;\\
+ &amp; =(X&#39;X)^{-1}X&#39;\mathrm{Var}(y)X(X&#39;X)^{-1}\\
+ &amp; =(X&#39;X)^{-1}X&#39;\sigma^{2}IX(X&#39;X)^{-1}\\
+ &amp; =(X&#39;X)^{-1}\sigma^{2}
+\end{split}
+\tag{4.4}
+\end{equation}\]</span></p>
+</div>
+<div id="theorems-and-proofs" class="section level2 hasAnchor" number="4.7">
+<h2><span class="header-section-number">4.7</span> Theorems and proofs<a href="guide.html#theorems-and-proofs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-1" class="theorem"><strong>Theorem 4.1  (Pythagorean theorem) </strong></span>For a right triangle, if <span class="math inline">\(c\)</span> denotes the length of the hypotenuse
+and <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> denote the lengths of the other two sides, we have
+<span class="math display">\[a^2 + b^2 = c^2\]</span></p>
+</div>
+</div>
+<div id="text-references" class="section level2 hasAnchor" number="4.8">
+<h2><span class="header-section-number">4.8</span> Text references<a href="guide.html#text-references" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>You can assign some text to a label and reference the text using the label elsewhere in your document. This can be particularly useful for long figure/table captions.</p>
+</div>
+<div id="r-code" class="section level2 hasAnchor" number="4.9">
+<h2><span class="header-section-number">4.9</span> R code<a href="guide.html#r-code" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>There are two types of R code in R Markdown/knitr documents: R code chunks, and inline R code. The syntax for the latter is <code>`r R_CODE`</code>, and it can be embedded inline with other document elements.</p>
+</div>
+<div id="figures" class="section level2 hasAnchor" number="4.10">
+<h2><span class="header-section-number">4.10</span> Figures<a href="guide.html#figures" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If we assign a figure caption to a code chunk via the chunk option <code>fig.cap</code>, R plots will be put into figure environments, which will be automatically labeled and numbered, and can also be cross-referenced. The label of a figure environment is generated from the label of the code chunk.</p>
+<p>Cross reference cho Figure <a href="guide.html#fig:pressure-plot">4.1</a></p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="guide.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, .<span class="dv">1</span>, .<span class="dv">1</span>))</span>
+<span id="cb21-2"><a href="guide.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pressure, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">type =</span> <span class="st">&#39;b&#39;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:pressure-plot"></span>
+<img src="_main_files/figure-html/pressure-plot-1.png" alt="A figure example with the specified aspect ratio, width, and alignment." width="90%" />
+<p class="caption">
+Figure 4.1: A figure example with the specified aspect ratio, width, and alignment.
+</p>
+</div>
+<p>Chèn hai đồ thị <a href="guide.html#fig:multi-plots">4.2</a></p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="guide.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, .<span class="dv">1</span>, .<span class="dv">1</span>))</span>
+<span id="cb22-2"><a href="guide.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pressure, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">type =</span> <span class="st">&#39;b&#39;</span>)</span>
+<span id="cb22-3"><a href="guide.html#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cars, <span class="at">pch =</span> <span class="dv">19</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:multi-plots"></span>
+<img src="_main_files/figure-html/multi-plots-1.png" alt="Two plots placed side by side." width="50%" /><img src="_main_files/figure-html/multi-plots-2.png" alt="Two plots placed side by side." width="50%" />
+<p class="caption">
+Figure 4.2: Two plots placed side by side.
+</p>
+</div>
+<p>Chèn hình ảnh</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="guide.html#cb23-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">&#39;images/michael.jpg&#39;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:michael"></span>
+<img src="images/michael.jpg" alt="Never let anyone know your mind." width="32.8%" />
+<p class="caption">
+Figure 4.3: Never let anyone know your mind.
+</p>
+</div>
+<p>Chèn lặp lại hình ảnh</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="guide.html#cb24-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="fu">rep</span>(<span class="st">&#39;images/turtle.jpg&#39;</span>, <span class="dv">3</span>))</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:turtle"></span>
+<img src="images/turtle.jpg" alt="Finding good land." width="32.8%" /><img src="images/turtle.jpg" alt="Finding good land." width="32.8%" /><img src="images/turtle.jpg" alt="Finding good land." width="32.8%" />
+<p class="caption">
+Figure 4.4: Finding good land.
+</p>
+</div>
+</div>
+<div id="tables" class="section level2 hasAnchor" number="4.11">
+<h2><span class="header-section-number">4.11</span> Tables<a href="guide.html#tables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Like figures, tables with captions will also be numbered and can be referenced.</p>
+<p>Table <a href="guide.html#tab:table-single">4.1</a> is a simple example.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="guide.html#cb25-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
+<span id="cb25-2"><a href="guide.html#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(mtcars[, <span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>], <span class="dv">10</span>), <span class="at">booktabs =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb25-3"><a href="guide.html#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">&#39;A table of the first 10 rows of the mtcars data.&#39;</span></span>
+<span id="cb25-4"><a href="guide.html#cb25-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<table>
+<caption><span id="tab:table-single">Table 4.1: </span>A table of the first 10 rows of the mtcars data.</caption>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">mpg</th>
+<th align="right">cyl</th>
+<th align="right">disp</th>
+<th align="right">hp</th>
+<th align="right">drat</th>
+<th align="right">wt</th>
+<th align="right">qsec</th>
+<th align="right">vs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Mazda RX4</td>
+<td align="right">21.0</td>
+<td align="right">6</td>
+<td align="right">160.0</td>
+<td align="right">110</td>
+<td align="right">3.90</td>
+<td align="right">2.620</td>
+<td align="right">16.46</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Mazda RX4 Wag</td>
+<td align="right">21.0</td>
+<td align="right">6</td>
+<td align="right">160.0</td>
+<td align="right">110</td>
+<td align="right">3.90</td>
+<td align="right">2.875</td>
+<td align="right">17.02</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Datsun 710</td>
+<td align="right">22.8</td>
+<td align="right">4</td>
+<td align="right">108.0</td>
+<td align="right">93</td>
+<td align="right">3.85</td>
+<td align="right">2.320</td>
+<td align="right">18.61</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Hornet 4 Drive</td>
+<td align="right">21.4</td>
+<td align="right">6</td>
+<td align="right">258.0</td>
+<td align="right">110</td>
+<td align="right">3.08</td>
+<td align="right">3.215</td>
+<td align="right">19.44</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Hornet Sportabout</td>
+<td align="right">18.7</td>
+<td align="right">8</td>
+<td align="right">360.0</td>
+<td align="right">175</td>
+<td align="right">3.15</td>
+<td align="right">3.440</td>
+<td align="right">17.02</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Valiant</td>
+<td align="right">18.1</td>
+<td align="right">6</td>
+<td align="right">225.0</td>
+<td align="right">105</td>
+<td align="right">2.76</td>
+<td align="right">3.460</td>
+<td align="right">20.22</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Duster 360</td>
+<td align="right">14.3</td>
+<td align="right">8</td>
+<td align="right">360.0</td>
+<td align="right">245</td>
+<td align="right">3.21</td>
+<td align="right">3.570</td>
+<td align="right">15.84</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Merc 240D</td>
+<td align="right">24.4</td>
+<td align="right">4</td>
+<td align="right">146.7</td>
+<td align="right">62</td>
+<td align="right">3.69</td>
+<td align="right">3.190</td>
+<td align="right">20.00</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Merc 230</td>
+<td align="right">22.8</td>
+<td align="right">4</td>
+<td align="right">140.8</td>
+<td align="right">95</td>
+<td align="right">3.92</td>
+<td align="right">3.150</td>
+<td align="right">22.90</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Merc 280</td>
+<td align="right">19.2</td>
+<td align="right">6</td>
+<td align="right">167.6</td>
+<td align="right">123</td>
+<td align="right">3.92</td>
+<td align="right">3.440</td>
+<td align="right">18.30</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+<p>If you want to put multiple tables in a single table environment, wrap the data objects (usually data frames in R) into a list. See Table <a href="guide.html#tab:table-multi">4.2</a> for an example. Please note that this feature is only available in HTML and PDF output.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="guide.html#cb26-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
+<span id="cb26-2"><a href="guide.html#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(</span>
+<span id="cb26-3"><a href="guide.html#cb26-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>(iris[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="dv">3</span>),</span>
+<span id="cb26-4"><a href="guide.html#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>(mtcars[, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>], <span class="dv">5</span>)</span>
+<span id="cb26-5"><a href="guide.html#cb26-5" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb26-6"><a href="guide.html#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">&#39;A Tale of Two Tables.&#39;</span>, <span class="at">booktabs =</span> <span class="cn">TRUE</span></span>
+<span id="cb26-7"><a href="guide.html#cb26-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<table class="kable_wrapper">
+<caption>
+<span id="tab:table-multi">Table 4.2: </span>A Tale of Two Tables.
+</caption>
+<tbody>
+<tr>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="right">Sepal.Length</th>
+<th align="right">Sepal.Width</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">5.1</td>
+<td align="right">3.5</td>
+</tr>
+<tr class="even">
+<td align="right">4.9</td>
+<td align="right">3.0</td>
+</tr>
+<tr class="odd">
+<td align="right">4.7</td>
+<td align="right">3.2</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">mpg</th>
+<th align="right">cyl</th>
+<th align="right">disp</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Mazda RX4</td>
+<td align="right">21.0</td>
+<td align="right">6</td>
+<td align="right">160</td>
+</tr>
+<tr class="even">
+<td align="left">Mazda RX4 Wag</td>
+<td align="right">21.0</td>
+<td align="right">6</td>
+<td align="right">160</td>
+</tr>
+<tr class="odd">
+<td align="left">Datsun 710</td>
+<td align="right">22.8</td>
+<td align="right">4</td>
+<td align="right">108</td>
+</tr>
+<tr class="even">
+<td align="left">Hornet 4 Drive</td>
+<td align="right">21.4</td>
+<td align="right">6</td>
+<td align="right">258</td>
+</tr>
+<tr class="odd">
+<td align="left">Hornet Sportabout</td>
+<td align="right">18.7</td>
+<td align="right">8</td>
+<td align="right">360</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Longtable. Nếu dùng trong HTML thì áp dụng đoạn code. Còn nếu dùng trong PDF thì add <code>\usepackage{longtable}</code> vào phần LaTeX preamble.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="guide.html#cb27-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
+<span id="cb27-2"><a href="guide.html#cb27-2" aria-hidden="true" tabindex="-1"></a>  iris[<span class="dv">1</span><span class="sc">:</span><span class="dv">55</span>, ], <span class="at">longtable =</span> <span class="cn">TRUE</span>, <span class="at">booktabs =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb27-3"><a href="guide.html#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">&#39;A table generated by the longtable package.&#39;</span></span>
+<span id="cb27-4"><a href="guide.html#cb27-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<table>
+<caption><span id="tab:longtable">Table 4.3: </span>A table generated by the longtable package.</caption>
+<thead>
+<tr class="header">
+<th align="right">Sepal.Length</th>
+<th align="right">Sepal.Width</th>
+<th align="right">Petal.Length</th>
+<th align="right">Petal.Width</th>
+<th align="left">Species</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">5.1</td>
+<td align="right">3.5</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">4.9</td>
+<td align="right">3.0</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">4.7</td>
+<td align="right">3.2</td>
+<td align="right">1.3</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">4.6</td>
+<td align="right">3.1</td>
+<td align="right">1.5</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">5.0</td>
+<td align="right">3.6</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">5.4</td>
+<td align="right">3.9</td>
+<td align="right">1.7</td>
+<td align="right">0.4</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">4.6</td>
+<td align="right">3.4</td>
+<td align="right">1.4</td>
+<td align="right">0.3</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">5.0</td>
+<td align="right">3.4</td>
+<td align="right">1.5</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">4.4</td>
+<td align="right">2.9</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">4.9</td>
+<td align="right">3.1</td>
+<td align="right">1.5</td>
+<td align="right">0.1</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">5.4</td>
+<td align="right">3.7</td>
+<td align="right">1.5</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">4.8</td>
+<td align="right">3.4</td>
+<td align="right">1.6</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">4.8</td>
+<td align="right">3.0</td>
+<td align="right">1.4</td>
+<td align="right">0.1</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">4.3</td>
+<td align="right">3.0</td>
+<td align="right">1.1</td>
+<td align="right">0.1</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">5.8</td>
+<td align="right">4.0</td>
+<td align="right">1.2</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">5.7</td>
+<td align="right">4.4</td>
+<td align="right">1.5</td>
+<td align="right">0.4</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">5.4</td>
+<td align="right">3.9</td>
+<td align="right">1.3</td>
+<td align="right">0.4</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">5.1</td>
+<td align="right">3.5</td>
+<td align="right">1.4</td>
+<td align="right">0.3</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">5.7</td>
+<td align="right">3.8</td>
+<td align="right">1.7</td>
+<td align="right">0.3</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">5.1</td>
+<td align="right">3.8</td>
+<td align="right">1.5</td>
+<td align="right">0.3</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">5.4</td>
+<td align="right">3.4</td>
+<td align="right">1.7</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">5.1</td>
+<td align="right">3.7</td>
+<td align="right">1.5</td>
+<td align="right">0.4</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">4.6</td>
+<td align="right">3.6</td>
+<td align="right">1.0</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">5.1</td>
+<td align="right">3.3</td>
+<td align="right">1.7</td>
+<td align="right">0.5</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">4.8</td>
+<td align="right">3.4</td>
+<td align="right">1.9</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">5.0</td>
+<td align="right">3.0</td>
+<td align="right">1.6</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">5.0</td>
+<td align="right">3.4</td>
+<td align="right">1.6</td>
+<td align="right">0.4</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">5.2</td>
+<td align="right">3.5</td>
+<td align="right">1.5</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">5.2</td>
+<td align="right">3.4</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">4.7</td>
+<td align="right">3.2</td>
+<td align="right">1.6</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">4.8</td>
+<td align="right">3.1</td>
+<td align="right">1.6</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">5.4</td>
+<td align="right">3.4</td>
+<td align="right">1.5</td>
+<td align="right">0.4</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">5.2</td>
+<td align="right">4.1</td>
+<td align="right">1.5</td>
+<td align="right">0.1</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">5.5</td>
+<td align="right">4.2</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">4.9</td>
+<td align="right">3.1</td>
+<td align="right">1.5</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">5.0</td>
+<td align="right">3.2</td>
+<td align="right">1.2</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">5.5</td>
+<td align="right">3.5</td>
+<td align="right">1.3</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">4.9</td>
+<td align="right">3.6</td>
+<td align="right">1.4</td>
+<td align="right">0.1</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">4.4</td>
+<td align="right">3.0</td>
+<td align="right">1.3</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">5.1</td>
+<td align="right">3.4</td>
+<td align="right">1.5</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">5.0</td>
+<td align="right">3.5</td>
+<td align="right">1.3</td>
+<td align="right">0.3</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">4.5</td>
+<td align="right">2.3</td>
+<td align="right">1.3</td>
+<td align="right">0.3</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">4.4</td>
+<td align="right">3.2</td>
+<td align="right">1.3</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">5.0</td>
+<td align="right">3.5</td>
+<td align="right">1.6</td>
+<td align="right">0.6</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">5.1</td>
+<td align="right">3.8</td>
+<td align="right">1.9</td>
+<td align="right">0.4</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">4.8</td>
+<td align="right">3.0</td>
+<td align="right">1.4</td>
+<td align="right">0.3</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">5.1</td>
+<td align="right">3.8</td>
+<td align="right">1.6</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">4.6</td>
+<td align="right">3.2</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">5.3</td>
+<td align="right">3.7</td>
+<td align="right">1.5</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">5.0</td>
+<td align="right">3.3</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">7.0</td>
+<td align="right">3.2</td>
+<td align="right">4.7</td>
+<td align="right">1.4</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="even">
+<td align="right">6.4</td>
+<td align="right">3.2</td>
+<td align="right">4.5</td>
+<td align="right">1.5</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="odd">
+<td align="right">6.9</td>
+<td align="right">3.1</td>
+<td align="right">4.9</td>
+<td align="right">1.5</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="even">
+<td align="right">5.5</td>
+<td align="right">2.3</td>
+<td align="right">4.0</td>
+<td align="right">1.3</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="odd">
+<td align="right">6.5</td>
+<td align="right">2.8</td>
+<td align="right">4.6</td>
+<td align="right">1.5</td>
+<td align="left">versicolor</td>
+</tr>
+</tbody>
+</table>
+<p>Tạo table thủ công. Table <a href="guide.html#tab:manual">4.4</a></p>
+<table>
+<caption><span id="tab:manual">Table 4.4: </span> A simple table in Markdown.</caption>
+<thead>
+<tr class="header">
+<th align="right">Sepal.Length</th>
+<th align="right">Sepal.Width</th>
+<th align="right">Petal.Length</th>
+<th align="right">Petal.Width</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">5.1</td>
+<td align="right">3.5</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+</tr>
+<tr class="even">
+<td align="right">4.9</td>
+<td align="right">3.0</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+</tr>
+<tr class="odd">
+<td align="right">4.7</td>
+<td align="right">3.2</td>
+<td align="right">1.3</td>
+<td align="right">0.2</td>
+</tr>
+<tr class="even">
+<td align="right">4.6</td>
+<td align="right">3.1</td>
+<td align="right">1.5</td>
+<td align="right">0.2</td>
+</tr>
+<tr class="odd">
+<td align="right">5.0</td>
+<td align="right">3.6</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+</tr>
+<tr class="even">
+<td align="right">5.4</td>
+<td align="right">3.9</td>
+<td align="right">1.7</td>
+<td align="right">0.4</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>footnote<a href="guide.html#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="anova-rcbd.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="basic-blocks.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/03-learn-bookdown.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

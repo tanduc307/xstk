@@ -4,20 +4,20 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 How to use tools | Học xác suất thống kê qua phần mềm R</title>
-  <meta name="description" content="Chapter 2 How to use tools | Học xác suất thống kê qua phần mềm R từ thời điểm 2022-02-02)" />
+  <title>Chapter 5 Basic blocks | Học xác suất thống kê qua phần mềm R</title>
+  <meta name="description" content="Chapter 5 Basic blocks | Học xác suất thống kê qua phần mềm R từ thời điểm 2022-02-02)" />
   <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 How to use tools | Học xác suất thống kê qua phần mềm R" />
+  <meta property="og:title" content="Chapter 5 Basic blocks | Học xác suất thống kê qua phần mềm R" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="/images/cover.jpg" />
-  <meta property="og:description" content="Chapter 2 How to use tools | Học xác suất thống kê qua phần mềm R từ thời điểm 2022-02-02)" />
+  <meta property="og:description" content="Chapter 5 Basic blocks | Học xác suất thống kê qua phần mềm R từ thời điểm 2022-02-02)" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 How to use tools | Học xác suất thống kê qua phần mềm R" />
+  <meta name="twitter:title" content="Chapter 5 Basic blocks | Học xác suất thống kê qua phần mềm R" />
   
-  <meta name="twitter:description" content="Chapter 2 How to use tools | Học xác suất thống kê qua phần mềm R từ thời điểm 2022-02-02)" />
+  <meta name="twitter:description" content="Chapter 5 Basic blocks | Học xác suất thống kê qua phần mềm R từ thời điểm 2022-02-02)" />
   <meta name="twitter:image" content="/images/cover.jpg" />
 
 <meta name="author" content="Tan-Duc Nguyen" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="anova-rcbd.html"/>
+<link rel="prev" href="guide.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -209,86 +209,54 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="how-to-use-tools" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">Chapter 2</span> How to use tools<a href="how-to-use-tools.html#how-to-use-tools" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="tạo-thư-mục-làm-việc" class="section level2 hasAnchor" number="2.1">
-<h2><span class="header-section-number">2.1</span> Tạo thư mục làm việc<a href="how-to-use-tools.html#tạo-thư-mục-làm-việc" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Khi sử dụng Rstudio thì nên tạo thư mục project để toàn bộ files sẽ nằm trong đó.</p>
-<p>Cách thực hiện xem ở đây <a href="https://alexd106.github.io/intro2R/howto.html#rstudio_proj-vid" class="uri">https://alexd106.github.io/intro2R/howto.html#rstudio_proj-vid</a></p>
-<p>Lợi thế là trong folder project này, ta có thể tạo các folder con như images, data, tables, … để thuận tiện lưu riêng từng loại dữ liệu. [hiện tại làm sao để cấu hình cho hình ảnh nó tự động lưu theo từng folder thì chưa biết cách, thấy có package ‘here’ mà không biết cách dùng).</p>
-<p>Lưu ý là khi dùng bookdown để render books thì tên của heading là ghi tiếng Anh cho lành, vì nếu ghi tiếng Việt thì nó render bị lỗi unicode.</p>
-<iframe src="https://player.vimeo.com/video/460932720?h=ee64dffa97" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
-</iframe>
-<p>
-<a href="https://vimeo.com/460932720">RStudio Projects</a> from <a href="https://vimeo.com/user114793395">intro 2R</a> on <a href="https://vimeo.com">Vimeo</a>.
-</p>
+<div id="basic-blocks" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Basic blocks<a href="basic-blocks.html#basic-blocks" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="subsets" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Subsets<a href="basic-blocks.html#subsets" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Nguồn <span class="citation">(<a href="#ref-devriesDummies2015" role="doc-biblioref">de Vries and Meys 2015, 241</a>)</span></p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="basic-blocks.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(islands)</span></code></pre></div>
+<pre><code>##  Named num [1:48] 11506 5500 16988 2968 16 ...
+##  - attr(*, &quot;names&quot;)= chr [1:48] &quot;Africa&quot; &quot;Antarctica&quot; &quot;Asia&quot; &quot;Australia&quot; ...</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="basic-blocks.html#cb30-1" aria-hidden="true" tabindex="-1"></a>islands</span></code></pre></div>
+<pre><code>##           Africa       Antarctica             Asia        Australia     Axel Heiberg           Baffin            Banks 
+##            11506             5500            16988             2968               16              184               23 
+##           Borneo          Britain          Celebes            Celon             Cuba            Devon        Ellesmere 
+##              280               84               73               25               43               21               82 
+##           Europe        Greenland           Hainan       Hispaniola         Hokkaido           Honshu          Iceland 
+##             3745              840               13               30               30               89               40 
+##          Ireland             Java           Kyushu            Luzon       Madagascar         Melville         Mindanao 
+##               33               49               14               42              227               16               36 
+##         Moluccas      New Britain       New Guinea  New Zealand (N)  New Zealand (S)     Newfoundland    North America 
+##               29               15              306               44               58               43             9390 
+##    Novaya Zemlya  Prince of Wales         Sakhalin    South America      Southampton      Spitsbergen          Sumatra 
+##               32               13               29             6795               16               15              183 
+##           Taiwan         Tasmania Tierra del Fuego            Timor        Vancouver         Victoria 
+##               14               26               19               13               12               82</code></pre>
+<div class="figure">
+<img src="images/subset1.PNG" title="subset" alt="" />
+<p class="caption">Subset elements</p>
 </div>
-<div id="chèn-hình-ảnh" class="section level2 hasAnchor" number="2.2">
-<h2><span class="header-section-number">2.2</span> Chèn hình ảnh<a href="how-to-use-tools.html#chèn-hình-ảnh" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Có các cách chèn hình khi sử dụng Rstudio như sau:</p>
-<p>• Chuyển qua chế độ Visual rồi insert hình ảnh. Sau đó hình ảnh sẽ được lưu trong folder _book/images khi render bằng knitr.</p>
-<p>• Nếu gõ theo kiểu source code thì dùng đoạn mã sau
-<code>``` {r echo=TRUE, paged.print=FALSE, out.width="30%"} knitr::include_graphics("images/cover.jpg") ```</code></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="how-to-use-tools.html#cb1-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">&quot;images/cover.jpg&quot;</span>)</span></code></pre></div>
-<p><img src="images/cover.jpg" width="30%" /></p>
-<p>• Nếu copy và paste từ trên Internet thì dùng add-on <code>imageclipr</code> <a href="https://github.com/Toniiiio/imageclipr" class="uri">&lt;https://github.com/Toniiiio/imageclipr&gt;</a>. Hình ảnh sẽ lưu mặc định trong working directory.</p>
-<p>• Nếu copy và paste hình ảnh theo kiểu thủ công thì hình ảnh mặc định sẽ lưu ở <code>C:/Users/tandu/AppData/Local/RStudio/tmp/paste-B717C571.png</code> như vậy thì khi xuất bản online sẽ không thấy. Do đó phải đưa hình ảnh vào trong thư mục project (theo kiểu thủ công) hoặc dùng add-on <code>imageclipr</code> theo kiểu trực tiếp trong Rstudio (nhưng ở dạng Rmarkdown, còn Rmarkdown visual thì bị lỗi).</p>
-</div>
-<div id="chèn-video" class="section level2 hasAnchor" number="2.3">
-<h2><span class="header-section-number">2.3</span> Chèn video<a href="how-to-use-tools.html#chèn-video" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Sử dụng link này <a href="https://video-to-markdown.marcomontalbano.com/" class="uri">https://video-to-markdown.marcomontalbano.com/</a> (theo kiểu click vào hình rồi direct qua source để play video)</p>
-<p>Chèn từ Youtube, sử dụng code embed rồi paste vào.</p>
-<p><code>&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/RLxV3T2b524" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;</code></p>
-<p>Tuy nhiên video sẽ không tự động resize theo khung cửa sổ</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/RLxV3T2b524" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-<p>Nên dùng code này để video tự động resize. Chiều rộng và cao 100% có nghĩa là theo khung cửa sổ chứ không phải theo kích thước gốc của video.</p>
-<p><code>&lt;div style="position:relative;padding-bottom:56.25%;"&gt;  &lt;iframe style="width:100%;height:100%;position:absolute;left:0px;top:0px;"  frameborder="0" width="100%" height="100%"   allowfullscreen  src="https://www.youtube.com/embed/RLxV3T2b524"&gt; &lt;/iframe&gt; &lt;/div&gt;</code></p>
-<div style="position:relative;padding-bottom:56.25%;">
-<p><iframe style="width:100%;height:100%;position:absolute;left:0px;top:0px;"
- frameborder="0" width="100%" height="100%" 
- allowfullscreen
- src="https://www.youtube.com/embed/RLxV3T2b524">
-</iframe></p>
-</div>
-<p>Chèn từ Github, lưu ý vị trí đường dẫn của file (kể cả trong sub folder phải chính xác) và repo phải tạo Gitpage. Video sẽ play khi mở bằng trình duyệt.</p>
-<p><code>&lt;div style="position:relative;padding-bottom:56.25%;"&gt;  &lt;iframe style="width:100%;height:100%;position:absolute;left:0px;top:0px;"  frameborder="0" width="100%" height="100%"   allowfullscreen  src="https://tanduc307.github.io/xstk/images/thanks.mp4"&gt; &lt;/iframe&gt; &lt;/div&gt;</code></p>
-<div style="position:relative;padding-bottom:56.25%;">
-<p><iframe style="width:100%;height:100%;position:absolute;left:0px;top:0px;"
- frameborder="0" width="100%" height="100%" 
- allowfullscreen
- src="https://tanduc307.github.io/xstk/images/thanks.mp4">
-</iframe></p>
-</div>
-<p>Có thể dùng package <code>vembedr</code> <a href="https://ijlyttle.github.io/vembedr/" class="uri">https://ijlyttle.github.io/vembedr/</a> để insert video cho nhanh.</p>
-</div>
-<div id="văn-phạm-tiếng-anh" class="section level2 hasAnchor" number="2.4">
-<h2><span class="header-section-number">2.4</span> Văn phạm tiếng Anh<a href="how-to-use-tools.html#văn-phạm-tiếng-anh" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Cách sử dụng dấu ba chấm ellipses. <a href="https://t.me/c/1605387342/140" class="uri">https://t.me/c/1605387342/140</a></p>
-<p>Cách chèn âm thanh vào theo cách upload lên github rồi play từ URL. Chưa tìm ra cách play từ source trên hard disk.</p>
-<p>Sử dụng package <code>embedr</code> <a href="https://github.com/mccarthy-m-g/embedr" class="uri">https://github.com/mccarthy-m-g/embedr</a></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="how-to-use-tools.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(embedr)</span>
-<span id="cb2-2"><a href="how-to-use-tools.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">embed_audio</span>(<span class="at">src =</span> <span class="st">&quot;https://tanduc307.github.io/light/An%20ellipsis%20(plural_%20ellipses)%20is%20a%20punctuation%20mark%20consisting%20of%20three%20dots..mp3&quot;</span>)</span></code></pre></div>
-<p><audio controls> <source src='https://tanduc307.github.io/light/An%20ellipsis%20(plural_%20ellipses)%20is%20a%20punctuation%20mark%20consisting%20of%20three%20dots..mp3' type='audio/mpeg'> Your browser does not support the audio tag;  for browser support, please see:  https://www.w3schools.com/tags/tag_audio.asp </audio></p>
-</div>
-<div id="trích-dẫn" class="section level2 hasAnchor" number="2.5">
-<h2><span class="header-section-number">2.5</span> Trích dẫn<a href="how-to-use-tools.html#trích-dẫn" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Xem hướng dẫn ở đây là làm được <a href="https://inbo.github.io/tutorials/tutorials/r_citations_markdown/" class="uri">https://inbo.github.io/tutorials/tutorials/r_citations_markdown/</a></p>
-</div>
-<div id="cú-pháp-markdown" class="section level2 hasAnchor" number="2.6">
-<h2><span class="header-section-number">2.6</span> Cú pháp Markdown<a href="how-to-use-tools.html#cú-pháp-markdown" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Xem ở đây <a href="https://www.markdownguide.org/basic-syntax/" class="uri">https://www.markdownguide.org/basic-syntax/</a></p>
-</div>
-<div id="setup-github-cho-rstudio" class="section level2 hasAnchor" number="2.7">
-<h2><span class="header-section-number">2.7</span> Setup Github cho RStudio<a href="how-to-use-tools.html#setup-github-cho-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Mục đích là để thuận tiện lưu trữ toàn bộ dữ liệu của dự án R mà khỏi cần copy, save as thủ công. <a href="https://intro2r.com/github_r.html" class="uri">https://intro2r.com/github_r.html</a></p>
-<p>Khi có file nào đó thay đổi thì ở Tab Git này sẽ update ngay. Ta chỉ cần chọn <code>Ctrl+A</code> rồi <code>Space</code> để select all sau đó <code>commit</code> rồi mới <code>push</code> lên server Git để lưu trữ.</p>
-<p><img src="01-how_to_use_tools_insertimage_1.png" /></p>
-</div>
-<div id="tham-khảo" class="section level2 hasAnchor" number="2.8">
-<h2><span class="header-section-number">2.8</span> Tham khảo<a href="how-to-use-tools.html#tham-khảo" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><a href="https://rstats.wtf/" class="uri">https://rstats.wtf/</a></p>
 
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div class="csl-entry">
+Somasegaran, P., and H. J. Hoben. 1985. <span>“Methods in Legume-Rhizobium Technology.”</span>
+</div>
+<div class="csl-entry">
+Vries, Andrie de, and Joris Meys. 2015. <em>R <span>For Dummies</span></em>. 2nd ed.
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-devriesDummies2015" class="csl-entry">
+Vries, Andrie de, and Joris Meys. 2015. <em>R <span>For Dummies</span></em>. 2nd ed.
 </div>
 </div>
             </section>
@@ -296,8 +264,8 @@ div.csl-indent {
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="anova-rcbd.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="guide.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -328,7 +296,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/01-how_to_use_tools.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/04-basics.Rmd",
 "text": "Edit"
 },
 "history": {

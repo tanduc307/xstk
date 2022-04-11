@@ -1,0 +1,15 @@
+# Basic blocks
+
+## Subsets
+Nguồn [@devriesDummies2015, p. 241]
+
+```{r}
+str(islands)
+islands
+```
+
+![Subset elements](images/subset1.png "subset")
+
+
+
+

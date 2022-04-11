@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Học xác suất thống kê qua phần mềm R</title>
   <meta name="description" content="Học xác suất thống kê qua phần mềm R từ thời điểm 2022-02-02)" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Học xác suất thống kê qua phần mềm R" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/images/cover.jpg" />
   <meta property="og:description" content="Học xác suất thống kê qua phần mềm R từ thời điểm 2022-02-02)" />
   
@@ -21,10 +20,10 @@
   <meta name="twitter:description" content="Học xác suất thống kê qua phần mềm R từ thời điểm 2022-02-02)" />
   <meta name="twitter:image" content="/images/cover.jpg" />
 
-<meta name="author" content="Duc Nguyen" />
+<meta name="author" content="Tan-Duc Nguyen" />
 
 
-<meta name="date" content="2022-02-12" />
+<meta name="date" content="2022-04-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 
 <link rel="next" href="how-to-use-tools.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -120,6 +119,28 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -137,17 +158,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Xác suất thống kê</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Stat learning</a></li>
-<li class="chapter" data-level="2" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html"><i class="fa fa-check"></i><b>2</b> How to use tools</a>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Stat learning<span></span></a></li>
+<li class="chapter" data-level="2" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html"><i class="fa fa-check"></i><b>2</b> How to use tools<span></span></a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html#tạo-thư-mục-làm-việc"><i class="fa fa-check"></i><b>2.1</b> Tạo thư mục làm việc</a></li>
-<li class="chapter" data-level="2.2" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html#chèn-hình-ảnh"><i class="fa fa-check"></i><b>2.2</b> Chèn hình ảnh</a></li>
-<li class="chapter" data-level="2.3" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html#chèn-video"><i class="fa fa-check"></i><b>2.3</b> Chèn video</a></li>
-<li class="chapter" data-level="2.4" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html#văn-phạm-tiếng-anh"><i class="fa fa-check"></i><b>2.4</b> Văn phạm tiếng Anh</a></li>
-<li class="chapter" data-level="2.5" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html#trích-dẫn"><i class="fa fa-check"></i><b>2.5</b> Trích dẫn</a></li>
-<li class="chapter" data-level="2.6" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html#cú-pháp-markdown"><i class="fa fa-check"></i><b>2.6</b> Cú pháp Markdown</a></li>
-<li class="chapter" data-level="2.7" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html#setup-github-cho-rstudio"><i class="fa fa-check"></i><b>2.7</b> Setup Github cho RStudio</a></li>
-<li class="chapter" data-level="2.8" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html#tham-khảo"><i class="fa fa-check"></i><b>2.8</b> Tham khảo</a></li>
+<li class="chapter" data-level="2.1" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html#tạo-thư-mục-làm-việc"><i class="fa fa-check"></i><b>2.1</b> Tạo thư mục làm việc<span></span></a></li>
+<li class="chapter" data-level="2.2" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html#chèn-hình-ảnh"><i class="fa fa-check"></i><b>2.2</b> Chèn hình ảnh<span></span></a></li>
+<li class="chapter" data-level="2.3" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html#chèn-video"><i class="fa fa-check"></i><b>2.3</b> Chèn video<span></span></a></li>
+<li class="chapter" data-level="2.4" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html#văn-phạm-tiếng-anh"><i class="fa fa-check"></i><b>2.4</b> Văn phạm tiếng Anh<span></span></a></li>
+<li class="chapter" data-level="2.5" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html#trích-dẫn"><i class="fa fa-check"></i><b>2.5</b> Trích dẫn<span></span></a></li>
+<li class="chapter" data-level="2.6" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html#cú-pháp-markdown"><i class="fa fa-check"></i><b>2.6</b> Cú pháp Markdown<span></span></a></li>
+<li class="chapter" data-level="2.7" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html#setup-github-cho-rstudio"><i class="fa fa-check"></i><b>2.7</b> Setup Github cho RStudio<span></span></a></li>
+<li class="chapter" data-level="2.8" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html#tham-khảo"><i class="fa fa-check"></i><b>2.8</b> Tham khảo<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="anova-rcbd.html"><a href="anova-rcbd.html"><i class="fa fa-check"></i><b>3</b> ANOVA RCBD<span></span></a></li>
+<li class="chapter" data-level="4" data-path="guide.html"><a href="guide.html"><i class="fa fa-check"></i><b>4</b> Guide<span></span></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="guide.html"><a href="guide.html#inline-formatting"><i class="fa fa-check"></i><b>4.1</b> Inline formatting<span></span></a></li>
+<li class="chapter" data-level="4.2" data-path="guide.html"><a href="guide.html#listings"><i class="fa fa-check"></i><b>4.2</b> Listings<span></span></a></li>
+<li class="chapter" data-level="4.3" data-path="guide.html"><a href="guide.html#media"><i class="fa fa-check"></i><b>4.3</b> Media<span></span></a></li>
+<li class="chapter" data-level="4.4" data-path="guide.html"><a href="guide.html#images"><i class="fa fa-check"></i><b>4.4</b> Images<span></span></a></li>
+<li class="chapter" data-level="4.5" data-path="guide.html"><a href="guide.html#math-expressions"><i class="fa fa-check"></i><b>4.5</b> Math expressions<span></span></a></li>
+<li class="chapter" data-level="4.6" data-path="guide.html"><a href="guide.html#number-and-reference-equations"><i class="fa fa-check"></i><b>4.6</b> Number and reference equations<span></span></a></li>
+<li class="chapter" data-level="4.7" data-path="guide.html"><a href="guide.html#theorems-and-proofs"><i class="fa fa-check"></i><b>4.7</b> Theorems and proofs<span></span></a></li>
+<li class="chapter" data-level="4.8" data-path="guide.html"><a href="guide.html#text-references"><i class="fa fa-check"></i><b>4.8</b> Text references<span></span></a></li>
+<li class="chapter" data-level="4.9" data-path="guide.html"><a href="guide.html#r-code"><i class="fa fa-check"></i><b>4.9</b> R code<span></span></a></li>
+<li class="chapter" data-level="4.10" data-path="guide.html"><a href="guide.html#figures"><i class="fa fa-check"></i><b>4.10</b> Figures<span></span></a></li>
+<li class="chapter" data-level="4.11" data-path="guide.html"><a href="guide.html#tables"><i class="fa fa-check"></i><b>4.11</b> Tables<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="basic-blocks.html"><a href="basic-blocks.html"><i class="fa fa-check"></i><b>5</b> Basic blocks<span></span></a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="basic-blocks.html"><a href="basic-blocks.html#subsets"><i class="fa fa-check"></i><b>5.1</b> Subsets<span></span></a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -171,13 +211,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="header">
 <h1 class="title">Học xác suất thống kê qua phần mềm R</h1>
-<p class="author"><em>Duc Nguyen</em></p>
-<p class="date"><em>2022-02-12</em></p>
+<p class="author"><em>Tan-Duc Nguyen</em></p>
+<p class="date"><em>2022-04-11</em></p>
 </div>
-<div id="stat-learning" class="section level1" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Stat learning</h1>
+<div id="stat-learning" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Chapter 1</span> Stat learning<a href="index.html#stat-learning" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p><img src="images/Quotefancy-237580-3840x2160.jpg" style="width:100.0%" />
-Test bookdown for creating better books.
 <a href="mailto:tanduc307@gmail.com" class="email">tanduc307@gmail.com</a></p>
 
 </div>
@@ -241,6 +280,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

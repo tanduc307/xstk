@@ -1,0 +1,47 @@
+# ANOVA RCBD
+
+Dataset [@somasegaran1985]
+
+`gs4_deauth()` giúp cho không cần xác thực API từ googlesheet.
+
+[File raw](https://docs.google.com/spreadsheets/d/1VhF7aghi8ORJHoBd8XcZvJmUeVBUliQZurGIPMkekK0/edit?usp=sharing)
+
+```{r}
+library(googlesheets4)
+gs4_deauth()
+data_rcbd <- read_sheet('1dFmKOhpYABrPR_e5MF27W2LSbaAGdt5dFVV3zc1H47I')
+print(data_rcbd, n = Inf)
+```
+
+ANOVA
+
+```{r}
+library(agricolae)
+outAOV <- aov(yield ~ block + treatment, data = data_rcbd)
+outAOV
+```
+
+Check assumptions
+
+```{r}
+plot(fitted(outAOV), residuals(outAOV))
+hist(residuals(outAOV))
+lines(density(residuals(outAOV)))
+hist(residuals(outAOV), prob = TRUE)
+lines(density(residuals(outAOV)))
+library(ggpubr)
+ggqqplot(residuals(outAOV))
+```
+
+ANOVA table
+
+```{r}
+anova(outAOV)
+```
+
+t-test LSD
+
+```{r}
+outFactorial <-LSD.test (outAOV, c("treatment"), main = "yield ~ block + treatment",console=TRUE)
+```
+

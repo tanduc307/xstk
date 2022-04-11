@@ -1,0 +1,229 @@
+# Guide
+
+## Inline formatting
+
+_work_ or *work*
+
+__yes__ or **yes**
+
+H~2~O
+
+Ca^2+^
+
+`code`
+
+<span style="font-variant:small-caps;">Small Caps</span>
+
+[RStudio](https://www.rstudio.com)
+
+Footnote^[footnote]
+
+If you do not want a certain heading to be numbered, you can add `{-}` after the heading, e.g `# Preface {-}`
+
+Blockquotes are written after `>`, e.g.,
+
+> "Love the life you live,
+>
+> Live the life you love."
+> --- Bob Marley
+
+```
+Code blocks
+```
+
+## Listings
+
+Unordered list items start with `*`, `-`, or `+`, and you can nest one list within another list by indenting the sub-list by four spaces, e.g.,
+
+- one item
+- one item
+- one item
+    - one item
+    - one item
+
+Ordered list items start with numbers (the rule for nested lists is the same as above), e.g.,
+
+1. the first item
+2. the second item
+3. the third item
+
+## Media
+
+[Mình cưới thôi em](https://t.me/inspiring_melody/321)
+
+## Images
+
+- Chèn theo syntax trong markdown
+![Love icon](images/heart.png "heart")
+
+- Chèn từ link sử dụng thẻ `HTML`
+`<img src="link.png" alt="caption" style="height: 100px; width:100px;"/>`
+
+Xem thêm https://www.markdownguide.org/hacks/#image-size
+
+## Math expressions
+
+Ma trận dãy số 
+
+$$\begin{array}{ccc}
+x_{11} & x_{12} & x_{13}\\
+x_{21} & x_{22} & x_{23}
+\end{array}$$
+
+Ma trận
+
+$$X = \begin{bmatrix}1 & x_{1}\\
+1 & x_{2}\\
+1 & x_{3}
+\end{bmatrix}$$
+
+$$\Theta = \begin{pmatrix}\alpha & \beta\\
+\gamma & \delta
+\end{pmatrix}$$
+
+$$\begin{vmatrix}a & b\\
+c & d
+\end{vmatrix}=ad-bc$$
+
+## Number and reference equations
+
+\begin{equation} 
+  f\left(k\right) = \binom{n}{k} p^k\left(1-p\right)^{n-k}
+  (\#eq:binom)
+\end{equation}
+
+You may refer to it using `\@ref(eq:binom)`, e.g., see Equation \@ref(eq:binom).
+
+Công thức mô tả a normal frequency curve
+
+\begin{equation} 
+  f = \frac{N}{{(\sigma \sqrt {2\pi } )}}{e^{ - {{(y - \mu )}^2}/2{\sigma ^2}}}
+  (\#eq:normal)
+\end{equation}
+
+You may refer to it using `\@ref(eq:normal)`, e.g., see Equation \@ref(eq:normal).
+
+Nếu không đánh số công thức thì dùng `equation*`
+
+\begin{equation*} 
+\frac{d}{dx}\left( \int_{a}^{x} f(u)\,du\right)=f(x)
+\end{equation*}
+
+Nếu ghi theo kiểu `align` thì áp dụng
+
+\begin{align} 
+g(X_{n}) &= g(\theta)+g'({\tilde{\theta}})(X_{n}-\theta) \notag \\
+
+\sqrt{n}[g(X_{n})-g(\theta)] &= g'\left({\tilde{\theta}}\right)
+  \sqrt{n}[X_{n}-\theta ] 
+
+(\#eq:align)
+\end{align}
+
+Sử dụng `\notag` để giúp không đánh số công thức ở hàng đầu tiên của \@ref(eq:align)
+
+Nếu sử dụng `split` thì áp dụng
+
+\begin{equation} 
+\begin{split}
+\mathrm{Var}(\hat{\beta}) & =\mathrm{Var}((X'X)^{-1}X'y)\\
+ & =(X'X)^{-1}X'\mathrm{Var}(y)((X'X)^{-1}X')'\\
+ & =(X'X)^{-1}X'\mathrm{Var}(y)X(X'X)^{-1}\\
+ & =(X'X)^{-1}X'\sigma^{2}IX(X'X)^{-1}\\
+ & =(X'X)^{-1}\sigma^{2}
+\end{split}
+(\#eq:var-beta)
+\end{equation}
+
+## Theorems and proofs
+
+::: {.theorem name="Pythagorean theorem"}
+For a right triangle, if $c$ denotes the length of the hypotenuse
+and $a$ and $b$ denote the lengths of the other two sides, we have
+$$a^2 + b^2 = c^2$$
+:::
+
+## Text references
+
+You can assign some text to a label and reference the text using the label elsewhere in your document. This can be particularly useful for long figure/table captions.
+
+## R code
+
+There are two types of R code in R Markdown/knitr documents: R code chunks, and inline R code. The syntax for the latter is `` ``r ''`r R_CODE` ``, and it can be embedded inline with other document elements.
+
+## Figures
+
+If we assign a figure caption to a code chunk via the chunk option `fig.cap`, R plots will be put into figure environments, which will be automatically labeled and numbered, and can also be cross-referenced. The label of a figure environment is generated from the label of the code chunk.
+
+Cross reference cho Figure \@ref(fig:pressure-plot)
+
+```{r pressure-plot, fig.asp=.7, fig.width=6, fig.cap='A figure example with the specified aspect ratio, width, and alignment.', fig.align='center', out.width='90%'}
+par(mar = c(4, 4, .1, .1))
+plot(pressure, pch = 19, type = 'b')
+```
+Chèn hai đồ thị \@ref(fig:multi-plots) 
+
+```{r multi-plots, out.width='50%', fig.show='hold', fig.cap='Two plots placed side by side.'}
+par(mar = c(4, 4, .1, .1))
+plot(pressure, pch = 19, type = 'b')
+plot(cars, pch = 19)
+```
+
+Chèn hình ảnh
+```{r michael, out.width='32.8%', fig.show='hold', fig.cap='Never let anyone know your mind.'}
+knitr::include_graphics('images/michael.jpg')
+```
+
+Chèn lặp lại hình ảnh
+
+```{r turtle, out.width='32.8%', fig.show='hold', fig.cap='Finding good land.'}
+knitr::include_graphics(rep('images/turtle.jpg', 3))
+```
+
+## Tables
+
+Like figures, tables with captions will also be numbered and can be referenced.
+
+Table \@ref(tab:table-single) is a simple example.
+
+```{r table-single, tidy=FALSE}
+knitr::kable(
+  head(mtcars[, 1:8], 10), booktabs = TRUE,
+  caption = 'A table of the first 10 rows of the mtcars data.'
+)
+```
+
+If you want to put multiple tables in a single table environment, wrap the data objects (usually data frames in R) into a list. See Table \@ref(tab:table-multi) for an example. Please note that this feature is only available in HTML and PDF output.
+
+```{r table-multi, tidy=FALSE}
+knitr::kable(
+  list(
+    head(iris[, 1:2], 3),
+    head(mtcars[, 1:3], 5)
+  ),
+  caption = 'A Tale of Two Tables.', booktabs = TRUE
+)
+```
+
+Longtable. Nếu dùng trong HTML thì áp dụng đoạn code. Còn nếu dùng trong PDF thì add `\usepackage{longtable}` vào phần LaTeX preamble.
+
+```{r longtable, tidy=FALSE}
+knitr::kable(
+  iris[1:55, ], longtable = TRUE, booktabs = TRUE,
+  caption = 'A table generated by the longtable package.'
+)
+```
+
+Tạo table thủ công. Table \@ref(tab:manual) 
+
+Table: (\#tab:manual) A simple table in Markdown.
+
+ Sepal.Length   Sepal.Width   Petal.Length   Petal.Width
+-------------  ------------  -------------  ------------
+          5.1           3.5            1.4           0.2
+          4.9           3.0            1.4           0.2
+          4.7           3.2            1.3           0.2
+          4.6           3.1            1.5           0.2
+          5.0           3.6            1.4           0.2
+          5.4           3.9            1.7           0.4
+

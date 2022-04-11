@@ -4,20 +4,20 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 How to use tools | Học xác suất thống kê qua phần mềm R</title>
-  <meta name="description" content="Chapter 2 How to use tools | Học xác suất thống kê qua phần mềm R từ thời điểm 2022-02-02)" />
+  <title>Chapter 3 ANOVA RCBD | Học xác suất thống kê qua phần mềm R</title>
+  <meta name="description" content="Chapter 3 ANOVA RCBD | Học xác suất thống kê qua phần mềm R từ thời điểm 2022-02-02)" />
   <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 How to use tools | Học xác suất thống kê qua phần mềm R" />
+  <meta property="og:title" content="Chapter 3 ANOVA RCBD | Học xác suất thống kê qua phần mềm R" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="/images/cover.jpg" />
-  <meta property="og:description" content="Chapter 2 How to use tools | Học xác suất thống kê qua phần mềm R từ thời điểm 2022-02-02)" />
+  <meta property="og:description" content="Chapter 3 ANOVA RCBD | Học xác suất thống kê qua phần mềm R từ thời điểm 2022-02-02)" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 How to use tools | Học xác suất thống kê qua phần mềm R" />
+  <meta name="twitter:title" content="Chapter 3 ANOVA RCBD | Học xác suất thống kê qua phần mềm R" />
   
-  <meta name="twitter:description" content="Chapter 2 How to use tools | Học xác suất thống kê qua phần mềm R từ thời điểm 2022-02-02)" />
+  <meta name="twitter:description" content="Chapter 3 ANOVA RCBD | Học xác suất thống kê qua phần mềm R từ thời điểm 2022-02-02)" />
   <meta name="twitter:image" content="/images/cover.jpg" />
 
 <meta name="author" content="Tan-Duc Nguyen" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="anova-rcbd.html"/>
+<link rel="prev" href="how-to-use-tools.html"/>
+<link rel="next" href="guide.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -209,86 +209,165 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="how-to-use-tools" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">Chapter 2</span> How to use tools<a href="how-to-use-tools.html#how-to-use-tools" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="tạo-thư-mục-làm-việc" class="section level2 hasAnchor" number="2.1">
-<h2><span class="header-section-number">2.1</span> Tạo thư mục làm việc<a href="how-to-use-tools.html#tạo-thư-mục-làm-việc" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Khi sử dụng Rstudio thì nên tạo thư mục project để toàn bộ files sẽ nằm trong đó.</p>
-<p>Cách thực hiện xem ở đây <a href="https://alexd106.github.io/intro2R/howto.html#rstudio_proj-vid" class="uri">https://alexd106.github.io/intro2R/howto.html#rstudio_proj-vid</a></p>
-<p>Lợi thế là trong folder project này, ta có thể tạo các folder con như images, data, tables, … để thuận tiện lưu riêng từng loại dữ liệu. [hiện tại làm sao để cấu hình cho hình ảnh nó tự động lưu theo từng folder thì chưa biết cách, thấy có package ‘here’ mà không biết cách dùng).</p>
-<p>Lưu ý là khi dùng bookdown để render books thì tên của heading là ghi tiếng Anh cho lành, vì nếu ghi tiếng Việt thì nó render bị lỗi unicode.</p>
-<iframe src="https://player.vimeo.com/video/460932720?h=ee64dffa97" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
-</iframe>
-<p>
-<a href="https://vimeo.com/460932720">RStudio Projects</a> from <a href="https://vimeo.com/user114793395">intro 2R</a> on <a href="https://vimeo.com">Vimeo</a>.
-</p>
-</div>
-<div id="chèn-hình-ảnh" class="section level2 hasAnchor" number="2.2">
-<h2><span class="header-section-number">2.2</span> Chèn hình ảnh<a href="how-to-use-tools.html#chèn-hình-ảnh" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Có các cách chèn hình khi sử dụng Rstudio như sau:</p>
-<p>• Chuyển qua chế độ Visual rồi insert hình ảnh. Sau đó hình ảnh sẽ được lưu trong folder _book/images khi render bằng knitr.</p>
-<p>• Nếu gõ theo kiểu source code thì dùng đoạn mã sau
-<code>``` {r echo=TRUE, paged.print=FALSE, out.width="30%"} knitr::include_graphics("images/cover.jpg") ```</code></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="how-to-use-tools.html#cb1-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">&quot;images/cover.jpg&quot;</span>)</span></code></pre></div>
-<p><img src="images/cover.jpg" width="30%" /></p>
-<p>• Nếu copy và paste từ trên Internet thì dùng add-on <code>imageclipr</code> <a href="https://github.com/Toniiiio/imageclipr" class="uri">&lt;https://github.com/Toniiiio/imageclipr&gt;</a>. Hình ảnh sẽ lưu mặc định trong working directory.</p>
-<p>• Nếu copy và paste hình ảnh theo kiểu thủ công thì hình ảnh mặc định sẽ lưu ở <code>C:/Users/tandu/AppData/Local/RStudio/tmp/paste-B717C571.png</code> như vậy thì khi xuất bản online sẽ không thấy. Do đó phải đưa hình ảnh vào trong thư mục project (theo kiểu thủ công) hoặc dùng add-on <code>imageclipr</code> theo kiểu trực tiếp trong Rstudio (nhưng ở dạng Rmarkdown, còn Rmarkdown visual thì bị lỗi).</p>
-</div>
-<div id="chèn-video" class="section level2 hasAnchor" number="2.3">
-<h2><span class="header-section-number">2.3</span> Chèn video<a href="how-to-use-tools.html#chèn-video" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Sử dụng link này <a href="https://video-to-markdown.marcomontalbano.com/" class="uri">https://video-to-markdown.marcomontalbano.com/</a> (theo kiểu click vào hình rồi direct qua source để play video)</p>
-<p>Chèn từ Youtube, sử dụng code embed rồi paste vào.</p>
-<p><code>&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/RLxV3T2b524" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;</code></p>
-<p>Tuy nhiên video sẽ không tự động resize theo khung cửa sổ</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/RLxV3T2b524" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-<p>Nên dùng code này để video tự động resize. Chiều rộng và cao 100% có nghĩa là theo khung cửa sổ chứ không phải theo kích thước gốc của video.</p>
-<p><code>&lt;div style="position:relative;padding-bottom:56.25%;"&gt;  &lt;iframe style="width:100%;height:100%;position:absolute;left:0px;top:0px;"  frameborder="0" width="100%" height="100%"   allowfullscreen  src="https://www.youtube.com/embed/RLxV3T2b524"&gt; &lt;/iframe&gt; &lt;/div&gt;</code></p>
-<div style="position:relative;padding-bottom:56.25%;">
-<p><iframe style="width:100%;height:100%;position:absolute;left:0px;top:0px;"
- frameborder="0" width="100%" height="100%" 
- allowfullscreen
- src="https://www.youtube.com/embed/RLxV3T2b524">
-</iframe></p>
-</div>
-<p>Chèn từ Github, lưu ý vị trí đường dẫn của file (kể cả trong sub folder phải chính xác) và repo phải tạo Gitpage. Video sẽ play khi mở bằng trình duyệt.</p>
-<p><code>&lt;div style="position:relative;padding-bottom:56.25%;"&gt;  &lt;iframe style="width:100%;height:100%;position:absolute;left:0px;top:0px;"  frameborder="0" width="100%" height="100%"   allowfullscreen  src="https://tanduc307.github.io/xstk/images/thanks.mp4"&gt; &lt;/iframe&gt; &lt;/div&gt;</code></p>
-<div style="position:relative;padding-bottom:56.25%;">
-<p><iframe style="width:100%;height:100%;position:absolute;left:0px;top:0px;"
- frameborder="0" width="100%" height="100%" 
- allowfullscreen
- src="https://tanduc307.github.io/xstk/images/thanks.mp4">
-</iframe></p>
-</div>
-<p>Có thể dùng package <code>vembedr</code> <a href="https://ijlyttle.github.io/vembedr/" class="uri">https://ijlyttle.github.io/vembedr/</a> để insert video cho nhanh.</p>
-</div>
-<div id="văn-phạm-tiếng-anh" class="section level2 hasAnchor" number="2.4">
-<h2><span class="header-section-number">2.4</span> Văn phạm tiếng Anh<a href="how-to-use-tools.html#văn-phạm-tiếng-anh" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Cách sử dụng dấu ba chấm ellipses. <a href="https://t.me/c/1605387342/140" class="uri">https://t.me/c/1605387342/140</a></p>
-<p>Cách chèn âm thanh vào theo cách upload lên github rồi play từ URL. Chưa tìm ra cách play từ source trên hard disk.</p>
-<p>Sử dụng package <code>embedr</code> <a href="https://github.com/mccarthy-m-g/embedr" class="uri">https://github.com/mccarthy-m-g/embedr</a></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="how-to-use-tools.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(embedr)</span>
-<span id="cb2-2"><a href="how-to-use-tools.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">embed_audio</span>(<span class="at">src =</span> <span class="st">&quot;https://tanduc307.github.io/light/An%20ellipsis%20(plural_%20ellipses)%20is%20a%20punctuation%20mark%20consisting%20of%20three%20dots..mp3&quot;</span>)</span></code></pre></div>
-<p><audio controls> <source src='https://tanduc307.github.io/light/An%20ellipsis%20(plural_%20ellipses)%20is%20a%20punctuation%20mark%20consisting%20of%20three%20dots..mp3' type='audio/mpeg'> Your browser does not support the audio tag;  for browser support, please see:  https://www.w3schools.com/tags/tag_audio.asp </audio></p>
-</div>
-<div id="trích-dẫn" class="section level2 hasAnchor" number="2.5">
-<h2><span class="header-section-number">2.5</span> Trích dẫn<a href="how-to-use-tools.html#trích-dẫn" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Xem hướng dẫn ở đây là làm được <a href="https://inbo.github.io/tutorials/tutorials/r_citations_markdown/" class="uri">https://inbo.github.io/tutorials/tutorials/r_citations_markdown/</a></p>
-</div>
-<div id="cú-pháp-markdown" class="section level2 hasAnchor" number="2.6">
-<h2><span class="header-section-number">2.6</span> Cú pháp Markdown<a href="how-to-use-tools.html#cú-pháp-markdown" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Xem ở đây <a href="https://www.markdownguide.org/basic-syntax/" class="uri">https://www.markdownguide.org/basic-syntax/</a></p>
-</div>
-<div id="setup-github-cho-rstudio" class="section level2 hasAnchor" number="2.7">
-<h2><span class="header-section-number">2.7</span> Setup Github cho RStudio<a href="how-to-use-tools.html#setup-github-cho-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Mục đích là để thuận tiện lưu trữ toàn bộ dữ liệu của dự án R mà khỏi cần copy, save as thủ công. <a href="https://intro2r.com/github_r.html" class="uri">https://intro2r.com/github_r.html</a></p>
-<p>Khi có file nào đó thay đổi thì ở Tab Git này sẽ update ngay. Ta chỉ cần chọn <code>Ctrl+A</code> rồi <code>Space</code> để select all sau đó <code>commit</code> rồi mới <code>push</code> lên server Git để lưu trữ.</p>
-<p><img src="01-how_to_use_tools_insertimage_1.png" /></p>
-</div>
-<div id="tham-khảo" class="section level2 hasAnchor" number="2.8">
-<h2><span class="header-section-number">2.8</span> Tham khảo<a href="how-to-use-tools.html#tham-khảo" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><a href="https://rstats.wtf/" class="uri">https://rstats.wtf/</a></p>
+<div id="anova-rcbd" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> ANOVA RCBD<a href="anova-rcbd.html#anova-rcbd" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Dataset <span class="citation">(<a href="#ref-somasegaran1985" role="doc-biblioref">Somasegaran and Hoben 1985</a>)</span></p>
+<p><code>gs4_deauth()</code> giúp cho không cần xác thực API từ googlesheet.</p>
+<p><a href="https://docs.google.com/spreadsheets/d/1VhF7aghi8ORJHoBd8XcZvJmUeVBUliQZurGIPMkekK0/edit?usp=sharing">File raw</a></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="anova-rcbd.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(googlesheets4)</span>
+<span id="cb3-2"><a href="anova-rcbd.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gs4_deauth</span>()</span>
+<span id="cb3-3"><a href="anova-rcbd.html#cb3-3" aria-hidden="true" tabindex="-1"></a>data_rcbd <span class="ot">&lt;-</span> <span class="fu">read_sheet</span>(<span class="st">&#39;1dFmKOhpYABrPR_e5MF27W2LSbaAGdt5dFVV3zc1H47I&#39;</span>)</span></code></pre></div>
+<pre><code>## √ Reading from &quot;raw_data&quot;.</code></pre>
+<pre><code>## √ Range &#39;Sheet1&#39;.</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="anova-rcbd.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data_rcbd, <span class="at">n =</span> <span class="cn">Inf</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 48 x 3
+##    block  treatment yield
+##    &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;
+##  1 block1 TAL102     9.66
+##  2 block1 TAL379     9.36
+##  3 block1 TAL206     8.41
+##  4 block1 TAL435     8.61
+##  5 block1 TAL411     9.2 
+##  6 block1 ALLEN527   8.11
+##  7 block1 TAL211     8.83
+##  8 block1 TAL487     6.27
+##  9 block1 CB1795     6.79
+## 10 block1 TAL650     6.95
+## 11 block1 TAL649     6.55
+## 12 block1 TAL860     6   
+## 13 block1 TAL183     6.11
+## 14 block1 TAL378     5.39
+## 15 block1 CONTROL1   1.53
+## 16 block1 CONTROL2   6.41
+## 17 block2 TAL102    10.6 
+## 18 block2 TAL379     9   
+## 19 block2 TAL206     9.44
+## 20 block2 TAL435     9.23
+## 21 block2 TAL411     8.19
+## 22 block2 ALLEN527   8.82
+## 23 block2 TAL211     6.32
+## 24 block2 TAL487     8.67
+## 25 block2 CB1795     8.17
+## 26 block2 TAL650     5.83
+## 27 block2 TAL649     4.82
+## 28 block2 TAL860     4.83
+## 29 block2 TAL183     3.46
+## 30 block2 TAL378     4.46
+## 31 block2 CONTROL1   1.3 
+## 32 block2 CONTROL2   7.83
+## 33 block3 TAL102    10.8 
+## 34 block3 TAL379    10.5 
+## 35 block3 TAL206    10.2 
+## 36 block3 TAL435     8.22
+## 37 block3 TAL411     8.46
+## 38 block3 ALLEN527   8.62
+## 39 block3 TAL211     9.14
+## 40 block3 TAL487     8.35
+## 41 block3 CB1795     5.7 
+## 42 block3 TAL650     6.83
+## 43 block3 TAL649     8.1 
+## 44 block3 TAL860     6.54
+## 45 block3 TAL183     5.51
+## 46 block3 TAL378     5.07
+## 47 block3 CONTROL1   1.8 
+## 48 block3 CONTROL2   5.83</code></pre>
+<p>ANOVA</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="anova-rcbd.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(agricolae)</span>
+<span id="cb8-2"><a href="anova-rcbd.html#cb8-2" aria-hidden="true" tabindex="-1"></a>outAOV <span class="ot">&lt;-</span> <span class="fu">aov</span>(yield <span class="sc">~</span> block <span class="sc">+</span> treatment, <span class="at">data =</span> data_rcbd)</span>
+<span id="cb8-3"><a href="anova-rcbd.html#cb8-3" aria-hidden="true" tabindex="-1"></a>outAOV</span></code></pre></div>
+<pre><code>## Call:
+##    aov(formula = yield ~ block + treatment, data = data_rcbd)
+## 
+## Terms:
+##                     block treatment Residuals
+## Sum of Squares    2.42538 217.47868  27.94669
+## Deg. of Freedom         2        15        30
+## 
+## Residual standard error: 0.9651716
+## Estimated effects may be unbalanced</code></pre>
+<p>Check assumptions</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="anova-rcbd.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">fitted</span>(outAOV), <span class="fu">residuals</span>(outAOV))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="anova-rcbd.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">residuals</span>(outAOV))</span>
+<span id="cb11-2"><a href="anova-rcbd.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">density</span>(<span class="fu">residuals</span>(outAOV)))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-5-2.png" width="672" /></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="anova-rcbd.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">residuals</span>(outAOV), <span class="at">prob =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb12-2"><a href="anova-rcbd.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">density</span>(<span class="fu">residuals</span>(outAOV)))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-5-3.png" width="672" /></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="anova-rcbd.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span></code></pre></div>
+<pre><code>## Loading required package: ggplot2</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="anova-rcbd.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggqqplot</span>(<span class="fu">residuals</span>(outAOV))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-5-4.png" width="672" /></p>
+<p>ANOVA table</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="anova-rcbd.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(outAOV)</span></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: yield
+##           Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
+## block      2   2.425  1.2127  1.3018     0.287    
+## treatment 15 217.479 14.4986 15.5638 3.284e-10 ***
+## Residuals 30  27.947  0.9316                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>t-test LSD</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="anova-rcbd.html#cb18-1" aria-hidden="true" tabindex="-1"></a>outFactorial <span class="ot">&lt;-</span><span class="fu">LSD.test</span> (outAOV, <span class="fu">c</span>(<span class="st">&quot;treatment&quot;</span>), <span class="at">main =</span> <span class="st">&quot;yield ~ block + treatment&quot;</span>,<span class="at">console=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## 
+## Study: yield ~ block + treatment
+## 
+## LSD t Test for yield 
+## 
+## Mean Square Error:  0.9315563 
+## 
+## treatment,  means and individual ( 95 %) CI
+## 
+##              yield       std r       LCL       UCL  Min   Max
+## ALLEN527  8.516667 0.3661056 3 7.3786265  9.654707 8.11  8.82
+## CB1795    6.886667 1.2378341 3 5.7486265  8.024707 5.70  8.17
+## CONTROL1  1.543333 0.2502665 3 0.4052932  2.681374 1.30  1.80
+## CONTROL2  6.690000 1.0289801 3 5.5519598  7.828040 5.83  7.83
+## TAL102   10.363333 0.6198656 3 9.2252932 11.501374 9.66 10.83
+## TAL183    5.026667 1.3895443 3 3.8886265  6.164707 3.46  6.11
+## TAL206    9.346667 0.8936629 3 8.2086265 10.484707 8.41 10.19
+## TAL211    8.096667 1.5464260 3 6.9586265  9.234707 6.32  9.14
+## TAL378    4.973333 0.4724757 3 3.8352932  6.111374 4.46  5.39
+## TAL379    9.616667 0.7774531 3 8.4786265 10.754707 9.00 10.49
+## TAL411    8.616667 0.5229085 3 7.4786265  9.754707 8.19  9.20
+## TAL435    8.686667 0.5093460 3 7.5486265  9.824707 8.22  9.23
+## TAL487    7.763333 1.3031245 3 6.6252932  8.901374 6.27  8.67
+## TAL649    6.490000 1.6408230 3 5.3519598  7.628040 4.82  8.10
+## TAL650    6.536667 0.6149255 3 5.3986265  7.674707 5.83  6.95
+## TAL860    5.790000 0.8741281 3 4.6519598  6.928040 4.83  6.54
+## 
+## Alpha: 0.05 ; DF Error: 30
+## Critical Value of t: 2.042272 
+## 
+## least Significant Difference: 1.609432 
+## 
+## Treatments with the same letter are not significantly different.
+## 
+##              yield groups
+## TAL102   10.363333      a
+## TAL379    9.616667     ab
+## TAL206    9.346667    abc
+## TAL435    8.686667     bc
+## TAL411    8.616667     bc
+## ALLEN527  8.516667     bc
+## TAL211    8.096667    bcd
+## TAL487    7.763333     cd
+## CB1795    6.886667     de
+## CONTROL2  6.690000     de
+## TAL650    6.536667    def
+## TAL649    6.490000    def
+## TAL860    5.790000     ef
+## TAL183    5.026667      f
+## TAL378    4.973333      f
+## CONTROL1  1.543333      g</code></pre>
 
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-somasegaran1985" class="csl-entry">
+Somasegaran, P., and H. J. Hoben. 1985. <span>“Methods in Legume-Rhizobium Technology.”</span>
 </div>
 </div>
             </section>
@@ -296,8 +375,8 @@ div.csl-indent {
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="anova-rcbd.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="how-to-use-tools.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="guide.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -328,7 +407,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/01-how_to_use_tools.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-anova_rcbd.Rmd",
 "text": "Edit"
 },
 "history": {
