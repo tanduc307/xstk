@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Basic blocks | Học xác suất thống kê qua phần mềm R</title>
   <meta name="description" content="Chapter 5 Basic blocks | Học xác suất thống kê qua phần mềm R từ thời điểm 2022-02-02)" />
-  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Basic blocks | Học xác suất thống kê qua phần mềm R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Tan-Duc Nguyen" />
 
 
-<meta name="date" content="2022-04-11" />
+<meta name="date" content="2022-05-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="guide.html"/>
-
+<link rel="next" href="example-1.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -158,36 +158,46 @@ div.csl-indent {
 <li><a href="./">Xác suất thống kê</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Stat learning<span></span></a></li>
-<li class="chapter" data-level="2" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html"><i class="fa fa-check"></i><b>2</b> How to use tools<span></span></a>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Stat learning</a></li>
+<li class="chapter" data-level="2" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html"><i class="fa fa-check"></i><b>2</b> How to use tools</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html#tạo-thư-mục-làm-việc"><i class="fa fa-check"></i><b>2.1</b> Tạo thư mục làm việc<span></span></a></li>
-<li class="chapter" data-level="2.2" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html#chèn-hình-ảnh"><i class="fa fa-check"></i><b>2.2</b> Chèn hình ảnh<span></span></a></li>
-<li class="chapter" data-level="2.3" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html#chèn-video"><i class="fa fa-check"></i><b>2.3</b> Chèn video<span></span></a></li>
-<li class="chapter" data-level="2.4" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html#văn-phạm-tiếng-anh"><i class="fa fa-check"></i><b>2.4</b> Văn phạm tiếng Anh<span></span></a></li>
-<li class="chapter" data-level="2.5" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html#trích-dẫn"><i class="fa fa-check"></i><b>2.5</b> Trích dẫn<span></span></a></li>
-<li class="chapter" data-level="2.6" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html#cú-pháp-markdown"><i class="fa fa-check"></i><b>2.6</b> Cú pháp Markdown<span></span></a></li>
-<li class="chapter" data-level="2.7" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html#setup-github-cho-rstudio"><i class="fa fa-check"></i><b>2.7</b> Setup Github cho RStudio<span></span></a></li>
-<li class="chapter" data-level="2.8" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html#tham-khảo"><i class="fa fa-check"></i><b>2.8</b> Tham khảo<span></span></a></li>
+<li class="chapter" data-level="2.1" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html#tạo-thư-mục-làm-việc"><i class="fa fa-check"></i><b>2.1</b> Tạo thư mục làm việc</a></li>
+<li class="chapter" data-level="2.2" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html#chèn-hình-ảnh"><i class="fa fa-check"></i><b>2.2</b> Chèn hình ảnh</a></li>
+<li class="chapter" data-level="2.3" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html#chèn-video"><i class="fa fa-check"></i><b>2.3</b> Chèn video</a></li>
+<li class="chapter" data-level="2.4" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html#văn-phạm-tiếng-anh"><i class="fa fa-check"></i><b>2.4</b> Văn phạm tiếng Anh</a></li>
+<li class="chapter" data-level="2.5" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html#trích-dẫn"><i class="fa fa-check"></i><b>2.5</b> Trích dẫn</a></li>
+<li class="chapter" data-level="2.6" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html#cú-pháp-markdown"><i class="fa fa-check"></i><b>2.6</b> Cú pháp Markdown</a></li>
+<li class="chapter" data-level="2.7" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html#setup-github-cho-rstudio"><i class="fa fa-check"></i><b>2.7</b> Setup Github cho RStudio</a></li>
+<li class="chapter" data-level="2.8" data-path="how-to-use-tools.html"><a href="how-to-use-tools.html#tham-khảo"><i class="fa fa-check"></i><b>2.8</b> Tham khảo</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="anova-rcbd.html"><a href="anova-rcbd.html"><i class="fa fa-check"></i><b>3</b> ANOVA RCBD<span></span></a></li>
-<li class="chapter" data-level="4" data-path="guide.html"><a href="guide.html"><i class="fa fa-check"></i><b>4</b> Guide<span></span></a>
+<li class="chapter" data-level="3" data-path="anova-rcbd.html"><a href="anova-rcbd.html"><i class="fa fa-check"></i><b>3</b> ANOVA RCBD</a></li>
+<li class="chapter" data-level="4" data-path="guide.html"><a href="guide.html"><i class="fa fa-check"></i><b>4</b> Guide</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="guide.html"><a href="guide.html#inline-formatting"><i class="fa fa-check"></i><b>4.1</b> Inline formatting<span></span></a></li>
-<li class="chapter" data-level="4.2" data-path="guide.html"><a href="guide.html#listings"><i class="fa fa-check"></i><b>4.2</b> Listings<span></span></a></li>
-<li class="chapter" data-level="4.3" data-path="guide.html"><a href="guide.html#media"><i class="fa fa-check"></i><b>4.3</b> Media<span></span></a></li>
-<li class="chapter" data-level="4.4" data-path="guide.html"><a href="guide.html#images"><i class="fa fa-check"></i><b>4.4</b> Images<span></span></a></li>
-<li class="chapter" data-level="4.5" data-path="guide.html"><a href="guide.html#math-expressions"><i class="fa fa-check"></i><b>4.5</b> Math expressions<span></span></a></li>
-<li class="chapter" data-level="4.6" data-path="guide.html"><a href="guide.html#number-and-reference-equations"><i class="fa fa-check"></i><b>4.6</b> Number and reference equations<span></span></a></li>
-<li class="chapter" data-level="4.7" data-path="guide.html"><a href="guide.html#theorems-and-proofs"><i class="fa fa-check"></i><b>4.7</b> Theorems and proofs<span></span></a></li>
-<li class="chapter" data-level="4.8" data-path="guide.html"><a href="guide.html#text-references"><i class="fa fa-check"></i><b>4.8</b> Text references<span></span></a></li>
-<li class="chapter" data-level="4.9" data-path="guide.html"><a href="guide.html#r-code"><i class="fa fa-check"></i><b>4.9</b> R code<span></span></a></li>
-<li class="chapter" data-level="4.10" data-path="guide.html"><a href="guide.html#figures"><i class="fa fa-check"></i><b>4.10</b> Figures<span></span></a></li>
-<li class="chapter" data-level="4.11" data-path="guide.html"><a href="guide.html#tables"><i class="fa fa-check"></i><b>4.11</b> Tables<span></span></a></li>
+<li class="chapter" data-level="4.1" data-path="guide.html"><a href="guide.html#inline-formatting"><i class="fa fa-check"></i><b>4.1</b> Inline formatting</a></li>
+<li class="chapter" data-level="4.2" data-path="guide.html"><a href="guide.html#listings"><i class="fa fa-check"></i><b>4.2</b> Listings</a></li>
+<li class="chapter" data-level="4.3" data-path="guide.html"><a href="guide.html#media"><i class="fa fa-check"></i><b>4.3</b> Media</a></li>
+<li class="chapter" data-level="4.4" data-path="guide.html"><a href="guide.html#images"><i class="fa fa-check"></i><b>4.4</b> Images</a></li>
+<li class="chapter" data-level="4.5" data-path="guide.html"><a href="guide.html#math-expressions"><i class="fa fa-check"></i><b>4.5</b> Math expressions</a></li>
+<li class="chapter" data-level="4.6" data-path="guide.html"><a href="guide.html#number-and-reference-equations"><i class="fa fa-check"></i><b>4.6</b> Number and reference equations</a></li>
+<li class="chapter" data-level="4.7" data-path="guide.html"><a href="guide.html#theorems-and-proofs"><i class="fa fa-check"></i><b>4.7</b> Theorems and proofs</a></li>
+<li class="chapter" data-level="4.8" data-path="guide.html"><a href="guide.html#text-references"><i class="fa fa-check"></i><b>4.8</b> Text references</a></li>
+<li class="chapter" data-level="4.9" data-path="guide.html"><a href="guide.html#r-code"><i class="fa fa-check"></i><b>4.9</b> R code</a></li>
+<li class="chapter" data-level="4.10" data-path="guide.html"><a href="guide.html#figures"><i class="fa fa-check"></i><b>4.10</b> Figures</a></li>
+<li class="chapter" data-level="4.11" data-path="guide.html"><a href="guide.html#tables"><i class="fa fa-check"></i><b>4.11</b> Tables</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="basic-blocks.html"><a href="basic-blocks.html"><i class="fa fa-check"></i><b>5</b> Basic blocks<span></span></a>
+<li class="chapter" data-level="5" data-path="basic-blocks.html"><a href="basic-blocks.html"><i class="fa fa-check"></i><b>5</b> Basic blocks</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="basic-blocks.html"><a href="basic-blocks.html#subsets"><i class="fa fa-check"></i><b>5.1</b> Subsets<span></span></a></li>
+<li class="chapter" data-level="5.1" data-path="basic-blocks.html"><a href="basic-blocks.html#subsets"><i class="fa fa-check"></i><b>5.1</b> Subsets</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="example-1.html"><a href="example-1.html"><i class="fa fa-check"></i><b>6</b> EXAMPLE 1</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="example-1.html"><a href="example-1.html#download-data"><i class="fa fa-check"></i><b>6.1</b> DOWNLOAD DATA</a></li>
+<li class="chapter" data-level="6.2" data-path="example-1.html"><a href="example-1.html#giải-bài-tập"><i class="fa fa-check"></i><b>6.2</b> GIẢI BÀI TẬP</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="example-1.html"><a href="example-1.html#tìm-ra-bang-nào-có-tỷ-lệ-bệnh-thấp-nhất"><i class="fa fa-check"></i><b>6.2.1</b> TÌM RA BANG NÀO CÓ TỶ LỆ BỆNH THẤP NHẤT</a></li>
+<li class="chapter" data-level="6.2.2" data-path="example-1.html"><a href="example-1.html#test-hàm"><i class="fa fa-check"></i><b>6.2.2</b> TEST HÀM</a></li>
+<li class="chapter" data-level="6.2.3" data-path="example-1.html"><a href="example-1.html#test-lỗi-nhập-liệu"><i class="fa fa-check"></i><b>6.2.3</b> TEST LỖI NHẬP LIỆU</a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -214,10 +224,10 @@ div.csl-indent {
 <div id="subsets" class="section level2 hasAnchor" number="5.1">
 <h2><span class="header-section-number">5.1</span> Subsets<a href="basic-blocks.html#subsets" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Nguồn <span class="citation">(<a href="#ref-devriesDummies2015" role="doc-biblioref">de Vries and Meys 2015, 241</a>)</span></p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="basic-blocks.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(islands)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="basic-blocks.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(islands)</span></code></pre></div>
 <pre><code>##  Named num [1:48] 11506 5500 16988 2968 16 ...
 ##  - attr(*, &quot;names&quot;)= chr [1:48] &quot;Africa&quot; &quot;Antarctica&quot; &quot;Asia&quot; &quot;Australia&quot; ...</code></pre>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="basic-blocks.html#cb30-1" aria-hidden="true" tabindex="-1"></a>islands</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="basic-blocks.html#cb31-1" aria-hidden="true" tabindex="-1"></a>islands</span></code></pre></div>
 <pre><code>##           Africa       Antarctica             Asia        Australia     Axel Heiberg           Baffin            Banks 
 ##            11506             5500            16988             2968               16              184               23 
 ##           Borneo          Britain          Celebes            Celon             Cuba            Devon        Ellesmere 
@@ -237,22 +247,8 @@ div.csl-indent {
 <p class="caption">Subset elements</p>
 </div>
 
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div class="csl-entry">
-Somasegaran, P., and H. J. Hoben. 1985. <span>“Methods in Legume-Rhizobium Technology.”</span>
-</div>
-<div class="csl-entry">
-Vries, Andrie de, and Joris Meys. 2015. <em>R <span>For Dummies</span></em>. 2nd ed.
 </div>
 </div>
-</div>
-</div>
-
-
-
-
-
-
 <h3>References</h3>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-devriesDummies2015" class="csl-entry">
@@ -264,8 +260,8 @@ Vries, Andrie de, and Joris Meys. 2015. <em>R <span>For Dummies</span></em>. 2nd
           </div>
         </div>
       </div>
-<a href="guide.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="guide.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="example-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

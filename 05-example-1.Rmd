@@ -1,0 +1,105 @@
+# EXAMPLE 1
+
+Source: Programming Assignment 3 INSTRUCTIONS: Hospital Quality [R Programming Coursera]
+
+Idea: [Yêu cầu đề bài](https://tanduc307.github.io/xstk/example/1/idea_rprog_data_ProgAssignment3-data.pdf)
+
+Download data: [Dữ liệu đề bài](https://tanduc307.github.io/xstk/example/1/rprog_data_ProgAssignment3-data.zip)
+
+## DOWNLOAD DATA
+
+```{r}
+if(!file.exists("./example/1/rprog_data_ProgAssignment3-data.zip")) # KIỂM TRA XEM CÓ FILE NÀY ĐÃ DOWNLOAD TRONG THƯ MỤC CHƯA
+  
+  # NẾU CHƯA CÓ THÌ TIẾN HÀNH DOWNLOAD VÀ GIẢI NÉN
+  
+  {
+  
+  url <- "https://tanduc307.github.io/xstk/example/1/rprog_data_ProgAssignment3-data.zip" # GÁN GIÁ TRỊ LINK DOWNLOAD
+  library(here) # SỬ DỤNG PACKAGE 'here' ĐỂ TẠO ĐƯỜNG DẪN CHO TIỆN
+  working_wd <- getwd() # GÁN GIÁ TRỊ THƯ MỤC LÀM VIỆC
+  destfile <- here(working_wd, "example", "1", "rprog_data_ProgAssignment3-data.zip") # GÁN GIÁ TRỊ VỊ TRÍ FILE SẼ DOWNLOAD
+  
+  download.file(url, destfile) # DOWNLOAD FILE VỀ THƯ MỤC LÀM VIỆC
+  
+  unzip_folder <- here(working_wd, "example", "1") # GÁN GIÁ TRỊ VỊ TRÍ FILE SẼ GIẢI NÉN
+  unzip(zipfile = destfile, exdir = unzip_folder) # GIẢI NÉN FILE
+  list.files(unzip_folder) # LIỆT KÊ CÁC FILE TRONG THƯ MỤC SAU GIẢI NÉN
+  
+  } # KẾT THÚC HÀM IF
+```
+## GIẢI BÀI TẬP 
+Bạn nên dùng MS Excel để mở các bảng dữ liệu này ra để có cái nhìn về toàn bộ dữ liệu và cách trích xuất dữ liệu thủ công theo yêu cầu đề bài sẽ gồm những bước nào. Từ đây khi viết hàm vào R sẽ có thể dễ dàng đối chiếu kết quả.
+
+### TÌM RA BANG NÀO CÓ TỶ LỆ BỆNH THẤP NHẤT
+Lưu hàm ở file best.R
+
+```{r}
+best <- function(state_real, outcome_real) 
+
+  # ĐẶT HÀM TÊN LÀ 'best', CÓ HAI THÔNG SỐ LÀ 'state_real' là tên của bang; 'outcome_real' là tỷ lệ bệnh.  
+  
+  {
+  
+  # NHẬP DỮ LIỆU
+  library(here)
+  working_wd <- getwd()
+  file_outcome_csv <- here(working_wd, "example", "1", "outcome-of-care-measures.csv")
+  
+  outcome <- read.csv(file_outcome_csv, colClasses = "character", na.strings = "Not Available") 
+  lean_data <- outcome[, c(2, 7, 11, 17, 23)] 
+  colnames(lean_data) <- c("hospital_name", "state", "heart attack", "heart failure", "pneumonia") 
+  
+  unique_name <- unique(lean_data$state)
+  if (match(state_real, unique_name, nomatch = "0") > 0) {
+  } else {
+    print("invalid state")
+    stop()
+  }
+  
+  if (match(outcome_real, c("heart attack", "heart failure", "pneumonia"), nomatch = "0") > 0) {
+  } else {
+    print("invalid outcome")
+    stop()
+  }
+  
+  lean_data_state <- split(lean_data, f = list(lean_data$state)) 
+  foo <- data.frame(lean_data_state[state_real]) 
+  
+  colnames(foo) <- c("hospital_name", "state", "heart attack", "heart failure", "pneumonia") 
+  
+  #work <- data.frame(cbind(foo$hospital_name, foo$"outcome_real")) # KHI ĐẶT TRONG HÀM THÌ KHÔNG DÙNG KIỂU SUBSET DẤU '$' ĐƯỢC, NÊN PHẢI CHUYỂN QUA KIỂU NÀY.
+  
+  work <- data.frame(cbind(foo[, c("hospital_name", outcome_real)])) 
+ 
+  good <- complete.cases(work)
+  work_ok <- data.frame(work[good, ][]) # TẠO DATASET CỦA STATE VỚI CỘT BỆNH VÀ LOẠI ĐI MISSING VALUE
+  colnames(work_ok) <- c("hospital_name", outcome_real)
+ 
+  yes <- as.numeric(work_ok[, outcome_real])
+
+  happy <- work_ok[which(yes == min(yes)), ] # LƯU Ý SYNTAX KHI DÙNG HÀM WHICH
+  
+  result_1 <- paste(happy[1]) # LẤY TÊN CỦA BỆNH VIỆN CÓ TỶ LỆ BỆNH ÍT NHẤT
+  
+  return(result_1) # TRẢ KẾT QUẢ TÌM KIẾM
+  
+  } # KẾT THÚC HÀM
+```
+
+### TEST HÀM
+Khi test hàm thì đoạn code ở trên được lưu ở file best.R, ta có thể source("best.R") để R thực hiện.
+
+```{r}
+best("TX", "heart attack")
+best("TX", "heart failure")
+best("MD", "heart attack")
+best("MD", "pneumonia")
+```
+
+### TEST LỖI NHẬP LIỆU
+Trong hàm đã thiết lập thông báo cho người nhập liệu nếu ghi sai tên bang hay ghi sai tên bệnh sẽ hiện ra thông báo lỗi nhập liệu để điều chỉnh.
+
+`best("BB", "heart attack")` ==> `"invalid state"`
+
+`best("NY", "hert attack")` ==> `"invalid outcome"`

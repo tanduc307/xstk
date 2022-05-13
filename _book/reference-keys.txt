@@ -36,3 +36,9 @@ figures
 tables
 basic-blocks
 subsets
+example-1
+download-data
+giải-bài-tập
+tìm-ra-bang-nào-có-tỷ-lệ-bệnh-thấp-nhất
+test-hàm
+test-lỗi-nhập-liệu

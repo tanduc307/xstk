@@ -5,8 +5,8 @@
 \documentclass[
 ]{book}
 \title{Học xác suất thống kê qua phần mềm R}
-\author{Tan Duc Nguyen (aka Duc)}
-\date{2022-03-09}
+\author{Tan-Duc Nguyen}
+\date{2022-05-13}
 
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -41,7 +41,7 @@
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
   pdftitle={Học xác suất thống kê qua phần mềm R},
-  pdfauthor={Tan Duc Nguyen (aka Duc)},
+  pdfauthor={Tan-Duc Nguyen},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
@@ -119,6 +119,23 @@
 \usepackage[]{natbib}
 \bibliographystyle{plainnat}
 
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}{Lemma}[chapter]
+\newtheorem{corollary}{Corollary}[chapter]
+\newtheorem{proposition}{Proposition}[chapter]
+\newtheorem{conjecture}{Conjecture}[chapter]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[chapter]
+\theoremstyle{definition}
+\newtheorem{example}{Example}[chapter]
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}[chapter]
+\theoremstyle{definition}
+\newtheorem{hypothesis}{Hypothesis}[chapter]
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{solution}{Solution}
 \begin{document}
 \maketitle
 
@@ -130,7 +147,6 @@
 \chapter{Stat learning}\label{stat-learning}}
 
 \includegraphics[width=1\textwidth,height=\textheight]{images/Quotefancy-237580-3840x2160.jpg}
-Test bookdown for creating better books.
 \href{mailto:tanduc307@gmail.com}{\nolinkurl{tanduc307@gmail.com}}
 
 \hypertarget{how-to-use-tools}{%
@@ -235,7 +251,11 @@ Khi có file nào đó thay đổi thì ở Tab Git này sẽ update ngay. Ta ch
 \hypertarget{anova-rcbd}{%
 \chapter{ANOVA RCBD}\label{anova-rcbd}}
 
-Dataset
+Dataset \citep{somasegaran1985}
+
+\texttt{gs4\_deauth()} giúp cho không cần xác thực API từ googlesheet.
+
+\href{https://docs.google.com/spreadsheets/d/1VhF7aghi8ORJHoBd8XcZvJmUeVBUliQZurGIPMkekK0/edit?usp=sharing}{File raw}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -463,6 +483,664 @@ t-test LSD
 ## TAL378    4.973333      f
 ## CONTROL1  1.543333      g
 \end{verbatim}
+
+\hypertarget{guide}{%
+\chapter{Guide}\label{guide}}
+
+\hypertarget{inline-formatting}{%
+\section{Inline formatting}\label{inline-formatting}}
+
+\emph{work} or \emph{work}
+
+\textbf{yes} or \textbf{yes}
+
+H\textsubscript{2}O
+
+Ca\textsuperscript{2+}
+
+\texttt{code}
+
+\textsc{Small Caps}
+
+\href{https://www.rstudio.com}{RStudio}
+
+Footnote\footnote{footnote}
+
+If you do not want a certain heading to be numbered, you can add \texttt{\{-\}} after the heading, e.g \texttt{\#\ Preface\ \{-\}}
+
+Blockquotes are written after \texttt{\textgreater{}}, e.g.,
+
+\begin{quote}
+``Love the life you live,
+
+Live the life you love.''
+--- Bob Marley
+\end{quote}
+
+\begin{verbatim}
+Code blocks
+\end{verbatim}
+
+\hypertarget{listings}{%
+\section{Listings}\label{listings}}
+
+Unordered list items start with \texttt{*}, \texttt{-}, or \texttt{+}, and you can nest one list within another list by indenting the sub-list by four spaces, e.g.,
+
+\begin{itemize}
+\tightlist
+\item
+  one item
+\item
+  one item
+\item
+  one item
+
+  \begin{itemize}
+  \tightlist
+  \item
+    one item
+  \item
+    one item
+  \end{itemize}
+\end{itemize}
+
+Ordered list items start with numbers (the rule for nested lists is the same as above), e.g.,
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  the first item
+\item
+  the second item
+\item
+  the third item
+\end{enumerate}
+
+\hypertarget{media}{%
+\section{Media}\label{media}}
+
+\href{https://t.me/inspiring_melody/321}{Mình cưới thôi em}
+
+\hypertarget{images}{%
+\section{Images}\label{images}}
+
+\begin{itemize}
+\item
+  Chèn theo syntax trong markdown
+  \includegraphics{images/heart.png}
+\item
+  Chèn từ link sử dụng thẻ \texttt{HTML}
+  \texttt{\textless{}img\ src="link.png"\ alt="caption"\ style="height:\ 100px;\ width:100px;"/\textgreater{}}
+\end{itemize}
+
+Xem thêm \url{https://www.markdownguide.org/hacks/\#image-size}
+
+\hypertarget{math-expressions}{%
+\section{Math expressions}\label{math-expressions}}
+
+Ma trận dãy số
+
+\[\begin{array}{ccc}
+x_{11} & x_{12} & x_{13}\\
+x_{21} & x_{22} & x_{23}
+\end{array}\]
+
+Ma trận
+
+\[X = \begin{bmatrix}1 & x_{1}\\
+1 & x_{2}\\
+1 & x_{3}
+\end{bmatrix}\]
+
+\[\Theta = \begin{pmatrix}\alpha & \beta\\
+\gamma & \delta
+\end{pmatrix}\]
+
+\[\begin{vmatrix}a & b\\
+c & d
+\end{vmatrix}=ad-bc\]
+
+\hypertarget{number-and-reference-equations}{%
+\section{Number and reference equations}\label{number-and-reference-equations}}
+
+\begin{equation} 
+  f\left(k\right) = \binom{n}{k} p^k\left(1-p\right)^{n-k}
+  \label{eq:binom}
+\end{equation}
+
+You may refer to it using \texttt{\textbackslash{}@ref(eq:binom)}, e.g., see Equation \eqref{eq:binom}.
+
+Công thức mô tả a normal frequency curve
+
+\begin{equation} 
+  f = \frac{N}{{(\sigma \sqrt {2\pi } )}}{e^{ - {{(y - \mu )}^2}/2{\sigma ^2}}}
+  \label{eq:normal}
+\end{equation}
+
+You may refer to it using \texttt{\textbackslash{}@ref(eq:normal)}, e.g., see Equation \eqref{eq:normal}.
+
+Nếu không đánh số công thức thì dùng \texttt{equation*}
+
+\begin{equation*} 
+\frac{d}{dx}\left( \int_{a}^{x} f(u)\,du\right)=f(x)
+\end{equation*}
+
+Nếu ghi theo kiểu \texttt{align} thì áp dụng
+
+\begin{align} 
+g(X_{n}) &= g(\theta)+g'({\tilde{\theta}})(X_{n}-\theta) \notag \\
+
+\sqrt{n}[g(X_{n})-g(\theta)] &= g'\left({\tilde{\theta}}\right)
+  \sqrt{n}[X_{n}-\theta ] 
+
+\label{eq:align}
+\end{align}
+
+Sử dụng \texttt{\textbackslash{}notag} để giúp không đánh số công thức ở hàng đầu tiên của \eqref{eq:align}
+
+Nếu sử dụng \texttt{split} thì áp dụng
+
+\begin{equation} 
+\begin{split}
+\mathrm{Var}(\hat{\beta}) & =\mathrm{Var}((X'X)^{-1}X'y)\\
+ & =(X'X)^{-1}X'\mathrm{Var}(y)((X'X)^{-1}X')'\\
+ & =(X'X)^{-1}X'\mathrm{Var}(y)X(X'X)^{-1}\\
+ & =(X'X)^{-1}X'\sigma^{2}IX(X'X)^{-1}\\
+ & =(X'X)^{-1}\sigma^{2}
+\end{split}
+\label{eq:var-beta}
+\end{equation}
+
+\hypertarget{theorems-and-proofs}{%
+\section{Theorems and proofs}\label{theorems-and-proofs}}
+
+\begin{theorem}[Pythagorean theorem]
+For a right triangle, if \(c\) denotes the length of the hypotenuse
+and \(a\) and \(b\) denote the lengths of the other two sides, we have
+\[a^2 + b^2 = c^2\]
+\end{theorem}
+
+\hypertarget{text-references}{%
+\section{Text references}\label{text-references}}
+
+You can assign some text to a label and reference the text using the label elsewhere in your document. This can be particularly useful for long figure/table captions.
+
+\hypertarget{r-code}{%
+\section{R code}\label{r-code}}
+
+There are two types of R code in R Markdown/knitr documents: R code chunks, and inline R code. The syntax for the latter is \texttt{\textasciigrave{}r\ R\_CODE\textasciigrave{}}, and it can be embedded inline with other document elements.
+
+\hypertarget{figures}{%
+\section{Figures}\label{figures}}
+
+If we assign a figure caption to a code chunk via the chunk option \texttt{fig.cap}, R plots will be put into figure environments, which will be automatically labeled and numbered, and can also be cross-referenced. The label of a figure environment is generated from the label of the code chunk.
+
+Cross reference cho Figure \ref{fig:pressure-plot}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mar =} \FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, .}\DecValTok{1}\NormalTok{, .}\DecValTok{1}\NormalTok{))}
+\FunctionTok{plot}\NormalTok{(pressure, }\AttributeTok{pch =} \DecValTok{19}\NormalTok{, }\AttributeTok{type =} \StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{_main_files/figure-latex/pressure-plot-1} 
+
+}
+
+\caption{A figure example with the specified aspect ratio, width, and alignment.}\label{fig:pressure-plot}
+\end{figure}
+
+Chèn hai đồ thị \ref{fig:multi-plots}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mar =} \FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, .}\DecValTok{1}\NormalTok{, .}\DecValTok{1}\NormalTok{))}
+\FunctionTok{plot}\NormalTok{(pressure, }\AttributeTok{pch =} \DecValTok{19}\NormalTok{, }\AttributeTok{type =} \StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(cars, }\AttributeTok{pch =} \DecValTok{19}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\includegraphics[width=0.5\linewidth]{_main_files/figure-latex/multi-plots-1} \includegraphics[width=0.5\linewidth]{_main_files/figure-latex/multi-plots-2} \caption{Two plots placed side by side.}\label{fig:multi-plots}
+\end{figure}
+
+Chèn hình ảnh
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{include\_graphics}\NormalTok{(}\StringTok{\textquotesingle{}images/michael.jpg\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\includegraphics[width=0.328\linewidth]{images/michael} \caption{Never let anyone know your mind.}\label{fig:michael}
+\end{figure}
+
+Chèn lặp lại hình ảnh
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{include\_graphics}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\StringTok{\textquotesingle{}images/turtle.jpg\textquotesingle{}}\NormalTok{, }\DecValTok{3}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\includegraphics[width=0.328\linewidth]{images/turtle} \includegraphics[width=0.328\linewidth]{images/turtle} \includegraphics[width=0.328\linewidth]{images/turtle} \caption{Finding good land.}\label{fig:turtle}
+\end{figure}
+
+\hypertarget{tables}{%
+\section{Tables}\label{tables}}
+
+Like figures, tables with captions will also be numbered and can be referenced.
+
+Table \ref{tab:table-single} is a simple example.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(}
+  \FunctionTok{head}\NormalTok{(mtcars[, }\DecValTok{1}\SpecialCharTok{:}\DecValTok{8}\NormalTok{], }\DecValTok{10}\NormalTok{), }\AttributeTok{booktabs =} \ConstantTok{TRUE}\NormalTok{,}
+  \AttributeTok{caption =} \StringTok{\textquotesingle{}A table of the first 10 rows of the mtcars data.\textquotesingle{}}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+
+\caption{\label{tab:table-single}A table of the first 10 rows of the mtcars data.}
+\centering
+\begin{tabular}[t]{lrrrrrrrr}
+\toprule
+  & mpg & cyl & disp & hp & drat & wt & qsec & vs\\
+\midrule
+Mazda RX4 & 21.0 & 6 & 160.0 & 110 & 3.90 & 2.620 & 16.46 & 0\\
+Mazda RX4 Wag & 21.0 & 6 & 160.0 & 110 & 3.90 & 2.875 & 17.02 & 0\\
+Datsun 710 & 22.8 & 4 & 108.0 & 93 & 3.85 & 2.320 & 18.61 & 1\\
+Hornet 4 Drive & 21.4 & 6 & 258.0 & 110 & 3.08 & 3.215 & 19.44 & 1\\
+Hornet Sportabout & 18.7 & 8 & 360.0 & 175 & 3.15 & 3.440 & 17.02 & 0\\
+\addlinespace
+Valiant & 18.1 & 6 & 225.0 & 105 & 2.76 & 3.460 & 20.22 & 1\\
+Duster 360 & 14.3 & 8 & 360.0 & 245 & 3.21 & 3.570 & 15.84 & 0\\
+Merc 240D & 24.4 & 4 & 146.7 & 62 & 3.69 & 3.190 & 20.00 & 1\\
+Merc 230 & 22.8 & 4 & 140.8 & 95 & 3.92 & 3.150 & 22.90 & 1\\
+Merc 280 & 19.2 & 6 & 167.6 & 123 & 3.92 & 3.440 & 18.30 & 1\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+If you want to put multiple tables in a single table environment, wrap the data objects (usually data frames in R) into a list. See Table \ref{tab:table-multi} for an example. Please note that this feature is only available in HTML and PDF output.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(}
+  \FunctionTok{list}\NormalTok{(}
+    \FunctionTok{head}\NormalTok{(iris[, }\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{], }\DecValTok{3}\NormalTok{),}
+    \FunctionTok{head}\NormalTok{(mtcars[, }\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{], }\DecValTok{5}\NormalTok{)}
+\NormalTok{  ),}
+  \AttributeTok{caption =} \StringTok{\textquotesingle{}A Tale of Two Tables.\textquotesingle{}}\NormalTok{, }\AttributeTok{booktabs =} \ConstantTok{TRUE}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+\caption{\label{tab:table-multi}A Tale of Two Tables.}
+
+\centering
+\begin{tabular}[t]{rr}
+\toprule
+Sepal.Length & Sepal.Width\\
+\midrule
+5.1 & 3.5\\
+4.9 & 3.0\\
+4.7 & 3.2\\
+\bottomrule
+\end{tabular}
+\centering
+\begin{tabular}[t]{lrrr}
+\toprule
+  & mpg & cyl & disp\\
+\midrule
+Mazda RX4 & 21.0 & 6 & 160\\
+Mazda RX4 Wag & 21.0 & 6 & 160\\
+Datsun 710 & 22.8 & 4 & 108\\
+Hornet 4 Drive & 21.4 & 6 & 258\\
+Hornet Sportabout & 18.7 & 8 & 360\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Longtable. Nếu dùng trong HTML thì áp dụng đoạn code. Còn nếu dùng trong PDF thì add \texttt{\textbackslash{}usepackage\{longtable\}} vào phần LaTeX preamble.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(}
+\NormalTok{  iris[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{55}\NormalTok{, ], }\AttributeTok{longtable =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{booktabs =} \ConstantTok{TRUE}\NormalTok{,}
+  \AttributeTok{caption =} \StringTok{\textquotesingle{}A table generated by the longtable package.\textquotesingle{}}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[t]{rrrrl}
+\caption{\label{tab:longtable}A table generated by the longtable package.}\\
+\toprule
+Sepal.Length & Sepal.Width & Petal.Length & Petal.Width & Species\\
+\midrule
+5.1 & 3.5 & 1.4 & 0.2 & setosa\\
+4.9 & 3.0 & 1.4 & 0.2 & setosa\\
+4.7 & 3.2 & 1.3 & 0.2 & setosa\\
+4.6 & 3.1 & 1.5 & 0.2 & setosa\\
+5.0 & 3.6 & 1.4 & 0.2 & setosa\\
+\addlinespace
+5.4 & 3.9 & 1.7 & 0.4 & setosa\\
+4.6 & 3.4 & 1.4 & 0.3 & setosa\\
+5.0 & 3.4 & 1.5 & 0.2 & setosa\\
+4.4 & 2.9 & 1.4 & 0.2 & setosa\\
+4.9 & 3.1 & 1.5 & 0.1 & setosa\\
+\addlinespace
+5.4 & 3.7 & 1.5 & 0.2 & setosa\\
+4.8 & 3.4 & 1.6 & 0.2 & setosa\\
+4.8 & 3.0 & 1.4 & 0.1 & setosa\\
+4.3 & 3.0 & 1.1 & 0.1 & setosa\\
+5.8 & 4.0 & 1.2 & 0.2 & setosa\\
+\addlinespace
+5.7 & 4.4 & 1.5 & 0.4 & setosa\\
+5.4 & 3.9 & 1.3 & 0.4 & setosa\\
+5.1 & 3.5 & 1.4 & 0.3 & setosa\\
+5.7 & 3.8 & 1.7 & 0.3 & setosa\\
+5.1 & 3.8 & 1.5 & 0.3 & setosa\\
+\addlinespace
+5.4 & 3.4 & 1.7 & 0.2 & setosa\\
+5.1 & 3.7 & 1.5 & 0.4 & setosa\\
+4.6 & 3.6 & 1.0 & 0.2 & setosa\\
+5.1 & 3.3 & 1.7 & 0.5 & setosa\\
+4.8 & 3.4 & 1.9 & 0.2 & setosa\\
+\addlinespace
+5.0 & 3.0 & 1.6 & 0.2 & setosa\\
+5.0 & 3.4 & 1.6 & 0.4 & setosa\\
+5.2 & 3.5 & 1.5 & 0.2 & setosa\\
+5.2 & 3.4 & 1.4 & 0.2 & setosa\\
+4.7 & 3.2 & 1.6 & 0.2 & setosa\\
+\addlinespace
+4.8 & 3.1 & 1.6 & 0.2 & setosa\\
+5.4 & 3.4 & 1.5 & 0.4 & setosa\\
+5.2 & 4.1 & 1.5 & 0.1 & setosa\\
+5.5 & 4.2 & 1.4 & 0.2 & setosa\\
+4.9 & 3.1 & 1.5 & 0.2 & setosa\\
+\addlinespace
+5.0 & 3.2 & 1.2 & 0.2 & setosa\\
+5.5 & 3.5 & 1.3 & 0.2 & setosa\\
+4.9 & 3.6 & 1.4 & 0.1 & setosa\\
+4.4 & 3.0 & 1.3 & 0.2 & setosa\\
+5.1 & 3.4 & 1.5 & 0.2 & setosa\\
+\addlinespace
+5.0 & 3.5 & 1.3 & 0.3 & setosa\\
+4.5 & 2.3 & 1.3 & 0.3 & setosa\\
+4.4 & 3.2 & 1.3 & 0.2 & setosa\\
+5.0 & 3.5 & 1.6 & 0.6 & setosa\\
+5.1 & 3.8 & 1.9 & 0.4 & setosa\\
+\addlinespace
+4.8 & 3.0 & 1.4 & 0.3 & setosa\\
+5.1 & 3.8 & 1.6 & 0.2 & setosa\\
+4.6 & 3.2 & 1.4 & 0.2 & setosa\\
+5.3 & 3.7 & 1.5 & 0.2 & setosa\\
+5.0 & 3.3 & 1.4 & 0.2 & setosa\\
+\addlinespace
+7.0 & 3.2 & 4.7 & 1.4 & versicolor\\
+6.4 & 3.2 & 4.5 & 1.5 & versicolor\\
+6.9 & 3.1 & 4.9 & 1.5 & versicolor\\
+5.5 & 2.3 & 4.0 & 1.3 & versicolor\\
+6.5 & 2.8 & 4.6 & 1.5 & versicolor\\
+\bottomrule
+\end{longtable}
+
+Tạo table thủ công. Table \ref{tab:manual}
+
+\begin{longtable}[]{@{}rrrr@{}}
+\caption{\label{tab:manual} A simple table in Markdown.}\tabularnewline
+\toprule
+Sepal.Length & Sepal.Width & Petal.Length & Petal.Width \\
+\midrule
+\endfirsthead
+\toprule
+Sepal.Length & Sepal.Width & Petal.Length & Petal.Width \\
+\midrule
+\endhead
+5.1 & 3.5 & 1.4 & 0.2 \\
+4.9 & 3.0 & 1.4 & 0.2 \\
+4.7 & 3.2 & 1.3 & 0.2 \\
+4.6 & 3.1 & 1.5 & 0.2 \\
+5.0 & 3.6 & 1.4 & 0.2 \\
+5.4 & 3.9 & 1.7 & 0.4 \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{basic-blocks}{%
+\chapter{Basic blocks}\label{basic-blocks}}
+
+\hypertarget{subsets}{%
+\section{Subsets}\label{subsets}}
+
+Nguồn \citep[p.~241]{devriesDummies2015}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{(islands)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  Named num [1:48] 11506 5500 16988 2968 16 ...
+##  - attr(*, "names")= chr [1:48] "Africa" "Antarctica" "Asia" "Australia" ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{islands}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           Africa       Antarctica             Asia        Australia 
+##            11506             5500            16988             2968 
+##     Axel Heiberg           Baffin            Banks           Borneo 
+##               16              184               23              280 
+##          Britain          Celebes            Celon             Cuba 
+##               84               73               25               43 
+##            Devon        Ellesmere           Europe        Greenland 
+##               21               82             3745              840 
+##           Hainan       Hispaniola         Hokkaido           Honshu 
+##               13               30               30               89 
+##          Iceland          Ireland             Java           Kyushu 
+##               40               33               49               14 
+##            Luzon       Madagascar         Melville         Mindanao 
+##               42              227               16               36 
+##         Moluccas      New Britain       New Guinea  New Zealand (N) 
+##               29               15              306               44 
+##  New Zealand (S)     Newfoundland    North America    Novaya Zemlya 
+##               58               43             9390               32 
+##  Prince of Wales         Sakhalin    South America      Southampton 
+##               13               29             6795               16 
+##      Spitsbergen          Sumatra           Taiwan         Tasmania 
+##               15              183               14               26 
+## Tierra del Fuego            Timor        Vancouver         Victoria 
+##               19               13               12               82
+\end{verbatim}
+
+\begin{figure}
+\centering
+\includegraphics{images/subset1.png}
+\caption{Subset elements}
+\end{figure}
+
+\hypertarget{example-1}{%
+\chapter{EXAMPLE 1}\label{example-1}}
+
+Source: Programming Assignment 3 INSTRUCTIONS: Hospital Quality {[}R Programming Coursera{]}
+
+Idea: \href{https://tanduc307.github.io/xstk/example/1/idea_rprog_data_ProgAssignment3-data.pdf}{Yêu cầu đề bài}
+
+Download data: \href{https://tanduc307.github.io/xstk/example/1/rprog_data_ProgAssignment3-data.zip}{Dữ liệu đề bài}
+
+\hypertarget{download-data}{%
+\section{DOWNLOAD DATA}\label{download-data}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{file.exists}\NormalTok{(}\StringTok{"./example/1/rprog\_data\_ProgAssignment3{-}data.zip"}\NormalTok{)) }\CommentTok{\# KIỂM TRA XEM CÓ FILE NÀY ĐÃ DOWNLOAD TRONG THƯ MỤC CHƯA}
+  
+  \CommentTok{\# NẾU CHƯA CÓ THÌ TIẾN HÀNH DOWNLOAD VÀ GIẢI NÉN}
+  
+\NormalTok{  \{}
+  
+\NormalTok{  url }\OtherTok{\textless{}{-}} \StringTok{"https://tanduc307.github.io/xstk/example/1/rprog\_data\_ProgAssignment3{-}data.zip"} \CommentTok{\# GÁN GIÁ TRỊ LINK DOWNLOAD}
+  \FunctionTok{library}\NormalTok{(here) }\CommentTok{\# SỬ DỤNG PACKAGE \textquotesingle{}here\textquotesingle{} ĐỂ TẠO ĐƯỜNG DẪN CHO TIỆN}
+\NormalTok{  working\_wd }\OtherTok{\textless{}{-}} \FunctionTok{getwd}\NormalTok{() }\CommentTok{\# GÁN GIÁ TRỊ THƯ MỤC LÀM VIỆC}
+\NormalTok{  destfile }\OtherTok{\textless{}{-}} \FunctionTok{here}\NormalTok{(working\_wd, }\StringTok{"example"}\NormalTok{, }\StringTok{"1"}\NormalTok{, }\StringTok{"rprog\_data\_ProgAssignment3{-}data.zip"}\NormalTok{) }\CommentTok{\# GÁN GIÁ TRỊ VỊ TRÍ FILE SẼ DOWNLOAD}
+  
+  \FunctionTok{download.file}\NormalTok{(url, destfile) }\CommentTok{\# DOWNLOAD FILE VỀ THƯ MỤC LÀM VIỆC}
+  
+\NormalTok{  unzip\_folder }\OtherTok{\textless{}{-}} \FunctionTok{here}\NormalTok{(working\_wd, }\StringTok{"example"}\NormalTok{, }\StringTok{"1"}\NormalTok{) }\CommentTok{\# GÁN GIÁ TRỊ VỊ TRÍ FILE SẼ GIẢI NÉN}
+  \FunctionTok{unzip}\NormalTok{(}\AttributeTok{zipfile =}\NormalTok{ destfile, }\AttributeTok{exdir =}\NormalTok{ unzip\_folder) }\CommentTok{\# GIẢI NÉN FILE}
+  \FunctionTok{list.files}\NormalTok{(unzip\_folder) }\CommentTok{\# LIỆT KÊ CÁC FILE TRONG THƯ MỤC SAU GIẢI NÉN}
+  
+\NormalTok{  \} }\CommentTok{\# KẾT THÚC HÀM IF}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{giux1ea3i-buxe0i-tux1eadp}{%
+\section{GIẢI BÀI TẬP}\label{giux1ea3i-buxe0i-tux1eadp}}
+
+Bạn nên dùng MS Excel để mở các bảng dữ liệu này ra để có cái nhìn về toàn bộ dữ liệu và cách trích xuất dữ liệu thủ công theo yêu cầu đề bài sẽ gồm những bước nào. Từ đây khi viết hàm vào R sẽ có thể dễ dàng đối chiếu kết quả.
+
+\hypertarget{tuxecm-ra-bang-nuxe0o-cuxf3-tux1ef7-lux1ec7-bux1ec7nh-thux1ea5p-nhux1ea5t}{%
+\subsection{TÌM RA BANG NÀO CÓ TỶ LỆ BỆNH THẤP NHẤT}\label{tuxecm-ra-bang-nuxe0o-cuxf3-tux1ef7-lux1ec7-bux1ec7nh-thux1ea5p-nhux1ea5t}}
+
+Lưu hàm ở file best.R
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{best }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(state\_real, outcome\_real) }
+
+  \CommentTok{\# ĐẶT HÀM TÊN LÀ \textquotesingle{}best\textquotesingle{}, CÓ HAI THÔNG SỐ LÀ \textquotesingle{}state\_real\textquotesingle{} là tên của bang; \textquotesingle{}outcome\_real\textquotesingle{} là tỷ lệ bệnh.  }
+  
+\NormalTok{  \{}
+  
+  \CommentTok{\# NHẬP DỮ LIỆU}
+  \FunctionTok{library}\NormalTok{(here)}
+\NormalTok{  working\_wd }\OtherTok{\textless{}{-}} \FunctionTok{getwd}\NormalTok{()}
+\NormalTok{  file\_outcome\_csv }\OtherTok{\textless{}{-}} \FunctionTok{here}\NormalTok{(working\_wd, }\StringTok{"example"}\NormalTok{, }\StringTok{"1"}\NormalTok{, }\StringTok{"outcome{-}of{-}care{-}measures.csv"}\NormalTok{)}
+  
+\NormalTok{  outcome }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(file\_outcome\_csv, }\AttributeTok{colClasses =} \StringTok{"character"}\NormalTok{, }\AttributeTok{na.strings =} \StringTok{"Not Available"}\NormalTok{) }
+\NormalTok{  lean\_data }\OtherTok{\textless{}{-}}\NormalTok{ outcome[, }\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{11}\NormalTok{, }\DecValTok{17}\NormalTok{, }\DecValTok{23}\NormalTok{)] }
+  \FunctionTok{colnames}\NormalTok{(lean\_data) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"hospital\_name"}\NormalTok{, }\StringTok{"state"}\NormalTok{, }\StringTok{"heart attack"}\NormalTok{, }\StringTok{"heart failure"}\NormalTok{, }\StringTok{"pneumonia"}\NormalTok{) }
+  
+\NormalTok{  unique\_name }\OtherTok{\textless{}{-}} \FunctionTok{unique}\NormalTok{(lean\_data}\SpecialCharTok{$}\NormalTok{state)}
+  \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{match}\NormalTok{(state\_real, unique\_name, }\AttributeTok{nomatch =} \StringTok{"0"}\NormalTok{) }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{) \{}
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}
+    \FunctionTok{print}\NormalTok{(}\StringTok{"invalid state"}\NormalTok{)}
+    \FunctionTok{stop}\NormalTok{()}
+\NormalTok{  \}}
+  
+  \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{match}\NormalTok{(outcome\_real, }\FunctionTok{c}\NormalTok{(}\StringTok{"heart attack"}\NormalTok{, }\StringTok{"heart failure"}\NormalTok{, }\StringTok{"pneumonia"}\NormalTok{), }\AttributeTok{nomatch =} \StringTok{"0"}\NormalTok{) }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{) \{}
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}
+    \FunctionTok{print}\NormalTok{(}\StringTok{"invalid outcome"}\NormalTok{)}
+    \FunctionTok{stop}\NormalTok{()}
+\NormalTok{  \}}
+  
+\NormalTok{  lean\_data\_state }\OtherTok{\textless{}{-}} \FunctionTok{split}\NormalTok{(lean\_data, }\AttributeTok{f =} \FunctionTok{list}\NormalTok{(lean\_data}\SpecialCharTok{$}\NormalTok{state)) }
+\NormalTok{  foo }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(lean\_data\_state[state\_real]) }
+  
+  \FunctionTok{colnames}\NormalTok{(foo) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"hospital\_name"}\NormalTok{, }\StringTok{"state"}\NormalTok{, }\StringTok{"heart attack"}\NormalTok{, }\StringTok{"heart failure"}\NormalTok{, }\StringTok{"pneumonia"}\NormalTok{) }
+  
+  \CommentTok{\#work \textless{}{-} data.frame(cbind(foo$hospital\_name, foo$"outcome\_real")) \# KHI ĐẶT TRONG HÀM THÌ KHÔNG DÙNG KIỂU SUBSET DẤU \textquotesingle{}$\textquotesingle{} ĐƯỢC, NÊN PHẢI CHUYỂN QUA KIỂU NÀY.}
+  
+\NormalTok{  work }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\FunctionTok{cbind}\NormalTok{(foo[, }\FunctionTok{c}\NormalTok{(}\StringTok{"hospital\_name"}\NormalTok{, outcome\_real)])) }
+ 
+\NormalTok{  good }\OtherTok{\textless{}{-}} \FunctionTok{complete.cases}\NormalTok{(work)}
+\NormalTok{  work\_ok }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(work[good, ][]) }\CommentTok{\# TẠO DATASET CỦA STATE VỚI CỘT BỆNH VÀ LOẠI ĐI MISSING VALUE}
+  \FunctionTok{colnames}\NormalTok{(work\_ok) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"hospital\_name"}\NormalTok{, outcome\_real)}
+ 
+\NormalTok{  yes }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(work\_ok[, outcome\_real])}
+
+\NormalTok{  happy }\OtherTok{\textless{}{-}}\NormalTok{ work\_ok[}\FunctionTok{which}\NormalTok{(yes }\SpecialCharTok{==} \FunctionTok{min}\NormalTok{(yes)), ] }\CommentTok{\# LƯU Ý SYNTAX KHI DÙNG HÀM WHICH}
+  
+\NormalTok{  result\_1 }\OtherTok{\textless{}{-}} \FunctionTok{paste}\NormalTok{(happy[}\DecValTok{1}\NormalTok{]) }\CommentTok{\# LẤY TÊN CỦA BỆNH VIỆN CÓ TỶ LỆ BỆNH ÍT NHẤT}
+  
+  \FunctionTok{return}\NormalTok{(result\_1) }\CommentTok{\# TRẢ KẾT QUẢ TÌM KIẾM}
+  
+\NormalTok{  \} }\CommentTok{\# KẾT THÚC HÀM}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{test-huxe0m}{%
+\subsection{TEST HÀM}\label{test-huxe0m}}
+
+Khi test hàm thì đoạn code ở trên được lưu ở file best.R, ta có thể source(``best.R'') để R thực hiện.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{best}\NormalTok{(}\StringTok{"TX"}\NormalTok{, }\StringTok{"heart attack"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## here() starts at D:/GITHUB/xstk
+\end{verbatim}
+
+\begin{verbatim}
+## [1] "CYPRESS FAIRBANKS MEDICAL CENTER"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{best}\NormalTok{(}\StringTok{"TX"}\NormalTok{, }\StringTok{"heart attack"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "CYPRESS FAIRBANKS MEDICAL CENTER"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{best}\NormalTok{(}\StringTok{"TX"}\NormalTok{, }\StringTok{"heart failure"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "FORT DUNCAN MEDICAL CENTER"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{best}\NormalTok{(}\StringTok{"MD"}\NormalTok{, }\StringTok{"heart attack"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "JOHNS HOPKINS HOSPITAL, THE"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{best}\NormalTok{(}\StringTok{"MD"}\NormalTok{, }\StringTok{"pneumonia"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "GREATER BALTIMORE MEDICAL CENTER"
+\end{verbatim}
+
+\hypertarget{test-lux1ed7i-nhux1eadp-liux1ec7u}{%
+\subsection{TEST LỖI NHẬP LIỆU}\label{test-lux1ed7i-nhux1eadp-liux1ec7u}}
+
+Trong hàm đã thiết lập thông báo cho người nhập liệu nếu ghi sai tên bang hay ghi sai tên bệnh sẽ hiện ra thông báo lỗi nhập liệu để điều chỉnh.
+
+\texttt{best("BB",\ "heart\ attack")} ==\textgreater{} \texttt{"invalid\ state"}
+\texttt{best("NY",\ "hert\ attack")} ==\textgreater{} \texttt{"invalid\ outcome"}
 
   \bibliography{book.bib,packages.bib}
 
