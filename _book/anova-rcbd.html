@@ -195,10 +195,11 @@ div.csl-indent {
 <li class="chapter" data-level="6.2" data-path="example-1.html"><a href="example-1.html#giải-bài-tập"><i class="fa fa-check"></i><b>6.2</b> GIẢI BÀI TẬP</a>
 <ul>
 <li class="chapter" data-level="6.2.1" data-path="example-1.html"><a href="example-1.html#tìm-ra-bang-nào-có-tỷ-lệ-bệnh-thấp-nhất"><i class="fa fa-check"></i><b>6.2.1</b> TÌM RA BANG NÀO CÓ TỶ LỆ BỆNH THẤP NHẤT</a></li>
-<li class="chapter" data-level="6.2.2" data-path="example-1.html"><a href="example-1.html#test-hàm"><i class="fa fa-check"></i><b>6.2.2</b> TEST HÀM</a></li>
-<li class="chapter" data-level="6.2.3" data-path="example-1.html"><a href="example-1.html#test-lỗi-nhập-liệu"><i class="fa fa-check"></i><b>6.2.3</b> TEST LỖI NHẬP LIỆU</a></li>
+<li class="chapter" data-level="6.2.2" data-path="example-1.html"><a href="example-1.html#tìm-bệnh-viện-theo-hạng"><i class="fa fa-check"></i><b>6.2.2</b> TÌM BỆNH VIỆN THEO HẠNG</a></li>
+<li class="chapter" data-level="6.2.3" data-path="example-1.html"><a href="example-1.html#tìm-các-bệnh-viện-có-cùng-hạng-ở-tất-cả-các-bang"><i class="fa fa-check"></i><b>6.2.3</b> TÌM CÁC BỆNH VIỆN CÓ CÙNG HẠNG Ở TẤT CẢ CÁC BANG</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="7" data-path="check-package.html"><a href="check-package.html"><i class="fa fa-check"></i><b>7</b> CHECK PACKAGE</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -282,9 +283,14 @@ div.csl-indent {
 ## 47 block3 CONTROL1   1.8 
 ## 48 block3 CONTROL2   5.83</code></pre>
 <p>ANOVA</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="anova-rcbd.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(agricolae)</span>
-<span id="cb8-2"><a href="anova-rcbd.html#cb8-2" aria-hidden="true" tabindex="-1"></a>outAOV <span class="ot">&lt;-</span> <span class="fu">aov</span>(yield <span class="sc">~</span> block <span class="sc">+</span> treatment, <span class="at">data =</span> data_rcbd)</span>
-<span id="cb8-3"><a href="anova-rcbd.html#cb8-3" aria-hidden="true" tabindex="-1"></a>outAOV</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="anova-rcbd.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(agricolae)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;agricolae&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:ape&#39;:
+## 
+##     consensus</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="anova-rcbd.html#cb11-1" aria-hidden="true" tabindex="-1"></a>outAOV <span class="ot">&lt;-</span> <span class="fu">aov</span>(yield <span class="sc">~</span> block <span class="sc">+</span> treatment, <span class="at">data =</span> data_rcbd)</span>
+<span id="cb11-2"><a href="anova-rcbd.html#cb11-2" aria-hidden="true" tabindex="-1"></a>outAOV</span></code></pre></div>
 <pre><code>## Call:
 ##    aov(formula = yield ~ block + treatment, data = data_rcbd)
 ## 
@@ -296,21 +302,24 @@ div.csl-indent {
 ## Residual standard error: 0.9651716
 ## Estimated effects may be unbalanced</code></pre>
 <p>Check assumptions</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="anova-rcbd.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">fitted</span>(outAOV), <span class="fu">residuals</span>(outAOV))</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="anova-rcbd.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">residuals</span>(outAOV))</span>
-<span id="cb11-2"><a href="anova-rcbd.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">density</span>(<span class="fu">residuals</span>(outAOV)))</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-21-2.png" width="672" /></p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="anova-rcbd.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">residuals</span>(outAOV), <span class="at">prob =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb12-2"><a href="anova-rcbd.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">density</span>(<span class="fu">residuals</span>(outAOV)))</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-21-3.png" width="672" /></p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="anova-rcbd.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span></code></pre></div>
-<pre><code>## Loading required package: ggplot2</code></pre>
-<pre><code>## Learn more about the underlying theory at https://ggplot2-book.org/</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="anova-rcbd.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggqqplot</span>(<span class="fu">residuals</span>(outAOV))</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-21-4.png" width="672" /></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="anova-rcbd.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">fitted</span>(outAOV), <span class="fu">residuals</span>(outAOV))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="anova-rcbd.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">residuals</span>(outAOV))</span>
+<span id="cb14-2"><a href="anova-rcbd.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">density</span>(<span class="fu">residuals</span>(outAOV)))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-12-2.png" width="672" /></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="anova-rcbd.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">residuals</span>(outAOV), <span class="at">prob =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb15-2"><a href="anova-rcbd.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">density</span>(<span class="fu">residuals</span>(outAOV)))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-12-3.png" width="672" /></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="anova-rcbd.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;ggpubr&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:ape&#39;:
+## 
+##     rotate</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="anova-rcbd.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggqqplot</span>(<span class="fu">residuals</span>(outAOV))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-12-4.png" width="672" /></p>
 <p>ANOVA table</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="anova-rcbd.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(outAOV)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="anova-rcbd.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(outAOV)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: yield
@@ -321,7 +330,7 @@ div.csl-indent {
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>t-test LSD</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="anova-rcbd.html#cb19-1" aria-hidden="true" tabindex="-1"></a>outFactorial <span class="ot">&lt;-</span><span class="fu">LSD.test</span> (outAOV, <span class="fu">c</span>(<span class="st">&quot;treatment&quot;</span>), <span class="at">main =</span> <span class="st">&quot;yield ~ block + treatment&quot;</span>,<span class="at">console=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="anova-rcbd.html#cb22-1" aria-hidden="true" tabindex="-1"></a>outFactorial <span class="ot">&lt;-</span><span class="fu">LSD.test</span> (outAOV, <span class="fu">c</span>(<span class="st">&quot;treatment&quot;</span>), <span class="at">main =</span> <span class="st">&quot;yield ~ block + treatment&quot;</span>,<span class="at">console=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
 ## Study: yield ~ block + treatment
 ## 

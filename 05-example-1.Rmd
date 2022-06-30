@@ -32,6 +32,9 @@ if(!file.exists("./example/1/rprog_data_ProgAssignment3-data.zip")) # KIỂM TRA
 Bạn nên dùng MS Excel để mở các bảng dữ liệu này ra để có cái nhìn về toàn bộ dữ liệu và cách trích xuất dữ liệu thủ công theo yêu cầu đề bài sẽ gồm những bước nào. Từ đây khi viết hàm vào R sẽ có thể dễ dàng đối chiếu kết quả.
 
 ### TÌM RA BANG NÀO CÓ TỶ LỆ BỆNH THẤP NHẤT
+
+Finding the best hospital in a state
+
 Lưu hàm ở file best.R
 
 ```{r}
@@ -87,7 +90,7 @@ best <- function(state_real, outcome_real)
   } # KẾT THÚC HÀM
 ```
 
-### TEST HÀM
+#### TEST HÀM
 Khi test hàm thì đoạn code ở trên được lưu ở file best.R, ta có thể source("best.R") để R thực hiện.
 
 ```{r}
@@ -97,9 +100,229 @@ best("MD", "heart attack")
 best("MD", "pneumonia")
 ```
 
-### TEST LỖI NHẬP LIỆU
+#### TEST LỖI NHẬP LIỆU
 Trong hàm đã thiết lập thông báo cho người nhập liệu nếu ghi sai tên bang hay ghi sai tên bệnh sẽ hiện ra thông báo lỗi nhập liệu để điều chỉnh.
 
 `best("BB", "heart attack")` ==> `"invalid state"`
 
 `best("NY", "hert attack")` ==> `"invalid outcome"`
+
+### TÌM BỆNH VIỆN THEO HẠNG
+
+Ranking hospitals by outcome in a state
+
+Lưu hàm ở file rankhospital.R
+
+```{r}
+rankhospital <- function(state_real, outcome_real, num_real = "best") 
+  
+  {
+  
+  # NHẬP DỮ LIỆU
+  library(here)
+  working_wd <- getwd()
+  file_outcome_csv <- here(working_wd, "example", "1", "outcome-of-care-measures.csv")
+  
+  outcome <- read.csv(file_outcome_csv, colClasses = "character", na.strings = "Not Available")
+  lean_data <- outcome[, c(2, 7, 11, 17, 23)]
+  colnames(lean_data) <- c("hospital_name", "state", "heart attack", "heart failure", "pneumonia")
+  
+  unique_name <- unique(lean_data$state)
+  if (match(state_real, unique_name, nomatch = "0") > 0) {
+  } else {
+    print("invalid state")
+    stop()
+  }
+  
+  if (match(outcome_real, c("heart attack", "heart failure", "pneumonia"), nomatch = "0") > 0) {
+  } else {
+    print("invalid outcome")
+    stop()
+  }
+  
+  ######
+  
+  lean_data_state <- split(lean_data, f = list(lean_data$state)) 
+  foo <- data.frame(lean_data_state[state_real]) 
+  
+  colnames(foo) <- c("hospital_name", "state", "heart attack", "heart failure", "pneumonia") 
+  
+  work <- data.frame(cbind(foo[, c("hospital_name", outcome_real)]))
+  
+  good <- complete.cases(work)
+  work_ok <- data.frame(work[good, ][]) # TẠO RA DATASET CỦA CỘT BỆNH VIỆN VÀ LOẠI ĐI MISSING VALUE
+  colnames(work_ok) <- c("hospital_name", outcome_real)
+  
+  yes <- as.numeric(work_ok[, outcome_real])
+  
+  work_ok[, 2] <- as.numeric(work_ok[, 2])
+  
+  lll <- work_ok[order(work_ok[, 2]), ]
+  
+  eee <- lll[order(lll[, 2], lll[, 1]), ] # SẮP XẾP THEO THỨ TỰ RATE VÀ THEO THỨ TỰ ALPHABET TRONG HOSPITAL NAME
+  rank_num <- length(eee$hospital_name)
+  rank_real <- c(1:rank_num)
+  rrr <- cbind(eee, rank_real) # TRẢ RA 1 BẢNG KẾT QUẢ FULLSET RỒI
+  
+  if (num_real == "best") {
+    num_real <- min(rrr[, 3])
+  } else {
+    if (num_real == "worst")  {
+      num_real <- max(rrr[, 3])
+    } else {
+      if(num_real > 0 & num_real < max(rrr[, 3]))  {
+         num_real == num_real
+      }
+      else{
+        print("NA")
+        stop()
+    } #else3 
+    } #else2 
+    } #else1
+  
+  happy <- rrr[which(rrr[, 3] == num_real), ]
+  result_1 <- paste(happy[1])
+  print(result_1)
+  
+}
+
+```
+
+#### TEST HÀM
+
+```{r}
+rankhospital("TX", "heart failure", 4)
+rankhospital("MD", "heart attack", "worst")
+#rankhospital("MN", "heart attack", 5000) # NẾU HẠNG VƯỢT QUA SỐ LIỆU THÌ SẼ HIỆN RA 'NA'.
+```
+
+### TÌM CÁC BỆNH VIỆN CÓ CÙNG HẠNG Ở TẤT CẢ CÁC BANG
+
+Ranking hospitals in all states
+
+Lưu hàm ở file rankall.R
+
+```{r}
+
+# TẠO HÀM THỨ NHẤT XẾP HẠNG BỆNH VIỆN Ở TỪNG BANG
+rankhospital <- function(state_real, outcome_real, num_real = "best") {
+  
+  # NHẬP DỮ LIỆU
+  library(here)
+  working_wd <- getwd()
+  file_outcome_csv <- here(working_wd, "example", "1", "outcome-of-care-measures.csv")
+  
+  outcome <- read.csv(file_outcome_csv, colClasses = "character", na.strings = "Not Available")
+  
+  lean_data <- outcome[, c(2, 7, 11, 17, 23)] 
+  colnames(lean_data) <- c("hospital_name", "state", "heart attack", "heart failure", "pneumonia") 
+  
+  unique_name <- unique(lean_data$state)
+  if (match(state_real, unique_name, nomatch = "0") > 0) {
+  } else {
+    print("invalid state")
+    stop()
+  }
+  
+  if (match(outcome_real, c("heart attack", "heart failure", "pneumonia"), nomatch = "0") > 0) {
+  } else {
+    print("invalid outcome")
+    stop()
+  }
+  
+  ######
+  
+  lean_data_state <- split(lean_data, f = list(lean_data$state)) 
+  foo <- data.frame(lean_data_state[state_real]) 
+  
+  colnames(foo) <- c("hospital_name", "state", "heart attack", "heart failure", "pneumonia") 
+  
+  work <- data.frame(cbind(foo[, c("hospital_name", outcome_real, "state")]))
+  colnames(work) <- c("hospital_name", outcome_real, "state")
+  work[, 2] <- as.numeric(work[, 2])
+  
+  ############# TẠO RA DATAFRAME TƯƠNG ỨNG TỪNG STATE #############
+  
+  good <- complete.cases(work)
+  work <- data.frame(work[good, ][]) # TẠO RA DATASET CỦA CỘT BỆNH VIỆN VÀ LOẠI ĐI MISSING VALUE
+  colnames(work) <- c("hospital_name", outcome_real, "state")
+
+  fff <- work[order(work[, 2], work[, 1]), ]  # SẮP XẾP THEO THỨ TỰ RATE VÀ THEO THỨ TỰ ALPHABET TRONG HOSPITAL NAME
+  rank_num <- length(fff$hospital_name)
+  rank_real <- c(1:rank_num)
+  rrr <- cbind(fff, rank_real) # TRẢ RA 1 BẢNG KẾT QUẢ FULLSET RỒI
+  
+  if (num_real == "best") {
+    num_real <- min(rrr[, 4])
+  } else {
+    if (num_real == "worst")  {
+      num_real <- max(rrr[, 4])
+    } else {
+      if(num_real > 0 & num_real < max(rrr[, 4]))  {
+        num_real == num_real
+      }
+      else{
+        aaaa <- "NA"
+        bbbb <- state_real
+        kkkk <- cbind(aaaa, bbbb)
+        colnames(kkkk) <- c("hospital_name", "state")
+        return(paste(kkkk[, 1:2]))
+        #stop() # LƯU Ý ĐỂ IN RA KẾT QUẢ NA THÌ PHẢI TẮT HÀM NÀY
+      } #else3 
+    } #else2 
+  } #else1
+  
+  happy <- rrr[which(rrr[, 4] == num_real), ]
+  return((paste(happy[, c(1, 3)])))
+}
+
+# CHECK NỘI BỘ CHO HÀM 1
+#rankhospital("AK", "heart attack", 10)
+#rankhospital("AL", "heart attack", 20)
+
+####################
+
+# THIẾT KẾ HÀM 2 CÓ BẢN CHẤT LÀ MỘT VÒNG LẶP TỪNG BANG VÀO DỰA THEO HÀM 1
+
+rankall <- function(outcome_real, num_real = "best")
+  
+             {
+
+             # NHẬP DỮ LIỆU
+             library(here)
+             working_wd <- getwd()
+             file_outcome_csv <- here(working_wd, "example", "1", "outcome-of-care-measures.csv")
+  
+             outcome <- read.csv(file_outcome_csv, colClasses = "character", na.strings = "Not Available")
+  
+            lean_data <- outcome[, c(2, 7, 11, 17, 23)] 
+            colnames(lean_data) <- c("hospital_name", "state", "heart attack", "heart failure", "pneumonia") 
+            
+            unique_name <- unique(lean_data$state)
+            lll_a <- unique_name[order(unique_name[])] ## SẮP XẾP THỨ TỰ CỦA STATE THEO ABC
+            extract_data <- data.frame(matrix(ncol = 4, nrow = 0))
+            
+            for(ok in seq_along(lll_a)){
+              state_real <- lll_a[ok]
+              extract_1 <- rankhospital(state_real, outcome_real, num_real)
+              extract_data <- rbind(extract_data, extract_1)
+            }
+            colnames(extract_data) <- c("hospital_name", "state")
+            return(extract_data)
+            
+            }
+
+```
+
+#### TEST HÀM
+
+```{r}
+rankall("heart attack", 20)
+rankall("heart failure", 10)
+head(rankall("heart attack", 20), 10)
+tail(rankall("pneumonia", "worst"), 3)
+tail(rankall("heart failure"), 10)
+rankall("pneumonia", "worst")
+rankall("heart failure")
+```
+

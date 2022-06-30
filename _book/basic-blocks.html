@@ -195,10 +195,11 @@ div.csl-indent {
 <li class="chapter" data-level="6.2" data-path="example-1.html"><a href="example-1.html#giải-bài-tập"><i class="fa fa-check"></i><b>6.2</b> GIẢI BÀI TẬP</a>
 <ul>
 <li class="chapter" data-level="6.2.1" data-path="example-1.html"><a href="example-1.html#tìm-ra-bang-nào-có-tỷ-lệ-bệnh-thấp-nhất"><i class="fa fa-check"></i><b>6.2.1</b> TÌM RA BANG NÀO CÓ TỶ LỆ BỆNH THẤP NHẤT</a></li>
-<li class="chapter" data-level="6.2.2" data-path="example-1.html"><a href="example-1.html#test-hàm"><i class="fa fa-check"></i><b>6.2.2</b> TEST HÀM</a></li>
-<li class="chapter" data-level="6.2.3" data-path="example-1.html"><a href="example-1.html#test-lỗi-nhập-liệu"><i class="fa fa-check"></i><b>6.2.3</b> TEST LỖI NHẬP LIỆU</a></li>
+<li class="chapter" data-level="6.2.2" data-path="example-1.html"><a href="example-1.html#tìm-bệnh-viện-theo-hạng"><i class="fa fa-check"></i><b>6.2.2</b> TÌM BỆNH VIỆN THEO HẠNG</a></li>
+<li class="chapter" data-level="6.2.3" data-path="example-1.html"><a href="example-1.html#tìm-các-bệnh-viện-có-cùng-hạng-ở-tất-cả-các-bang"><i class="fa fa-check"></i><b>6.2.3</b> TÌM CÁC BỆNH VIỆN CÓ CÙNG HẠNG Ở TẤT CẢ CÁC BANG</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="7" data-path="check-package.html"><a href="check-package.html"><i class="fa fa-check"></i><b>7</b> CHECK PACKAGE</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -224,24 +225,22 @@ div.csl-indent {
 <div id="subsets" class="section level2 hasAnchor" number="5.1">
 <h2><span class="header-section-number">5.1</span> Subsets<a href="basic-blocks.html#subsets" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Nguồn <span class="citation">(<a href="#ref-devriesDummies2015" role="doc-biblioref">de Vries and Meys 2015, 241</a>)</span></p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="basic-blocks.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(islands)</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="basic-blocks.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(islands)</span></code></pre></div>
 <pre><code>##  Named num [1:48] 11506 5500 16988 2968 16 ...
 ##  - attr(*, &quot;names&quot;)= chr [1:48] &quot;Africa&quot; &quot;Antarctica&quot; &quot;Asia&quot; &quot;Australia&quot; ...</code></pre>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="basic-blocks.html#cb31-1" aria-hidden="true" tabindex="-1"></a>islands</span></code></pre></div>
-<pre><code>##           Africa       Antarctica             Asia        Australia     Axel Heiberg           Baffin            Banks 
-##            11506             5500            16988             2968               16              184               23 
-##           Borneo          Britain          Celebes            Celon             Cuba            Devon        Ellesmere 
-##              280               84               73               25               43               21               82 
-##           Europe        Greenland           Hainan       Hispaniola         Hokkaido           Honshu          Iceland 
-##             3745              840               13               30               30               89               40 
-##          Ireland             Java           Kyushu            Luzon       Madagascar         Melville         Mindanao 
-##               33               49               14               42              227               16               36 
-##         Moluccas      New Britain       New Guinea  New Zealand (N)  New Zealand (S)     Newfoundland    North America 
-##               29               15              306               44               58               43             9390 
-##    Novaya Zemlya  Prince of Wales         Sakhalin    South America      Southampton      Spitsbergen          Sumatra 
-##               32               13               29             6795               16               15              183 
-##           Taiwan         Tasmania Tierra del Fuego            Timor        Vancouver         Victoria 
-##               14               26               19               13               12               82</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="basic-blocks.html#cb34-1" aria-hidden="true" tabindex="-1"></a>islands</span></code></pre></div>
+<pre><code>##           Africa       Antarctica             Asia        Australia     Axel Heiberg           Baffin            Banks           Borneo 
+##            11506             5500            16988             2968               16              184               23              280 
+##          Britain          Celebes            Celon             Cuba            Devon        Ellesmere           Europe        Greenland 
+##               84               73               25               43               21               82             3745              840 
+##           Hainan       Hispaniola         Hokkaido           Honshu          Iceland          Ireland             Java           Kyushu 
+##               13               30               30               89               40               33               49               14 
+##            Luzon       Madagascar         Melville         Mindanao         Moluccas      New Britain       New Guinea  New Zealand (N) 
+##               42              227               16               36               29               15              306               44 
+##  New Zealand (S)     Newfoundland    North America    Novaya Zemlya  Prince of Wales         Sakhalin    South America      Southampton 
+##               58               43             9390               32               13               29             6795               16 
+##      Spitsbergen          Sumatra           Taiwan         Tasmania Tierra del Fuego            Timor        Vancouver         Victoria 
+##               15              183               14               26               19               13               12               82</code></pre>
 <div class="figure">
 <img src="images/subset1.PNG" title="subset" alt="" />
 <p class="caption">Subset elements</p>

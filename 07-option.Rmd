@@ -1,0 +1,60 @@
+
+Remove all objects
+rm(list = ls())
+
+# DATASET
+
+Gross Domestic Product data for the 190 ranked countries in this data set
+http://data.worldbank.org/data-catalog/GDP-ranking-table
+
+Education Statistics
+https://datacatalog.worldbank.org/search/dataset/0038480
+http://data.worldbank.org/data-catalog/ed-stats
+
+GDP Ranking
+https://datacatalog.worldbank.org/search/dataset/0038130
+
+
+# CHECK DIFFERENCES
+
+vec1 <- c("A", "B", "C")        # Create first vector
+vec1                            # Print first vector
+# [1] "A" "B" "C"
+
+vec2 <- c("A", "B", "D")        # Create second vector
+vec2                            # Print first vector
+# [1] "A" "B" "D"
+
+Example 1: Check If Two Vectors are Exactly the Same Using identical() Function
+identical(vec1, vec2)           # Apply identical function
+# [1] FALSE
+
+Example 2: Check Which Vector Elements of Two Vectors are the Same Using == Operator
+vec1 == vec2                    # Apply == operator
+# [1]  TRUE  TRUE FALSE
+
+Example 3: Check Which Elements of First Vector Exist in Second Vector Using %in% Operator
+vec1 %in% vec2                  # Apply %in% operator
+# [1]  TRUE  TRUE FALSE
+
+Example 4: Find Elements that Exist in First & Second Vector Using intersect() Function
+intersect(vec1, vec2)           # Apply intersect function
+# [1] "A" "B"
+
+Example 5: Find Elements that Exist Only in First, But Not in Second Vector Using setdiff() Function
+setdiff(vec1, vec2)             # Apply setdiff function
+# [1] "C"
+
+https://statisticsglobe.com/compare-vectors-and-find-differences-in-r
+
+# LOAD CSV FROM URL
+
+url <- "url" # GÁN GIÁ TRỊ LINK DOWNLOAD
+library(here) # SỬ DỤNG PACKAGE 'here' ĐỂ TẠO ĐƯỜNG DẪN CHO TIỆN
+working_wd <- getwd() # GÁN GIÁ TRỊ THƯ MỤC LÀM VIỆC
+destfile <- here(working_wd, "data_1.csv") # GÁN GIÁ TRỊ VỊ TRÍ FILE SẼ DOWNLOAD
+# 
+download.file(url, destfile) # DOWNLOAD FILE VỀ THƯ MỤC LÀM VIỆC
+
+data_1 <- read.csv("data_1.csv")
+View(data_1)

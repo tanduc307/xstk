@@ -1018,6 +1018,7 @@ Bạn nên dùng MS Excel để mở các bảng dữ liệu này ra để có c
 \hypertarget{tuxecm-ra-bang-nuxe0o-cuxf3-tux1ef7-lux1ec7-bux1ec7nh-thux1ea5p-nhux1ea5t}{%
 \subsection{TÌM RA BANG NÀO CÓ TỶ LỆ BỆNH THẤP NHẤT}\label{tuxecm-ra-bang-nuxe0o-cuxf3-tux1ef7-lux1ec7-bux1ec7nh-thux1ea5p-nhux1ea5t}}
 
+Finding the best hospital in a state
 Lưu hàm ở file best.R
 
 \begin{Shaded}
@@ -1076,7 +1077,7 @@ Lưu hàm ở file best.R
 \end{Shaded}
 
 \hypertarget{test-huxe0m}{%
-\subsection{TEST HÀM}\label{test-huxe0m}}
+\subsubsection{TEST HÀM}\label{test-huxe0m}}
 
 Khi test hàm thì đoạn code ở trên được lưu ở file best.R, ta có thể source(``best.R'') để R thực hiện.
 
@@ -1089,16 +1090,6 @@ Khi test hàm thì đoạn code ở trên được lưu ở file best.R, ta có 
 \begin{verbatim}
 ## here() starts at D:/GITHUB/xstk
 \end{verbatim}
-
-\begin{verbatim}
-## [1] "CYPRESS FAIRBANKS MEDICAL CENTER"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{best}\NormalTok{(}\StringTok{"TX"}\NormalTok{, }\StringTok{"heart attack"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{verbatim}
 ## [1] "CYPRESS FAIRBANKS MEDICAL CENTER"
@@ -1135,12 +1126,721 @@ Khi test hàm thì đoạn code ở trên được lưu ở file best.R, ta có 
 \end{verbatim}
 
 \hypertarget{test-lux1ed7i-nhux1eadp-liux1ec7u}{%
-\subsection{TEST LỖI NHẬP LIỆU}\label{test-lux1ed7i-nhux1eadp-liux1ec7u}}
+\subsubsection{TEST LỖI NHẬP LIỆU}\label{test-lux1ed7i-nhux1eadp-liux1ec7u}}
 
 Trong hàm đã thiết lập thông báo cho người nhập liệu nếu ghi sai tên bang hay ghi sai tên bệnh sẽ hiện ra thông báo lỗi nhập liệu để điều chỉnh.
 
 \texttt{best("BB",\ "heart\ attack")} ==\textgreater{} \texttt{"invalid\ state"}
+
 \texttt{best("NY",\ "hert\ attack")} ==\textgreater{} \texttt{"invalid\ outcome"}
+
+\hypertarget{tuxecm-bux1ec7nh-viux1ec7n-theo-hux1ea1ng}{%
+\subsection{TÌM BỆNH VIỆN THEO HẠNG}\label{tuxecm-bux1ec7nh-viux1ec7n-theo-hux1ea1ng}}
+
+Ranking hospitals by outcome in a state
+Lưu hàm ở file rankhospital.R
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rankhospital }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(state\_real, outcome\_real, }\AttributeTok{num\_real =} \StringTok{"best"}\NormalTok{) }
+  
+\NormalTok{  \{}
+  
+  \CommentTok{\# NHẬP DỮ LIỆU}
+  \FunctionTok{library}\NormalTok{(here)}
+\NormalTok{  working\_wd }\OtherTok{\textless{}{-}} \FunctionTok{getwd}\NormalTok{()}
+\NormalTok{  file\_outcome\_csv }\OtherTok{\textless{}{-}} \FunctionTok{here}\NormalTok{(working\_wd, }\StringTok{"example"}\NormalTok{, }\StringTok{"1"}\NormalTok{, }\StringTok{"outcome{-}of{-}care{-}measures.csv"}\NormalTok{)}
+  
+\NormalTok{  outcome }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(file\_outcome\_csv, }\AttributeTok{colClasses =} \StringTok{"character"}\NormalTok{, }\AttributeTok{na.strings =} \StringTok{"Not Available"}\NormalTok{)}
+\NormalTok{  lean\_data }\OtherTok{\textless{}{-}}\NormalTok{ outcome[, }\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{11}\NormalTok{, }\DecValTok{17}\NormalTok{, }\DecValTok{23}\NormalTok{)]}
+  \FunctionTok{colnames}\NormalTok{(lean\_data) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"hospital\_name"}\NormalTok{, }\StringTok{"state"}\NormalTok{, }\StringTok{"heart attack"}\NormalTok{, }\StringTok{"heart failure"}\NormalTok{, }\StringTok{"pneumonia"}\NormalTok{)}
+  
+\NormalTok{  unique\_name }\OtherTok{\textless{}{-}} \FunctionTok{unique}\NormalTok{(lean\_data}\SpecialCharTok{$}\NormalTok{state)}
+  \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{match}\NormalTok{(state\_real, unique\_name, }\AttributeTok{nomatch =} \StringTok{"0"}\NormalTok{) }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{) \{}
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}
+    \FunctionTok{print}\NormalTok{(}\StringTok{"invalid state"}\NormalTok{)}
+    \FunctionTok{stop}\NormalTok{()}
+\NormalTok{  \}}
+  
+  \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{match}\NormalTok{(outcome\_real, }\FunctionTok{c}\NormalTok{(}\StringTok{"heart attack"}\NormalTok{, }\StringTok{"heart failure"}\NormalTok{, }\StringTok{"pneumonia"}\NormalTok{), }\AttributeTok{nomatch =} \StringTok{"0"}\NormalTok{) }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{) \{}
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}
+    \FunctionTok{print}\NormalTok{(}\StringTok{"invalid outcome"}\NormalTok{)}
+    \FunctionTok{stop}\NormalTok{()}
+\NormalTok{  \}}
+  
+  \DocumentationTok{\#\#\#\#\#\#}
+  
+\NormalTok{  lean\_data\_state }\OtherTok{\textless{}{-}} \FunctionTok{split}\NormalTok{(lean\_data, }\AttributeTok{f =} \FunctionTok{list}\NormalTok{(lean\_data}\SpecialCharTok{$}\NormalTok{state)) }
+\NormalTok{  foo }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(lean\_data\_state[state\_real]) }
+  
+  \FunctionTok{colnames}\NormalTok{(foo) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"hospital\_name"}\NormalTok{, }\StringTok{"state"}\NormalTok{, }\StringTok{"heart attack"}\NormalTok{, }\StringTok{"heart failure"}\NormalTok{, }\StringTok{"pneumonia"}\NormalTok{) }
+  
+\NormalTok{  work }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\FunctionTok{cbind}\NormalTok{(foo[, }\FunctionTok{c}\NormalTok{(}\StringTok{"hospital\_name"}\NormalTok{, outcome\_real)]))}
+  
+\NormalTok{  good }\OtherTok{\textless{}{-}} \FunctionTok{complete.cases}\NormalTok{(work)}
+\NormalTok{  work\_ok }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(work[good, ][]) }\CommentTok{\# TẠO RA DATASET CỦA CỘT BỆNH VIỆN VÀ LOẠI ĐI MISSING VALUE}
+  \FunctionTok{colnames}\NormalTok{(work\_ok) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"hospital\_name"}\NormalTok{, outcome\_real)}
+  
+\NormalTok{  yes }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(work\_ok[, outcome\_real])}
+  
+\NormalTok{  work\_ok[, }\DecValTok{2}\NormalTok{] }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(work\_ok[, }\DecValTok{2}\NormalTok{])}
+  
+\NormalTok{  lll }\OtherTok{\textless{}{-}}\NormalTok{ work\_ok[}\FunctionTok{order}\NormalTok{(work\_ok[, }\DecValTok{2}\NormalTok{]), ]}
+  
+\NormalTok{  eee }\OtherTok{\textless{}{-}}\NormalTok{ lll[}\FunctionTok{order}\NormalTok{(lll[, }\DecValTok{2}\NormalTok{], lll[, }\DecValTok{1}\NormalTok{]), ] }\CommentTok{\# SẮP XẾP THEO THỨ TỰ RATE VÀ THEO THỨ TỰ ALPHABET TRONG HOSPITAL NAME}
+\NormalTok{  rank\_num }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(eee}\SpecialCharTok{$}\NormalTok{hospital\_name)}
+\NormalTok{  rank\_real }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\NormalTok{rank\_num)}
+\NormalTok{  rrr }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(eee, rank\_real) }\CommentTok{\# TRẢ RA 1 BẢNG KẾT QUẢ FULLSET RỒI}
+  
+  \ControlFlowTok{if}\NormalTok{ (num\_real }\SpecialCharTok{==} \StringTok{"best"}\NormalTok{) \{}
+\NormalTok{    num\_real }\OtherTok{\textless{}{-}} \FunctionTok{min}\NormalTok{(rrr[, }\DecValTok{3}\NormalTok{])}
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}
+    \ControlFlowTok{if}\NormalTok{ (num\_real }\SpecialCharTok{==} \StringTok{"worst"}\NormalTok{)  \{}
+\NormalTok{      num\_real }\OtherTok{\textless{}{-}} \FunctionTok{max}\NormalTok{(rrr[, }\DecValTok{3}\NormalTok{])}
+\NormalTok{    \} }\ControlFlowTok{else}\NormalTok{ \{}
+      \ControlFlowTok{if}\NormalTok{(num\_real }\SpecialCharTok{\textgreater{}} \DecValTok{0} \SpecialCharTok{\&}\NormalTok{ num\_real }\SpecialCharTok{\textless{}} \FunctionTok{max}\NormalTok{(rrr[, }\DecValTok{3}\NormalTok{]))  \{}
+\NormalTok{         num\_real }\SpecialCharTok{==}\NormalTok{ num\_real}
+\NormalTok{      \}}
+      \ControlFlowTok{else}\NormalTok{\{}
+        \FunctionTok{print}\NormalTok{(}\StringTok{"NA"}\NormalTok{)}
+        \FunctionTok{stop}\NormalTok{()}
+\NormalTok{    \} }\CommentTok{\#else3 }
+\NormalTok{    \} }\CommentTok{\#else2 }
+\NormalTok{    \} }\CommentTok{\#else1}
+  
+\NormalTok{  happy }\OtherTok{\textless{}{-}}\NormalTok{ rrr[}\FunctionTok{which}\NormalTok{(rrr[, }\DecValTok{3}\NormalTok{] }\SpecialCharTok{==}\NormalTok{ num\_real), ]}
+\NormalTok{  result\_1 }\OtherTok{\textless{}{-}} \FunctionTok{paste}\NormalTok{(happy[}\DecValTok{1}\NormalTok{])}
+  \FunctionTok{print}\NormalTok{(result\_1)}
+  
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{test-huxe0m-1}{%
+\subsubsection{TEST HÀM}\label{test-huxe0m-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{rankhospital}\NormalTok{(}\StringTok{"TX"}\NormalTok{, }\StringTok{"heart failure"}\NormalTok{, }\DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "DETAR HOSPITAL NAVARRO"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{rankhospital}\NormalTok{(}\StringTok{"MD"}\NormalTok{, }\StringTok{"heart attack"}\NormalTok{, }\StringTok{"worst"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "HARFORD MEMORIAL HOSPITAL"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#rankhospital("MN", "heart attack", 5000) \# NẾU HẠNG VƯỢT QUA SỐ LIỆU THÌ SẼ HIỆN RA \textquotesingle{}NA\textquotesingle{}.}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{tuxecm-cuxe1c-bux1ec7nh-viux1ec7n-cuxf3-cuxf9ng-hux1ea1ng-ux1edf-tux1ea5t-cux1ea3-cuxe1c-bang}{%
+\subsection{TÌM CÁC BỆNH VIỆN CÓ CÙNG HẠNG Ở TẤT CẢ CÁC BANG}\label{tuxecm-cuxe1c-bux1ec7nh-viux1ec7n-cuxf3-cuxf9ng-hux1ea1ng-ux1edf-tux1ea5t-cux1ea3-cuxe1c-bang}}
+
+Ranking hospitals in all states
+Lưu hàm ở file rankall.R
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# TẠO HÀM THỨ NHẤT XẾP HẠNG BỆNH VIỆN Ở TỪNG BANG}
+\NormalTok{rankhospital }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(state\_real, outcome\_real, }\AttributeTok{num\_real =} \StringTok{"best"}\NormalTok{) \{}
+  
+  \CommentTok{\# NHẬP DỮ LIỆU}
+  \FunctionTok{library}\NormalTok{(here)}
+\NormalTok{  working\_wd }\OtherTok{\textless{}{-}} \FunctionTok{getwd}\NormalTok{()}
+\NormalTok{  file\_outcome\_csv }\OtherTok{\textless{}{-}} \FunctionTok{here}\NormalTok{(working\_wd, }\StringTok{"example"}\NormalTok{, }\StringTok{"1"}\NormalTok{, }\StringTok{"outcome{-}of{-}care{-}measures.csv"}\NormalTok{)}
+  
+\NormalTok{  outcome }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(file\_outcome\_csv, }\AttributeTok{colClasses =} \StringTok{"character"}\NormalTok{, }\AttributeTok{na.strings =} \StringTok{"Not Available"}\NormalTok{)}
+  
+\NormalTok{  lean\_data }\OtherTok{\textless{}{-}}\NormalTok{ outcome[, }\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{11}\NormalTok{, }\DecValTok{17}\NormalTok{, }\DecValTok{23}\NormalTok{)] }
+  \FunctionTok{colnames}\NormalTok{(lean\_data) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"hospital\_name"}\NormalTok{, }\StringTok{"state"}\NormalTok{, }\StringTok{"heart attack"}\NormalTok{, }\StringTok{"heart failure"}\NormalTok{, }\StringTok{"pneumonia"}\NormalTok{) }
+  
+\NormalTok{  unique\_name }\OtherTok{\textless{}{-}} \FunctionTok{unique}\NormalTok{(lean\_data}\SpecialCharTok{$}\NormalTok{state)}
+  \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{match}\NormalTok{(state\_real, unique\_name, }\AttributeTok{nomatch =} \StringTok{"0"}\NormalTok{) }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{) \{}
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}
+    \FunctionTok{print}\NormalTok{(}\StringTok{"invalid state"}\NormalTok{)}
+    \FunctionTok{stop}\NormalTok{()}
+\NormalTok{  \}}
+  
+  \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{match}\NormalTok{(outcome\_real, }\FunctionTok{c}\NormalTok{(}\StringTok{"heart attack"}\NormalTok{, }\StringTok{"heart failure"}\NormalTok{, }\StringTok{"pneumonia"}\NormalTok{), }\AttributeTok{nomatch =} \StringTok{"0"}\NormalTok{) }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{) \{}
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}
+    \FunctionTok{print}\NormalTok{(}\StringTok{"invalid outcome"}\NormalTok{)}
+    \FunctionTok{stop}\NormalTok{()}
+\NormalTok{  \}}
+  
+  \DocumentationTok{\#\#\#\#\#\#}
+  
+\NormalTok{  lean\_data\_state }\OtherTok{\textless{}{-}} \FunctionTok{split}\NormalTok{(lean\_data, }\AttributeTok{f =} \FunctionTok{list}\NormalTok{(lean\_data}\SpecialCharTok{$}\NormalTok{state)) }
+\NormalTok{  foo }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(lean\_data\_state[state\_real]) }
+  
+  \FunctionTok{colnames}\NormalTok{(foo) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"hospital\_name"}\NormalTok{, }\StringTok{"state"}\NormalTok{, }\StringTok{"heart attack"}\NormalTok{, }\StringTok{"heart failure"}\NormalTok{, }\StringTok{"pneumonia"}\NormalTok{) }
+  
+\NormalTok{  work }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\FunctionTok{cbind}\NormalTok{(foo[, }\FunctionTok{c}\NormalTok{(}\StringTok{"hospital\_name"}\NormalTok{, outcome\_real, }\StringTok{"state"}\NormalTok{)]))}
+  \FunctionTok{colnames}\NormalTok{(work) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"hospital\_name"}\NormalTok{, outcome\_real, }\StringTok{"state"}\NormalTok{)}
+\NormalTok{  work[, }\DecValTok{2}\NormalTok{] }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(work[, }\DecValTok{2}\NormalTok{])}
+  
+  \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\# TẠO RA DATAFRAME TƯƠNG ỨNG TỪNG STATE \#\#\#\#\#\#\#\#\#\#\#\#\#}
+  
+\NormalTok{  good }\OtherTok{\textless{}{-}} \FunctionTok{complete.cases}\NormalTok{(work)}
+\NormalTok{  work }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(work[good, ][]) }\CommentTok{\# TẠO RA DATASET CỦA CỘT BỆNH VIỆN VÀ LOẠI ĐI MISSING VALUE}
+  \FunctionTok{colnames}\NormalTok{(work) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"hospital\_name"}\NormalTok{, outcome\_real, }\StringTok{"state"}\NormalTok{)}
+
+\NormalTok{  fff }\OtherTok{\textless{}{-}}\NormalTok{ work[}\FunctionTok{order}\NormalTok{(work[, }\DecValTok{2}\NormalTok{], work[, }\DecValTok{1}\NormalTok{]), ]  }\CommentTok{\# SẮP XẾP THEO THỨ TỰ RATE VÀ THEO THỨ TỰ ALPHABET TRONG HOSPITAL NAME}
+\NormalTok{  rank\_num }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(fff}\SpecialCharTok{$}\NormalTok{hospital\_name)}
+\NormalTok{  rank\_real }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\NormalTok{rank\_num)}
+\NormalTok{  rrr }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(fff, rank\_real) }\CommentTok{\# TRẢ RA 1 BẢNG KẾT QUẢ FULLSET RỒI}
+  
+  \ControlFlowTok{if}\NormalTok{ (num\_real }\SpecialCharTok{==} \StringTok{"best"}\NormalTok{) \{}
+\NormalTok{    num\_real }\OtherTok{\textless{}{-}} \FunctionTok{min}\NormalTok{(rrr[, }\DecValTok{4}\NormalTok{])}
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}
+    \ControlFlowTok{if}\NormalTok{ (num\_real }\SpecialCharTok{==} \StringTok{"worst"}\NormalTok{)  \{}
+\NormalTok{      num\_real }\OtherTok{\textless{}{-}} \FunctionTok{max}\NormalTok{(rrr[, }\DecValTok{4}\NormalTok{])}
+\NormalTok{    \} }\ControlFlowTok{else}\NormalTok{ \{}
+      \ControlFlowTok{if}\NormalTok{(num\_real }\SpecialCharTok{\textgreater{}} \DecValTok{0} \SpecialCharTok{\&}\NormalTok{ num\_real }\SpecialCharTok{\textless{}} \FunctionTok{max}\NormalTok{(rrr[, }\DecValTok{4}\NormalTok{]))  \{}
+\NormalTok{        num\_real }\SpecialCharTok{==}\NormalTok{ num\_real}
+\NormalTok{      \}}
+      \ControlFlowTok{else}\NormalTok{\{}
+\NormalTok{        aaaa }\OtherTok{\textless{}{-}} \StringTok{"NA"}
+\NormalTok{        bbbb }\OtherTok{\textless{}{-}}\NormalTok{ state\_real}
+\NormalTok{        kkkk }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(aaaa, bbbb)}
+        \FunctionTok{colnames}\NormalTok{(kkkk) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"hospital\_name"}\NormalTok{, }\StringTok{"state"}\NormalTok{)}
+        \FunctionTok{return}\NormalTok{(}\FunctionTok{paste}\NormalTok{(kkkk[, }\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{]))}
+        \CommentTok{\#stop() \# LƯU Ý ĐỂ IN RA KẾT QUẢ NA THÌ PHẢI TẮT HÀM NÀY}
+\NormalTok{      \} }\CommentTok{\#else3 }
+\NormalTok{    \} }\CommentTok{\#else2 }
+\NormalTok{  \} }\CommentTok{\#else1}
+  
+\NormalTok{  happy }\OtherTok{\textless{}{-}}\NormalTok{ rrr[}\FunctionTok{which}\NormalTok{(rrr[, }\DecValTok{4}\NormalTok{] }\SpecialCharTok{==}\NormalTok{ num\_real), ]}
+  \FunctionTok{return}\NormalTok{((}\FunctionTok{paste}\NormalTok{(happy[, }\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{)])))}
+\NormalTok{\}}
+
+\CommentTok{\# CHECK NỘI BỘ CHO HÀM 1}
+\CommentTok{\#rankhospital("AK", "heart attack", 10)}
+\CommentTok{\#rankhospital("AL", "heart attack", 20)}
+
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+
+\CommentTok{\# THIẾT KẾ HÀM 2 CÓ BẢN CHẤT LÀ MỘT VÒNG LẶP TỪNG BANG VÀO DỰA THEO HÀM 1}
+
+\NormalTok{rankall }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(outcome\_real, }\AttributeTok{num\_real =} \StringTok{"best"}\NormalTok{)}
+  
+\NormalTok{             \{}
+
+             \CommentTok{\# NHẬP DỮ LIỆU}
+             \FunctionTok{library}\NormalTok{(here)}
+\NormalTok{             working\_wd }\OtherTok{\textless{}{-}} \FunctionTok{getwd}\NormalTok{()}
+\NormalTok{             file\_outcome\_csv }\OtherTok{\textless{}{-}} \FunctionTok{here}\NormalTok{(working\_wd, }\StringTok{"example"}\NormalTok{, }\StringTok{"1"}\NormalTok{, }\StringTok{"outcome{-}of{-}care{-}measures.csv"}\NormalTok{)}
+  
+\NormalTok{             outcome }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(file\_outcome\_csv, }\AttributeTok{colClasses =} \StringTok{"character"}\NormalTok{, }\AttributeTok{na.strings =} \StringTok{"Not Available"}\NormalTok{)}
+  
+\NormalTok{            lean\_data }\OtherTok{\textless{}{-}}\NormalTok{ outcome[, }\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{11}\NormalTok{, }\DecValTok{17}\NormalTok{, }\DecValTok{23}\NormalTok{)] }
+            \FunctionTok{colnames}\NormalTok{(lean\_data) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"hospital\_name"}\NormalTok{, }\StringTok{"state"}\NormalTok{, }\StringTok{"heart attack"}\NormalTok{, }\StringTok{"heart failure"}\NormalTok{, }\StringTok{"pneumonia"}\NormalTok{) }
+            
+\NormalTok{            unique\_name }\OtherTok{\textless{}{-}} \FunctionTok{unique}\NormalTok{(lean\_data}\SpecialCharTok{$}\NormalTok{state)}
+\NormalTok{            lll\_a }\OtherTok{\textless{}{-}}\NormalTok{ unique\_name[}\FunctionTok{order}\NormalTok{(unique\_name[])] }\DocumentationTok{\#\# SẮP XẾP THỨ TỰ CỦA STATE THEO ABC}
+\NormalTok{            extract\_data }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\FunctionTok{matrix}\NormalTok{(}\AttributeTok{ncol =} \DecValTok{4}\NormalTok{, }\AttributeTok{nrow =} \DecValTok{0}\NormalTok{))}
+            
+            \ControlFlowTok{for}\NormalTok{(ok }\ControlFlowTok{in} \FunctionTok{seq\_along}\NormalTok{(lll\_a))\{}
+\NormalTok{              state\_real }\OtherTok{\textless{}{-}}\NormalTok{ lll\_a[ok]}
+\NormalTok{              extract\_1 }\OtherTok{\textless{}{-}} \FunctionTok{rankhospital}\NormalTok{(state\_real, outcome\_real, num\_real)}
+\NormalTok{              extract\_data }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(extract\_data, extract\_1)}
+\NormalTok{            \}}
+            \FunctionTok{colnames}\NormalTok{(extract\_data) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"hospital\_name"}\NormalTok{, }\StringTok{"state"}\NormalTok{)}
+            \FunctionTok{return}\NormalTok{(extract\_data)}
+            
+\NormalTok{            \}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{test-huxe0m-2}{%
+\subsubsection{TEST HÀM}\label{test-huxe0m-2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{rankall}\NormalTok{(}\StringTok{"heart attack"}\NormalTok{, }\DecValTok{20}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                                                   hospital_name state
+## 1                                                            NA    AK
+## 2                                D W MCMILLAN MEMORIAL HOSPITAL    AL
+## 3                             ARKANSAS METHODIST MEDICAL CENTER    AR
+## 4                           JOHN C LINCOLN DEER VALLEY HOSPITAL    AZ
+## 5                                         SHERMAN OAKS HOSPITAL    CA
+## 6                                      SKY RIDGE MEDICAL CENTER    CO
+## 7                                       MIDSTATE MEDICAL CENTER    CT
+## 8                                                            NA    DC
+## 9                                                            NA    DE
+## 10                               SOUTH FLORIDA BAPTIST HOSPITAL    FL
+## 11                                UPSON REGIONAL MEDICAL CENTER    GA
+## 12                                                           NA    GU
+## 13                                                           NA    HI
+## 14                                      COVENANT MEDICAL CENTER    IA
+## 15                                                           NA    ID
+## 16 JESSE BROWN VA MEDICAL CENTER - VA CHICAGO HEALTHCARE SYSTEM    IL
+## 17                                           COMMUNITY HOSPITAL    IN
+## 18                          COFFEYVILLE REGIONAL MEDICAL CENTER    KS
+## 19                             KING'S DAUGHTERS' MEDICAL CENTER    KY
+## 20                               NORTH OAKS MEDICAL CENTER, LLC    LA
+## 21                                             HEYWOOD HOSPITAL    MA
+## 22                                       CIVISTA MEDICAL CENTER    MD
+## 23                                            RUMFORD  HOSPITAL    ME
+## 24                GENESYS REGIONAL MEDICAL CENTER - HEALTH PARK    MI
+## 25                                HEALTHEAST WOODWINDS HOSPITAL    MN
+## 26                                             LIBERTY HOSPITAL    MO
+## 27                                      MARION GENERAL HOSPITAL    MS
+## 28                                                           NA    MT
+## 29                                              MEDWEST HAYWOOD    NC
+## 30                                                           NA    ND
+## 31                                                           NA    NE
+## 32                                                           NA    NH
+## 33                     CAPITAL HEALTH MEDICAL CENTER - HOPEWELL    NJ
+## 34                                                           NA    NM
+## 35                                                           NA    NV
+## 36                                 METROPOLITAN HOSPITAL CENTER    NY
+## 37                                 CINCINNATI VA MEDICAL CENTER    OH
+## 38                             JACKSON COUNTY MEMORIAL HOSPITAL    OK
+## 39                ST ALPHONSUS MEDICAL CENTER - BAKER CITY, INC    OR
+## 40                                               UPMC PASSAVANT    PA
+## 41                        HOSPITAL METROPOLITANO DR TITO MATTEI    PR
+## 42                                                           NA    RI
+## 43                                      PALMETTO HEALTH BAPTIST    SC
+## 44                                                           NA    SD
+## 45                                   INDIAN PATH MEDICAL CENTER    TN
+## 46                                       NIX HEALTH CARE SYSTEM    TX
+## 47                                                           NA    UT
+## 48                            CARILION GILES COMMUNITY HOSPITAL    VA
+## 49                                                           NA    VI
+## 50                                                           NA    VT
+## 51                                       SWEDISH MEDICAL CENTER    WA
+## 52                                         ST CROIX REG MED CTR    WI
+## 53                                       PLATEAU MEDICAL CENTER    WV
+## 54                                                           NA    WY
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{rankall}\NormalTok{(}\StringTok{"heart failure"}\NormalTok{, }\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                                         hospital_name state
+## 1                                                  NA    AK
+## 2                           SPRINGHILL MEDICAL CENTER    AL
+## 3           BAPTIST HEALTH MEDICAL CENTER-LITTLE ROCK    AR
+## 4                      CARONDELET ST JOSEPHS HOSPITAL    AZ
+## 5                           HUNTINGTON BEACH HOSPITAL    CA
+## 6                                MCKEE MEDICAL CENTER    CO
+## 7                          ROCKVILLE GENERAL HOSPITAL    CT
+## 8                                                  NA    DC
+## 9                                                  NA    DE
+## 10                  HIGHLANDS REGIONAL MEDICAL CENTER    FL
+## 11                DEKALB MEDICAL CENTER AT HILLANDALE    GA
+## 12                                                 NA    GU
+## 13                         HAWAII MEDICAL CENTER EAST    HI
+## 14                   AUDUBON COUNTY MEMORIAL HOSPITAL    IA
+## 15                            BONNER GENERAL HOSPITAL    ID
+## 16                    ALEXIAN BROTHERS MEDICAL CENTER    IL
+## 17                            CLARK MEMORIAL HOSPITAL    IN
+## 18                            DECATUR COUNTY HOSPITAL    KS
+## 19                             ST ELIZABETH FT THOMAS    KY
+## 20                          ST FRANCIS MEDICAL CENTER    LA
+## 21                         NORTH SHORE MEDICAL CENTER    MA
+## 22                         MARYLAND GENERAL  HOSPITAL    MD
+## 23                                CARY MEDICAL CENTER    ME
+## 24                OAKWOOD HOSPITAL AND MEDICAL CENTER    MI
+## 25                           RIDGEVIEW MEDICAL CENTER    MN
+## 26                       CHRISTIAN HOSPITAL NORTHEAST    MO
+## 27                         GREENWOOD LEFLORE HOSPITAL    MS
+## 28                        ST JOHN'S LUTHERAN HOSPITAL    MT
+## 29                             WAKEMED, CARY HOSPITAL    NC
+## 30                       SANFORD MEDICAL CENTER FARGO    ND
+## 31                              YORK GENERAL HOSPITAL    NE
+## 32                       PORTSMOUTH REGIONAL HOSPITAL    NH
+## 33                                    VALLEY HOSPITAL    NJ
+## 34   HOLY CROSS HOSPITAL A DIV OF TAOS HEALTH SYSTEMS    NM
+## 35                RENOWN SOUTH MEADOWS MEDICAL CENTER    NV
+## 36                               MOUNT SINAI HOSPITAL    NY
+## 37                         TRUMBULL MEMORIAL HOSPITAL    OH
+## 38                               MARY HURLEY HOSPITAL    OK
+## 39                                ST ANTHONY HOSPITAL    OR
+## 40                                       UPMC HORIZON    PA
+## 41                     HOSPITAL HERMANOS MELENDEZ INC    PR
+## 42                                   NEWPORT HOSPITAL    RI
+## 43                       CHARLESTON VA MEDICAL CENTER    SC
+## 44 AVERA MCKENNAN HOSPITAL & UNIVERSITY HEALTH CENTER    SD
+## 45               FORT SANDERS REGIONAL MEDICAL CENTER    TN
+## 46                UT SOUTHWESTERN UNIVERSITY HOSPITAL    TX
+## 47                         VALLEY VIEW MEDICAL CENTER    UT
+## 48                  CARILION GILES COMMUNITY HOSPITAL    VA
+## 49                                                 NA    VI
+## 50                     CENTRAL VERMONT MEDICAL CENTER    VT
+## 51                      VIRGINIA MASON MEDICAL CENTER    WA
+## 52          WHEATON FRANCISCAN HEALTHCARE- ALL SAINTS    WI
+## 53                       PRINCETON COMMUNITY HOSPITAL    WV
+## 54                  CAMPBELL COUNTY MEMORIAL HOSPITAL    WY
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(}\FunctionTok{rankall}\NormalTok{(}\StringTok{"heart attack"}\NormalTok{, }\DecValTok{20}\NormalTok{), }\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                          hospital_name state
+## 1                                   NA    AK
+## 2       D W MCMILLAN MEMORIAL HOSPITAL    AL
+## 3    ARKANSAS METHODIST MEDICAL CENTER    AR
+## 4  JOHN C LINCOLN DEER VALLEY HOSPITAL    AZ
+## 5                SHERMAN OAKS HOSPITAL    CA
+## 6             SKY RIDGE MEDICAL CENTER    CO
+## 7              MIDSTATE MEDICAL CENTER    CT
+## 8                                   NA    DC
+## 9                                   NA    DE
+## 10      SOUTH FLORIDA BAPTIST HOSPITAL    FL
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{tail}\NormalTok{(}\FunctionTok{rankall}\NormalTok{(}\StringTok{"pneumonia"}\NormalTok{, }\StringTok{"worst"}\NormalTok{), }\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                                 hospital_name state
+## 52 MAYO CLINIC HEALTH SYSTEM - NORTHLAND, INC    WI
+## 53                     PLATEAU MEDICAL CENTER    WV
+## 54           NORTH BIG HORN HOSPITAL DISTRICT    WY
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{tail}\NormalTok{(}\FunctionTok{rankall}\NormalTok{(}\StringTok{"heart failure"}\NormalTok{), }\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                                                        hospital_name state
+## 45                         WELLMONT HAWKINS COUNTY MEMORIAL HOSPITAL    TN
+## 46                                        FORT DUNCAN MEDICAL CENTER    TX
+## 47 VA SALT LAKE CITY HEALTHCARE - GEORGE E. WAHLEN VA MEDICAL CENTER    UT
+## 48                                          SENTARA POTOMAC HOSPITAL    VA
+## 49                            GOV JUAN F LUIS HOSPITAL & MEDICAL CTR    VI
+## 50                                              SPRINGFIELD HOSPITAL    VT
+## 51                                         HARBORVIEW MEDICAL CENTER    WA
+## 52                                    AURORA ST LUKES MEDICAL CENTER    WI
+## 53                                         FAIRMONT GENERAL HOSPITAL    WV
+## 54                                        CHEYENNE VA MEDICAL CENTER    WY
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{rankall}\NormalTok{(}\StringTok{"pneumonia"}\NormalTok{, }\StringTok{"worst"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                                  hospital_name state
+## 1                 ALASKA NATIVE MEDICAL CENTER    AK
+## 2                  JACKSONVILLE MEDICAL CENTER    AL
+## 3                  RIVER VALLEY MEDICAL CENTER    AR
+## 4               HAVASU REGIONAL MEDICAL CENTER    AZ
+## 5               DELANO REGIONAL MEDICAL CENTER    CA
+## 6         ST MARYS HOSPITAL AND MEDICAL CENTER    CO
+## 7                        MILFORD HOSPITAL, INC    CT
+## 8               GEORGETOWN UNIVERSITY HOSPITAL    DC
+## 9        CHRISTIANA CARE HEALTH SERVICES, INC.    DE
+## 10        SEVEN RIVERS REGIONAL MEDICAL CENTER    FL
+## 11            MCDUFFIE REGIONAL MEDICAL CENTER    GA
+## 12            GUAM MEMORIAL HOSPITAL AUTHORITY    GU
+## 13                MAUI MEMORIAL MEDICAL CENTER    HI
+## 14                       BURGESS HEALTH CENTER    IA
+## 15                 BEAR LAKE MEMORIAL HOSPITAL    ID
+## 16                           ST JOHNS HOSPITAL    IL
+## 17 INDIANA UNIVERSITY HEALTH LA PORTE HOSPITAL    IN
+## 18              WESTERN PLAINS MEDICAL COMPLEX    KS
+## 19                     CALDWELL MEDICAL CENTER    KY
+## 20           TERREBONNE GENERAL MEDICAL CENTER    LA
+## 21                     ATHOL MEMORIAL HOSPITAL    MA
+## 22                      CIVISTA MEDICAL CENTER    MD
+## 23                          MID COAST HOSPITAL    ME
+## 24                 ASPIRUS GRAND VIEW HOSPITAL    MI
+## 25                      GLACIAL RIDGE HOSPITAL    MN
+## 26          UNIVERSITY OF MISSOURI HEALTH CARE    MO
+## 27                      BOLIVAR MEDICAL CENTER    MS
+## 28                     GLENDIVE MEDICAL CENTER    MT
+## 29                   VIDANT EDGECOMBE HOSPITAL    NC
+## 30                    OAKES COMMUNITY HOSPITAL    ND
+## 31                 MEMORIAL COMMUNITY HOSPITAL    NE
+## 32               LAKES REGION GENERAL HOSPITAL    NH
+## 33              BERGEN REGIONAL MEDICAL CENTER    NJ
+## 34                                UNM HOSPITAL    NM
+## 35              RENOWN REGIONAL MEDICAL CENTER    NV
+## 36                    ONEIDA HEALTHCARE CENTER    NY
+## 37          COSHOCTON COUNTY MEMORIAL HOSPITAL    OH
+## 38                MERCY MEMORIAL HEALTH CENTER    OK
+## 39                           BAY AREA HOSPITAL    OR
+## 40           POTTSTOWN MEMORIAL MEDICAL CENTER    PA
+## 41                HOSPITAL SAN CARLOS BORROMEO    PR
+## 42                   SOUTH COUNTY HOSPITAL INC    RI
+## 43            LAURENS COUNTY HEALTHCARE SYSTEM    SC
+## 44               HURON REGIONAL MEDICAL CENTER    SD
+## 45              ATHENS REGIONAL MEDICAL CENTER    TN
+## 46                    LIMESTONE MEDICAL CENTER    TX
+## 47                         CASTLEVIEW HOSPITAL    UT
+## 48                      SENTARA LEIGH HOSPITAL    VA
+## 49           ROY LESTER SCHNEIDER HOSPITAL,THE    VI
+## 50                        PORTER HOSPITAL, INC    VT
+## 51                      OLYMPIC MEDICAL CENTER    WA
+## 52  MAYO CLINIC HEALTH SYSTEM - NORTHLAND, INC    WI
+## 53                      PLATEAU MEDICAL CENTER    WV
+## 54            NORTH BIG HORN HOSPITAL DISTRICT    WY
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{rankall}\NormalTok{(}\StringTok{"heart failure"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                                                        hospital_name state
+## 1                                           SOUTH PENINSULA HOSPITAL    AK
+## 2                                 GEORGE H. LANIER MEMORIAL HOSPITAL    AL
+## 3                       VA CENTRAL AR. VETERANS HEALTHCARE SYSTEM LR    AR
+## 4                               BANNER GOOD SAMARITAN MEDICAL CENTER    AZ
+## 5                                  CENTINELA HOSPITAL MEDICAL CENTER    CA
+## 6                                          PARKER ADVENTIST HOSPITAL    CO
+## 7                                            YALE-NEW HAVEN HOSPITAL    CT
+## 8                                                PROVIDENCE HOSPITAL    DC
+## 9                                  BAYHEALTH - KENT GENERAL HOSPITAL    DE
+## 10                         FLORIDA HOSPITAL HEARTLAND MEDICAL CENTER    FL
+## 11                                                  DOCTORS HOSPITAL    GA
+## 12                                  GUAM MEMORIAL HOSPITAL AUTHORITY    GU
+## 13                                            KUAKINI MEDICAL CENTER    HI
+## 14                               MERCY MEDICAL CENTER - CEDAR RAPIDS    IA
+## 15                            SAINT ALPHONSUS MEDICAL CENTER - NAMPA    ID
+## 16                                    RUSH UNIVERSITY MEDICAL CENTER    IL
+## 17                                         ST CATHERINE HOSPITAL INC    IN
+## 18                                               HAYS MEDICAL CENTER    KS
+## 19                                        WESTLAKE REGIONAL HOSPITAL    KY
+## 20                                    WILLIS KNIGHTON MEDICAL CENTER    LA
+## 21                                     ST ELIZABETH'S MEDICAL CENTER    MA
+## 22                                   MEDSTAR GOOD SAMARITAN HOSPITAL    MD
+## 23                MILES MEMORIAL HOSPITAL (LINCOLN COUNTY HEALTHCARE    ME
+## 24                                        HARPER UNIVERSITY HOSPITAL    MI
+## 25                        ESSENTIA HEALTH ST JOSEPH'S MEDICAL CENTER    MN
+## 26                                        NORTH KANSAS CITY HOSPITAL    MO
+## 27                                         SOUTH CENTRAL REG MED CTR    MS
+## 28                                      COMMUNITY MEDICAL CENTER INC    MT
+## 29                               FIRSTHEALTH MOORE REGIONAL HOSPITAL    NC
+## 30                                        ST ALOISIUS MEDICAL CENTER    ND
+## 31                                           NEBRASKA HEART HOSPITAL    NE
+## 32                                          VALLEY REGIONAL HOSPITAL    NH
+## 33                                      EAST ORANGE GENERAL HOSPITAL    NJ
+## 34                              LOVELACE REGIONAL HOSPITAL - ROSWELL    NM
+## 35                                             MOUNTAINVIEW HOSPITAL    NV
+## 36                                  KINGSBROOK JEWISH MEDICAL CENTER    NY
+## 37                                                 FAIRVIEW HOSPITAL    OH
+## 38                                     DUNCAN REGIONAL HOSPITAL, INC    OK
+## 39                                        PORTLAND VA MEDICAL CENTER    OR
+## 40                                    PHILADELPHIA VA MEDICAL CENTER    PA
+## 41                                  SAN LUKE'S MEMORIAL HOSPITAL INC    PR
+## 42                                                 WESTERLY HOSPITAL    RI
+## 43                                           PALMETTO HEALTH BAPTIST    SC
+## 44                          AVERA HEART HOSPITAL OF SOUTH DAKOTA LLC    SD
+## 45                         WELLMONT HAWKINS COUNTY MEMORIAL HOSPITAL    TN
+## 46                                        FORT DUNCAN MEDICAL CENTER    TX
+## 47 VA SALT LAKE CITY HEALTHCARE - GEORGE E. WAHLEN VA MEDICAL CENTER    UT
+## 48                                          SENTARA POTOMAC HOSPITAL    VA
+## 49                            GOV JUAN F LUIS HOSPITAL & MEDICAL CTR    VI
+## 50                                              SPRINGFIELD HOSPITAL    VT
+## 51                                         HARBORVIEW MEDICAL CENTER    WA
+## 52                                    AURORA ST LUKES MEDICAL CENTER    WI
+## 53                                         FAIRMONT GENERAL HOSPITAL    WV
+## 54                                        CHEYENNE VA MEDICAL CENTER    WY
+\end{verbatim}
+
+\hypertarget{check-whether-package-exists-or-not-then-loading}{%
+\chapter{CHECK WHETHER PACKAGE EXISTS OR NOT THEN LOADING}\label{check-whether-package-exists-or-not-then-loading}}
+
+Source: \url{https://vbaliga.github.io/verify-that-r-packages-are-installed-and-loaded/}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# If a package is installed, it will be loaded. If any }
+\DocumentationTok{\#\# are not, the missing package(s) will be installed }
+\DocumentationTok{\#\# from CRAN and then loaded.}
+
+\DocumentationTok{\#\# First specify the packages of interest}
+\NormalTok{packages }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{, }\StringTok{"geomorph"}\NormalTok{,}
+             \StringTok{"phytools"}\NormalTok{, }\StringTok{"viridis"}\NormalTok{)}
+
+\DocumentationTok{\#\# Now load or install \& load all}
+\NormalTok{package.check }\OtherTok{\textless{}{-}} \FunctionTok{lapply}\NormalTok{(}
+\NormalTok{  packages,}
+  \AttributeTok{FUN =} \ControlFlowTok{function}\NormalTok{(x) \{}
+    \ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{require}\NormalTok{(x, }\AttributeTok{character.only =} \ConstantTok{TRUE}\NormalTok{)) \{}
+      \FunctionTok{install.packages}\NormalTok{(x, }\AttributeTok{dependencies =} \ConstantTok{TRUE}\NormalTok{)}
+      \FunctionTok{library}\NormalTok{(x, }\AttributeTok{character.only =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{    \}}
+\NormalTok{  \}}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: tidyverse
+\end{verbatim}
+
+\begin{verbatim}
+## -- Attaching packages --------------------------------------- tidyverse 1.3.1 --
+\end{verbatim}
+
+\begin{verbatim}
+## v tibble  3.1.7     v dplyr   1.0.9
+## v tidyr   1.2.0     v stringr 1.4.0
+## v readr   2.1.2     v forcats 0.5.1
+## v purrr   0.3.4
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'tidyr' was built under R version 4.1.3
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'dplyr' was built under R version 4.1.3
+\end{verbatim}
+
+\begin{verbatim}
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: geomorph
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'geomorph' was built under R version 4.1.3
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: RRPP
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'RRPP' was built under R version 4.1.3
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: rgl
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'rgl' was built under R version 4.1.3
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: Matrix
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'Matrix'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:tidyr':
+## 
+##     expand, pack, unpack
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: phytools
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'phytools' was built under R version 4.1.3
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: ape
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'ape' was built under R version 4.1.3
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'ape'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:ggpubr':
+## 
+##     rotate
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:agricolae':
+## 
+##     consensus
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: maps
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'maps'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:purrr':
+## 
+##     map
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: viridis
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'viridis' was built under R version 4.1.3
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: viridisLite
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'viridis'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:maps':
+## 
+##     unemp
+\end{verbatim}
 
   \bibliography{book.bib,packages.bib}
 
